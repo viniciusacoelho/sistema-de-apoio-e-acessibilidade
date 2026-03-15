@@ -1,72 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Apoio e Acessibilidade</title>
-    <link rel="shortcut icon" href="./images/SAA_logo_editada.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-    <header>
 
-    </header>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sistema de Apoio e Acessibilidade</title>
+        <link rel="shortcut icon" href="./images/SAA_logo_editada.png" type="image/x-icon">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
 
-    <main class="">
-        <section class="container-1">
-            <form action="" method="get">
-                <div class="item-1">
-                    <h2>Cadastre-se</h2>
-                    <br>
-                    <p>Crie uma nova conta no nosso site</p>
-                </div>
-                <div class="item-2">
-                    <label for="" class="left">Nome completo<span class="right">*</span></label>
-                    <div class="input-icon">
-                        <i class="fa-solid fa-user"></i>
-                        <input id="nome" type="text" placeholder="Informe seu nome completo" class="input-item-2" minlength="5" maxlength="60" required>
-                    </div>
-                    <br>
-                    <label for="" class="left">E-mail<span class="right">*</span></label>
-                    <div class="input-icon">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input id="email" type="email" placeholder="Ex: @gmail, @outlook, @yahoo, etc." class="input-item-2" minlength="16" maxlength="74" required>
-                    </div>
-                    <br>
-                    <label for="" class="left">Senha<span class="right">*</span></label>
-                    <div class="input-icon">
-                        <i class="fa-solid fa-lock icon-left"></i>
-                        <input type="password" placeholder="Informe sua senha" class="input-item-2" minlength="8" maxlength="25" required>
-                        <i class="fa-solid fa-eye icon-right"></i>
-                    </div>
-                    <br>
-                    <label for="" class="left">Confirmar senha<span class="right">*</span></label>
-                    <div class="input-icon">
-                        <i class="fa-solid fa-lock icon-left"></i>
-                        <input type="password" placeholder="Confirme sua senha" class="input-item-2" minlength="8" maxlength="25" required>
-                        <i class="fa-solid fa-eye icon-right"></i>
-                    </div>
-                    
-                    <small class="right">*campo obrigatório</small>
-                </div>
-                <div class="item-3">
-                    <input type="checkbox" required>
-                    <label><small>Li e concordo com os <a href="">Termos de Uso</a><br> e a <a href="">Política de Privacidade</a>.</small></label>
-                    <br>
-                </div>
-                <div class="button">
-                    <button type="submit" class="button-size"><h2>Cadastrar</h2></button>
-                </div>
-                <div class="center">
-                    <p>Já tem uma conta? <a href="login.html">Fazer login</a></p>
-                </div>
-            </form>
-        </section>
-    </main>
+    <body>
+        <header>
 
-    <footer>
+        </header>
 
-    </footer>
-</body>
+        <main class="">
+            <section class="container-1">
+                <form action="" method="get">
+                    <div class="item-1">
+                        <h2>Cadastre-se</h2>
+                        <br>
+                        <p>Crie uma nova conta no nosso site</p>
+                    </div>
+
+                    <div class="item-2">
+                        <label for="name" class="left">Nome completo<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required>
+                        </div>
+                        <br>
+                        <label for="email" class="left">E-mail<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" id="email" class="input-item-2" placeholder="Ex: @gmail, @outlook, @yahoo, etc." minlength="16" maxlength="74" required>
+                        </div>
+                        <br>
+                        <label for="password" class="left">Senha<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" name="password" id="password" class="input-item-2" placeholder="Informe sua senha" minlength="8" maxlength="25" required>
+                            <i class="fa-solid fa-eye icon-right"></i>
+                        </div>
+                        <br>
+                        <label for="password-confirmation" class="left">Confirmar senha<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password-confirmation" name="password-confirmation" id="password-confirmation" class="input-item-2" placeholder="Informe sua senha" minlength="8" maxlength="25" required>
+                            <i class="fa-solid fa-eye icon-right"></i>
+                        </div>
+                        <small class="right">*campo obrigatório</small>
+                    </div>
+
+                    <div class="item-3">
+                        <input type="checkbox" name="checkbox" id="checkbox" required>
+                        <label for="checkbox" ><small>Li e concordo com os <a href="">Termos de Uso</a><br> e a <a href="">Política de Privacidade</a>.</small></label>
+                        <br>
+                    </div>
+                    <div class="button">
+                        <button type="submit" class="button-size"><h2>Cadastrar</h2></button>
+                    </div>
+                    <div class="center">
+                        <p>Já tem uma conta? <a href="login.html">Fazer login</a></p>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+
+        </footer>
+    </body>
 </html>
