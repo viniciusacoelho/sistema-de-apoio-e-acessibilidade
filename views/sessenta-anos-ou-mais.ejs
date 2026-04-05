@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Apoio e Acessibilidade</title>
+    <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body-index">
+
+    <header class="header-index">
+         <%- include('partials/navbar') %>
+    </header>
+
+    <nav class="nav-encontre-suporte">
+        <ul class="nav-links-encontre-suporte">
+            <a class="sessenta-anos-ou-mais-li" href="/"><li>60 anos ou mais</li></a>
+            <a href="/sobre"><li>Deficiente auditivo</li></a>
+            <a href="/encontre-suporte"><li>Deficiente físico ou motoro</li></a>
+        </ul>
+    </nav>
+    
+    <!-- BOTÃO -->
+    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <h2>Início</h2>
+        <ul>
+            <li><a href="index.html">Resumo</a></li>
+            <li><a href="#">Conteúdo destacado</a></li>
+            <li><a href="#">Tipos de Problemas</a></li>
+            <li><a href="#">Auditivo</a></li>
+            <li><a href="#">fisico-motora</a></li>
+            <li><a href="#">mais-de-60-anos</a></li>
+            <li><a href="#">Portais</a></li>
+        </ul>
+        <h2>Colaboração</h2>
+        <ul>
+            <li><a href="#">Boas-vindas</a></li>
+            <li><a href="#">Ajuda</a></li>
+            <li><a href="#">Portal comunitário</a></li>
+            <li><a href="#">Mudanças recentes</a></li>
+        </ul>
+    </div>
+
+    <main class="layout">
+        <section class="main-encontre-suporte">
+            <article>
+                <div class="artigo-encontre-suporte">
+                    <h1 class="titulo-artigo-encontre-suporte">Envelhecer com Dignidade: Acessibilidade para Pessoas com 60 Anos ou Mais</h1>
+                    <br>
+                    <h2 class="titulo-h2-index">Uma População que Cresce — e que a Cidade ainda Ignora</h2>
+                    <br>
+                    <hr>
+                    <p class="paragrafo-artigo-encontre-suporte">
+                        O Brasil está envelhecendo rapidamente. O último censo do IBGE registrou 22,2 milhões de pessoas idosas no país em 2022, representando 10,9% da população total — um crescimento de 57,4% em relação a 2010. As projeções indicam que, em 2060, pessoas com 60 anos ou mais corresponderão a 32,2% da população brasileira. Humanamente São números que exigem cidades repensadas, infraestruturas adaptadas e políticas públicas comprometidas com a dignidade de quem tanto contribuiu para a construção do país.
+                        Mas a realidade ainda está longe desse ideal. Oitenta e quatro por cento dos idosos brasileiros vivem em áreas urbanas, onde enfrentam desafios diários relacionados à mobilidade, como a má conservação das calçadas e a escassez de transportes acessíveis. Humanamente Envelhecer, para muitos, significa conviver com uma cidade que não foi planejada para recebê-los.
+                        <br>
+                        <br>
+                        A ausência de 
+                        dados centralizados sobre rampas, elevadores, banheiros adaptados 
+                        e sinalização adequada compromete a autonomia de quem mais precisa 
+                        de apoio. Desenvolvido por estudantes de Sistemas de Informação do 
+                        Centro Universitário Cesmac, o projeto combina tecnologia e 
+                        compromisso social para criar uma solução real a um problema real. 
+                        
+                        <br>
+                        <br>
+                        A plataforma centraliza informações sobre acessibilidade em 
+                        diversos estabelecimentos, permitindo que os usuários consultem 
+                        dados importantes como presença de rampas, elevadores, banheiros 
+                        adaptados e sinalização adequada.
+                        <br>
+                        <br>
+                        Além disso, o sistema permite o registro de denúncias, 
+                        contribuindo para a fiscalização e melhoria dos espaços 
+                        urbanos.
+                        <br>
+                        <br>
+                        Nosso compromisso é utilizar a tecnologia como ferramenta de 
+                        inclusão social, promovendo autonomia, segurança e cidadania 
+                        para todos.
+                        <br>
+                        
+                    </p>
+                    
+                </div>
+            </article>
+
+        
+
+            <div class="noticias">
+                <div class="noticia">
+                    <a href="#" class="noticias-a">
+                        <div class="noticia-titulo-posicionamento">
+                            <h1 class="noticia-titulos">Notícia 1</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="noticia">
+                    <a href="#" class="noticias-a">
+                        <div class="noticia-titulo-posicionamento">
+                            <h1 class="noticia-titulos">Notícia 2</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="noticia">
+                    <a href="#" class="noticias-a">
+                        <div class="noticia-titulo-posicionamento">
+                            <h1 class="noticia-titulos">Notícia 3</h1>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="linhas"></div>
+            <div class="linhas"></div>
+            <div class="linhas"></div>
+
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="./assets/js/sidebar.js"></script>
+
+    <script src="./assets/js/carrossel.js"></script>
+</body>
+</html>

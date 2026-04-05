@@ -4,22 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Apoio e Acessibilidade</title>
-    <link rel="shortcut icon" href="./images/SAA_logo_editada.png" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="body-index">
 
     <header class="header-index">
-        
-        <nav class="nav-index">
-            <ul class="nav-links-index">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </nav>
+        <%- include('partials/navbar') %>
     </header>
     
     <!-- BOTÃO -->
@@ -64,11 +56,9 @@
                         locais acessíveis, aproxima cidadãos do poder público 
                         e fortalece a inclusão social nas cidades.
                     </p>
-                    <div class="button-paragrafo-artigo-index">
-                        <a href="#inicio-descricao">
-                            Comece a navegar
-                        </a>
-                    </div>
+                    <a href="#inicio-descricao" class="button-paragrafo-artigo-index">
+                        Comece a navegar
+                    </a>
                 </div>
             </article>
 
@@ -76,7 +66,7 @@
             <section id="inicio-descricao" class="inicio-descricao">
                 <div class="inicio-descricao-containers">                   
                     <div class="container-img-inicio-descricao">
-                        <img id="logotipo-saa-inicio-descricao" src="./assets/images/SAA_logo_editada.png" alt="">
+                        <img id="logotipo-saa-inicio-descricao" src="/images/SAA_logo_editada.png" alt="">
                     </div>
                         <p>Bem-vindo ao Sistema de Apoio e Acessibilidade (S.A.A.), 
                             uma plataforma digital desenvolvida para promover 
@@ -96,6 +86,9 @@
                         inclusiva e consciente.
                     </p>
                 </div>
+                <a href="/sobre" class="button-paragrafo-inicio-descricao" >                    
+                    Saiba mais sobre a plataforma
+                </a>
             </section>
 
             
@@ -110,35 +103,38 @@
                 <button class="seta esquerda">&#10094;</button>
 
                 <div class="circulos">
-                    <a href="pagina1.html" class="circulo">
+                    <a href="/pagina1" class="circulo">
                         <div class="conteudo">
-                            <img src="./assets/images/JV Portfólio - Logotipo.png">
-                            <img src="./assets/images/JV Portfólio - Logotipo.png">
-                            <img src="./assets/images/JV Portfólio - Logotipo.png">      
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.jpeg">
+                                 
                         </div>
                     </a>
 
-                    <a href="pagina2.html" class="circulo ativo">
+                    <a href="/pagina2" class="circulo ativo">
                         <div class="conteudo">
-                            <img src="./assets/images/saa.png">
-                            <img src="./assets/images/saa.png">
-                            <img src="./assets/images/saa.png">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg">
+                            
                         </div>
                     </a>
 
-                    <a href="pagina3.html" class="circulo">
+                    <a href="/pagina3" class="circulo">
                         <div class="conteudo">
-                            <img src="./assets/images/SAA_logo_editada.png">
-                            <img src="./assets/images/SAA_logo_editada.png">
-                            <img src="./assets/images/SAA_logo_editada.png">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-fisico-ou-motoro.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-fisico-ou-motoro.jpeg">
+                            <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-fisico-ou-motoro.jpeg">
+                           
                         </div>
                     </a>
                 </div>
 
                 <button class="seta direita">&#10095;</button>
-
+                
             </div>
-
+            
             <div class="noticias">
                 <div class="noticia">
                     <a href="#" class="noticias-a">
@@ -171,81 +167,10 @@
 
     </main>
 
-    <footer class="footer-index">
-        <div class="container">
-            <div class="bloco superior">
-                <div class="div-image-position">
-                    <img id="contain" src="./assets/images/saa.png" alt="">
-                    <div class="circulos-footer">
-                        <div class="circulo-footer pequeno-footer">
-                            <p class="numero-de-contato">+55 (82) 98759-3594</p>
-                        </div>
-                    </div>
-                    <div class="circulos-footer">
-                        <div class="circulo-footer pequeno-footer">
-                            <p class="email">2025102346@academico.cesmac.edu.br</p>
-                        </div>
-                    </div>
-                    <div class="circulos-footer">
-                        <div id="circulo-footer-redes-sociais" class="circulo-footer pequeno-footer">
-                            
-                        </div>
-                        <div id="circulo-footer-redes-sociais" class="circulo-footer pequeno-footer">
-                            
-                        </div>
-                        <div id="circulo-footer-redes-sociais" class="circulo-footer pequeno-footer">
-                            
-                        </div>
-                        <div id="circulo-footer-redes-sociais" class="circulo-footer pequeno-footer">
-                            
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="bloco superior">
-                <div class="noticias-footer">
-                    <div class="noticias-posicionamento-footer">
-                        <a href="#" class="noticias-a-footer">
-                            <div class="noticia-titulo-posicionamento-footer">
-                                <h1 class="noticia-titulos-footer">Notícia 1</h1>
-                            </div>
-                        </a>
-                        <a href="#" class="noticias-a-footer">
-                            <div class="noticia-titulo-posicionamento-footer">
-                                <h1 class="noticia-titulos-footer">Notícia 1</h1>
-                            </div>
-                        </a>
-                        <a href="#" class="noticias-a-footer">
-                            <div class="noticia-titulo-posicionamento-footer">
-                                <h1 class="noticia-titulos-footer">Notícia 1</h1>
-                            </div>
-                        </a>   
-                    </div>     
-                </div>
+        <%- include('partials/footer') %>
+    
+    <script src="/js/sidebar.js"></script>
 
-            </div>
-            <div class="bloco inferior">
-                <div class="div-direitos-reservados">
-                    <p class="p-footer">Copyright &copy; 2026 - Todos os direitos reservados</p>
-                    <p class="p-footer">
-                        Desenvolvido por:
-                        <a class="a-footer" href="https://www.instagram.com/joao.coelho21/?next=%2F" title="Instagram do Desenvolvedor" target="_blank">
-                            @joao.coelho21
-                        </a>
-                        <img id="image" src="https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png" alt="ícone do instagram">
-                    </p>
-                </div>
-
-            </div>
-        </div>
-
-
-        
-    </footer>
-
-    <script src="./assets/js/sidebar.js"></script>
-
-    <script src="./assets/js/carrossel.js"></script>
+    <script src="/js/carrossel.js"></script>
 </body>
 </html>

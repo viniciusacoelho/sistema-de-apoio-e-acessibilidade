@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/notificacao.css">
+    </head>
+
+    <body>
+        <header>
+            <main>
+                <h1>Notificação</h1>
+                <section class="">
+                    <div class="card">
+                        <form action="">
+                            <div class="card-between">
+                                <div class="card-image">
+                                    <label for="image" class="image">Escolher imagem</label>
+                                    <input type="file" name="image" id="image" hidden>
+                                    <p id="file-name">Nenhum arquivo selecionado</p>
+                                    <img id="preview" src="" alt="Preview da imagem">
+                                </div>
+                                <div class="card-right">
+                                    <div class="card-name">
+                                        <label for="name">Nome</label>
+                                        <input type="text" name="name" id="name" placeholder="Digite o nome do local">
+                                    </div>
+                                    <div class="card-date">
+                                        <label for="date">Data</label>
+                                        <input type="date" name ="date" id="date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-message">
+                                <label for="message">Mensagem</label>
+                                <textarea name="message" id="message"></textarea>
+                            </div>
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </header>
+    </body>
+
+    <script>
+    const input = document.getElementById("image");
+    const fileName = document.getElementById("file-name");
+    const preview = document.getElementById("preview");
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            const file = input.files[0];
+
+            // Atualiza nome do arquivo
+            fileName.textContent = file.name;
+
+            // Mostra preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            fileName.textContent = "Nenhum arquivo selecionado";
+            preview.style.display = "none";
+        }
+    });
+</script>
+</html>

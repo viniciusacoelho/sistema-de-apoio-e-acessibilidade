@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Apoio e Acessibilidade</title>
+    <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body-index">
+
+    <header class="header-index">
+        <%- include('partials/navbar') %>
+    </header>
+    <nav class="nav-encontre-suporte">
+        <ul class="nav-links-encontre-suporte">
+            <a href="sessenta-anos-ou-mais"><li>60 anos ou mais</li></a>
+            <a href="sobre.html"><li>Deficiente auditivo</li></a>
+            <a href="encontre-suporte.html"><li>Deficiente físico ou motoro</li></a>
+        </ul>
+    </nav>
+    
+    <!-- BOTÃO -->
+    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <h2>Início</h2>
+        <ul>
+            <li><a href="/">Resumo</a></li>
+            <li><a href="#">Conteúdo destacado</a></li>
+            <li><a href="#">Tipos de Problemas</a></li>
+            <li><a href="#">Auditivo</a></li>
+            <li><a href="#">fisico-motora</a></li>
+            <li><a href="#">mais-de-60-anos</a></li>
+            <li><a href="#">Portais</a></li>
+        </ul>
+        <h2>Colaboração</h2>
+        <ul>
+            <li><a href="#">Boas-vindas</a></li>
+            <li><a href="#">Ajuda</a></li>
+            <li><a href="#">Portal comunitário</a></li>
+            <li><a href="#">Mudanças recentes</a></li>
+        </ul>
+    </div>
+
+    <main class="layout">
+        <section class="main-encontre-suporte">
+            <article>
+                <div class="artigo-encontre-suporte">
+                    <h1 class="titulo-artigo-encontre-suporte">Encontre Suporte no S.A.A.</h1>
+                    <br>
+                    <hr>
+                    <p class="paragrafo-artigo-encontre-suporte">
+                        O S.A.A. foi criado para ser útil a quem enfrenta barreiras de acessibilidade — seja vivendo-as na pele, cuidando de alguém que as enfrenta, ou simplesmente sendo um cidadão atento ao mundo ao redor.
+                        <br>
+                        <br>
+                        Pessoas com deficiência auditiva que não encontram intérpretes de Libras onde precisam. Pessoas com deficiência física ou motora que se deparam com calçadas intransponíveis, elevadores quebrados e ônibus sem manutenção adequada. Pessoas com 60 anos ou mais que enfrentam semáforos rápidos demais, ruas perigosas e serviços que não foram pensados para elas. Todas essas histórias têm algo em comum: a ausência de informação centralizada que mostre onde buscar apoio, como denunciar problemas e quais espaços da cidade estão de fato preparados para recebê-las.
+                        <br>
+                        <br>
+                        É exatamente esse vazio que o S.A.A. veio preencher. Nossa plataforma reúne informações sobre os desafios reais de cada grupo, com foco na cidade de Maceió, e indica os locais acessíveis onde é possível encontrar atendimento, suporte e acolhimento.
+                        <br>
+                        <br>
+                        Selecione um dos grupos abaixo e descubra como o S.A.A. pode ser útil para você ou para quem você conhece.
+                        <br>
+                        <br>
+                    </p>
+                    
+                </div>
+            </article>
+
+            <div class="texto-div-carrossel">
+                <p>Clique no que você deseja para ler mais sobre</p>
+            </div>
+
+            <div class="noticias-encontre-suporte">
+                <div class="noticia-encontre-suporte">
+                    <a href="#" class="noticias-a-encontre-suporte">
+                        <div class="noticia-titulo-posicionamento-encontre-suporte">
+                            <h1 class="noticia-titulos-encontre-suporte">60 anos ou mais</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="noticia-encontre-suporte">
+                    <a href="#" class="noticias-a-encontre-suporte">
+                        <div class="noticia-titulo-posicionamento-encontre-suporte">
+                            <h1 class="noticia-titulos-encontre-suporte">Deficiente auditivo</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="noticia-encontre-suporte">
+                    <a href="#" class="noticias-a-encontre-suporte">
+                        <div class="noticia-titulo-posicionamento-encontre-suporte">
+                            <h1 class="noticia-titulos-encontre-suporte">Deficiente físico ou motoro</h1>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+    
+    <script src="/js/sidebar.js"></script>
+
+    <script src="/js/carrossel.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/servicos.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar') %>
+    </header>
+    
+    <main>
+        <section>
+            <article class="service">
+                <div class="service-description">
+                    <h1 class="title-service">Nossos Serviços</h1>
+
+                    <hr>
+
+                    <p class="phrase-service">
+                        O Sistema de Apoio e Acessibilidade (S.A.A.) foi desenvolvido para oferecer soluções práticas que auxiliam na promoção da inclusão e na melhoria da acessibilidade urbana. A plataforma reúne funcionalidades que permitem aos usuários acessar informações relevantes, contribuir com a comunidade e participar ativamente da construção de ambientes mais acessíveis. Por meio de recursos simples e eficientes, o sistema busca facilitar o dia a dia das pessoas, promovendo autonomia, segurança e participação social. A seguir, conheça os principais serviços oferecidos pela plataforma:
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <section class="secao">
+            <div class="cards">
+                <a href="/vvv" class="card">
+                    <div class="card-body">
+                        <h2>🔎 Busca de locais acessíveis</h2>
+                        <p>Encontre estabelecimentos com recursos de acessibilidade próximos a você.</p>
+                        <span class="meta">Clique aqui</span>
+                    </div>
+                </a>
+                
+                <a href="/inclusao" class="card">
+                    <div class="card-body">
+                        <h2>📝 Cadastro de estabelecimentos</h2>
+                        <p>Adicione informações sobre locais acessíveis, contribuindo com a comunidade.</p>
+                        <span class="meta">Clique aqui</span>
+                    </div>
+                </a>
+                
+                <a href="/notificacao" class="card">
+                    <div class="card-body">
+                        <h2>⚠️ Registro de denúncias</h2>
+                        <p>Reporte problemas relacionados à acessibilidade urbana de forma simples e rápida.</p>
+                        <span class="meta">Clique aqui</span>
+                    </div>
+                </a>
+                
+                <a href="/vvv" class="card">
+                    <div class="card-body">
+                        <h2>📊 Relatórios e dados</h2>
+                        <p>Acompanhe informações e estatísticas sobre acessibilidade, auxiliando na tomada de decisões.</p>
+                        <span class="meta">Clique aqui</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>
