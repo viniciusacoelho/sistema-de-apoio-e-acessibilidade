@@ -20,7 +20,7 @@ body {
     max-width: 900px;
     width: 100%;
     padding: 40px;
-    background: #ffffff;
+    background: #fff;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     display: flex;
@@ -40,6 +40,7 @@ body {
     color: #555;
     text-align: justify;
 }
+
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -100,8 +101,4 @@ body {
   font-size: 0.82rem;
   color: #888;
   margin-top: auto;
-}
-
-a {
-    
 }

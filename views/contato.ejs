@@ -4,10 +4,68 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Contato</title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/contato.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
 
     <body>
-        
+        <header>
+            <%- include('partials/navbar') %>
+        </header>
+
+        <main class="container">
+            <section class="container-1">
+                <form action="/contato" method="post">
+                    <div class="item-1">
+                        <h2>Contato</h2>
+                        
+                        <p>Entre em contato conosco!</p>
+                    </div>
+
+                    <div class="item-2">
+                        <label for="name" class="left">Nome completo<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="name" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required>
+                        </div>
+                        
+                        <label for="email" class="left">E-mail<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" id="email" class="input-item-2" placeholder="Ex: @gmail, @outlook, @yahoo, etc." minlength="16" maxlength="74" required>
+                        </div>
+
+                        <label for="phone" class="left">Telefone<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" name="phone" id="phone" class="input-item-2" placeholder="Ex: +12 (34) 5 6789-0123" minlength="16" maxlength="74" required>
+                        </div>
+                        
+                        <label for="message" class="left">Mensagem<span class="right">*</span></label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-comment"></i>
+                            <textarea name="message" id="message" class="input-item-2" placeholder="Deixe uma mensagem" required></textarea>
+                        </div>
+                        
+                        <small class="right">*campo obrigatório</small>
+                    </div>
+
+                    <div class="item-3">
+                        <input type="checkbox" name="checkbox" id="checkbox" required>
+                        <label for="checkbox" ><small>Li e concordo com os <a href="">Termos de Uso</a> e a <a href="">Política de Privacidade</a>.</small></label>
+                        
+                    </div>
+                    <div class="button">
+                        <button type="submit" class="button-size"><h2>Enviar</h2></button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+       <%- include('partials/footer') %>
+
     </body>
 </html>

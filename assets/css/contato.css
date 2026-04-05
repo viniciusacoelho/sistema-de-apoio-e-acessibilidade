@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f0f2f5;
+}
+
+.container {
+    padding: 50px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Sections das páginas de login e cadastre-se*/
+.container-1 {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    margin: 55px;
+    width: 450px;
+    height: auto;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.300);
+}
+
+/*item 1: texto antes dos campos das páginas de login e cadastre-se*/
+.item-1 {
+    padding: 35px 35px 0px;
+}
+
+/*item 2: campos das páginas de login e cadastre-se*/
+.item-2 {
+    padding: 30px 35px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+/*Campos para preencher*/
+.input-item-2 {
+    padding: 15px 50px;
+    width: 280px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border: none;
+}
+
+/* ----------------------------*/
+.input-icon {
+    position: relative;
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-icon > i:first-child {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    z-index: 1;
+}
+
+.input-icon > i:last-child:not(:first-child) {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.icon-left {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    z-index: 1;
+}
+
+.icon-right {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    cursor: pointer;
+    z-index: 1;
+}
+/* ----------------------------*/
+
+.left {
+    align-self: flex-start;
+    padding: 5px;
+}
+
+.right {
+    color: rgb(216, 0, 0);
+    align-self: flex-end;
+    padding: 0px 2px 0px;
+}
+
+/*item 3*/
+.item-3 {
+    padding: 0px 40px 30px;
+}
+
+/*Botão*/
+.button {
+    align-self: center;
+    padding: 0px 35px 30px;
+}
+
+.button-size {
+    background-color: black;
+    color: white;
+    width: 375px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+.button-size:hover {
+    background-color: rgb(54, 54, 54);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button-size:focus {
+    background-color: rgb(54, 54, 54);
+    border-color: rgb(54, 54, 54);
+    outline: 3px solid black;
+}
+
+/*Texto depois do botão*/
+.center {
+    text-align: center;
+    padding: 0px 20px 40px;
+}
+
+a {
+    color: rgb(65, 65, 252);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(65, 65, 252);
+    text-decoration: underline;
+}
+
+#message {
+    border-radius: 12px;
+    font-size: 14px;
+    min-height: 120px;
+}
+
+.textarea-icon i {
+    bottom: 0px;
+    transform: none;   
+}
+
+.input-icon i.fa-comment {
+    top: 24px;
+}
