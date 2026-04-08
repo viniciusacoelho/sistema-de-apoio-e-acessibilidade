@@ -7,42 +7,55 @@ let animando = false;
 function atualizarAtivo() {
     const itens = document.querySelectorAll(".circulo");
     itens.forEach(i => i.classList.remove("ativo"));
-
-    // sempre o do meio (índice 1)
     itens[1].classList.add("ativo");
 }
 
-// 👉 DIREITA (vai pra frente)
-// < 3 - 1 - 2 > → < 2 - 3 - 1 >
+// 👉 DIREITA
 btnDir.addEventListener("click", () => {
     if (animando) return;
     animando = true;
 
     const primeiro = container.firstElementChild;
 
-    // animação: meio diminui
-    atualizarAtivo();
+    // 👉 move o primeiro pro final ANTES da animação
+    container.appendChild(primeiro);
+
+    // posiciona “fora da tela” à direita
+    container.style.transition = "none";
+    container.style.transform = "translateX(80px)";
 
     setTimeout(() => {
-        container.appendChild(primeiro);
+        // anima voltando pro centro
+        container.style.transition = "transform 0.4s ease";
+        container.style.transform = "translateX(0)";
         atualizarAtivo();
-        animando = false;
-    }, 200);
+
+        setTimeout(() => {
+            animando = false;
+        }, 400);
+    }, 50);
 });
 
-// 👉 ESQUERDA (volta)
-// < 3 - 1 - 2 > → < 1 - 2 - 3 >
+// 👉 ESQUERDA
 btnEsq.addEventListener("click", () => {
     if (animando) return;
     animando = true;
 
     const ultimo = container.lastElementChild;
 
+    container.insertBefore(ultimo, container.firstElementChild);
+    container.style.transition = "none";
+    container.style.transform = "translateX(-80px)";
+
     setTimeout(() => {
-        container.insertBefore(ultimo, container.firstElementChild);
+        container.style.transition = "transform 0.4s ease";
+        container.style.transform = "translateX(0)";
         atualizarAtivo();
-        animando = false;
-    }, 200);
+
+        setTimeout(() => {
+            animando = false;
+        }, 400);
+    }, 50);
 });
 
 // inicia correto
