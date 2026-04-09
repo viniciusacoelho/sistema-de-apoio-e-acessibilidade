@@ -579,7 +579,11 @@ a:hover {
     padding: 0px 261px 50px 260px;
     width: 1000px;
     height: auto;
-    background-image: linear-gradient(#aaa7e9, rgb(60, 55, 163));
+    background-image: linear-gradient(#9cb6e3, rgb(47, 65, 141));
+    /*
+    background: url(https://fps.cdnpk.net/common/error-bg.png?w=2000) 80% center / cover no-repeat rgb(34, 36, 78);
+    background-position: 80% center;
+    */
 }
 .services-index {
     display: flex;
@@ -615,15 +619,14 @@ a:hover {
     font-weight: 750; /* Aumenta a espessura da fonte selecionada */
     font-size: calc(0.500rem + 1.0vw);
     padding: 0px 0px 30px 0px;
-    flex-direction: column;
-
+    flex-direction: column; 
+}
+.h3-div-services{
     color: #eef6fe;
-    font-size: 25px;
-    font-weight: 700;
     padding-bottom: 20px;
     border-bottom: 3px solid rgb(65, 65, 252);
     display: inline-block;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 .secao-services-index{
     display: flex;
@@ -763,7 +766,7 @@ a:hover {
     font-size: 16px;
     padding-bottom: 20px;
     border-bottom: 3px solid rgb(65, 65, 252);
-    margin-top: -30px;  
+    margin-top: -30px;     
 }
 
 .artigo-contato-index{
@@ -773,7 +776,7 @@ a:hover {
     height: auto;
     padding: 35px;
     flex-direction: column;
-    background-image: linear-gradient(#8381ef, #7a65b9);
+    background-image: linear-gradient(#8381ef, #806ac3);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
 }
@@ -1102,10 +1105,19 @@ a:hover {
     background-color: white;
     border: 1px solid rgb(180, 180, 180);
 }
-.sessenta-anos-ou-mais-li li{
+#sessenta-anos-ou-mais li{
     background-color: #3d446c;
     color: white;
 }
+#deficiente-auditivo li{
+    background-color: #3d446c;
+    color: white;
+}
+#deficiente-fisico-ou-motoro li{
+    background-color: #3d446c;
+    color: white;
+}
+
 
 .nav-links-encontre-suporte a {
     color: rgb(46, 44, 44);
@@ -1148,6 +1160,9 @@ a:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
 }
+.artigo-encontre-suporte strong{
+    color: black;
+}
 
 .titulo-artigo-encontre-suporte{
     font-family: Arial, Helvetica, sans-serif;
@@ -1167,7 +1182,7 @@ a:hover {
 
 .button-paragrafo-artigo-encontre-suporte{
     display: flex;
-    align-self: flex-start; /* ESSA LINHA resolve */
+    align-self: flex-start;
     margin: 20px 0px 0px 0px;
     padding: 10px;
     background-color: #171717;
@@ -1181,6 +1196,42 @@ a:hover {
     color: white;
     text-decoration: none;
 }
+
+/* === SESSENTA ANOS OU MAIS === */
+.figure-sessenta-anos-ou-mais{
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+.img-sessenta-anos-ou-mais{
+    justify-content: center;
+    align-items: center;  
+}
+#img1{
+    width: 700px;
+    height: auto;
+}
+#img2{
+    width: 750px;
+    height: auto;
+}
+#img3{
+    width: 690px;
+    height: auto;
+}
+figcaption{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #323232;
+    background-color: #e9e9e9;
+    font-size: 16px;
+    text-align: center;
+    margin-top: -4px;
+    padding: 5px 0px 5px 0px;
+}
+
+/* === DEFICIENTE AUDITIVO === */
+
+/* === DEFICIENTE FÍSICO OU MOTORO === */
 
 /* ================= SERVIÇOS ================= */
 .secao{
@@ -1234,7 +1285,7 @@ a:hover {
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 100px;
+    gap: 70px;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
@@ -1242,7 +1293,7 @@ a:hover {
 }
     
 .card {
-    width: 250px;
+    width: 280px;
     height: 300px;
     background: #fff;
     border-radius: 16px;
@@ -1292,15 +1343,22 @@ a:hover {
     gap: 10px;
     flex: 1;
 }
-
+.a-cards{
+    color: black;
+    text-decoration: none;
+}
+.a-cards:hover{
+    color: black;
+    text-decoration: underline;
+}
 .card-body h3 {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.4;
 }
 
 .card-body p {
     color: #555;
-    font-size: 14px;
+    font-size: 16px;
     flex: 1;
 }
 
