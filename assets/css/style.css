@@ -944,15 +944,16 @@ a:hover {
 
 .circulos-footer {
     display: flex;
+    align-items: center;
     margin: 0 auto 0px 0px;
     padding: 15px 0px 0px 0px;
 }
 
 .circulo-footer {
-    border: 2px solid rgb(136, 136, 136);
-    background-color: black;
+    /* border: 2px solid rgb(136, 136, 136); */
+    background-color: white;
     border-radius: 50%;
-    border: 2px solid rgb(136, 136, 136);
+    /* border: 2px solid rgb(136, 136, 136); */
 }
 
 .pequeno-footer {
@@ -988,6 +989,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    /* border: 2px solid white; */
 }
 
 .noticias-posicionamento-footer{
@@ -995,7 +997,7 @@ a:hover {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 40px;
 }
 
 .noticia-titulo-posicionamento-footer{
@@ -1004,13 +1006,12 @@ a:hover {
 }
 .noticia-titulos-footer {
     font-size: 18px;
-    color: white;
+    color: black;
     text-align: center;
     margin: 50px 0px -120px 0px;
     
     
-    background-color: rgb(201, 201, 201);
-    border: 2px solid white;
+    background-color: white;
     border-radius: 8px;
     
 

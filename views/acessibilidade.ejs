@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/acessibilidade.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar') %>
+    </header>
+
+    <main>
+        <section>
+            <div class="header-section">
+                <div class="container-acessibilidade">
+                    <h1 class="secao-titulo">Acessibilidade</h1>
+
+                    <p class="descricao">
+                        A acessibilidade digital é um princípio fundamental para garantir que todas as pessoas possam acessar e utilizar
+                        informações e serviços na internet de forma autônoma e segura.
+                        <br><br>
+                        Pensando nisso, o Sistema de Apoio e Acessibilidade (S.A.A.) foi desenvolvido com o compromisso de promover 
+                        inclusão, eliminando barreiras e proporcionando uma experiência acessível para todos os usuários, independentemente 
+                        de suas limitações.
+                    </p>
+
+                    <div class="galeria">
+                        <img src="https://civiam.com.br/wp-content/uploads/2020/02/pessoa-com-deficiencia-1024x683.jpg" alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCTA_G1KHmHuDIJ1_CoRuuyA4sxQ_Xal2VLA&s" alt="">
+                        <img src="https://lh6.googleusercontent.com/proxy/q--xrV6TRyfizaf6BJcMja-F2nlvw2pcQ5MO3uAOWzh38NRecK64V0CO5LbOjEVC53sxqZPl8FZFeywtFceDM7lDIIcHclIOe83ExWcETvDR4OYOL47NtZP5267jOLRSsw    " alt="">
+                        <img src="https://multimidia.boavontade.com/sites/default/files/styles/infografico/public/asl_chsp_apr2020_0.jpeg?itok=QM3VlKua" alt="">
+                        <img src="https://reduceconsultoria.com.br/wp-content/uploads/2024/03/autismo-scaled-1.jpg" alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScEfRT4PM5fEfyPpchT6EtBJwYBwa-FGcNOQ&s" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <div class="card-body">
+                        <h2>Compromisso <span class="check"><i class="fa-solid fa-check"></i></span></h2>
+                        <h3>Nosso compromisso</h3>
+                        <p>O Sistema de Apoio e Acessibilidade (S.A.A.) está comprometido em garantir que sua plataforma seja acessível ao maior 
+                            número possível de pessoas, independentemente de suas limitações físicas, sensoriais ou cognitivas.
+                            <br>
+                            Trabalhamos continuamente para melhorar a experiência do usuário, seguindo boas práticas de acessibilidade digital e 
+                            promovendo inclusão por meio da tecnologia.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <!-- <h2>Nível de Conformidade <span class="check"><i class="fa-solid fa-check"></i></span></h2> -->
+                        <h2>Conformidade <span class="check"><i class="fa-solid fa-check"></i></span></h2>
+                        <h3>Conformidade com padrões</h3>
+                        <p>Este site foi desenvolvido com base nas diretrizes da WCAG 2.2 (Web Content Accessibility Guidelines), 
+                            buscando atender ao nível AA de acessibilidade.</p>
+                    </div>
+                </article>
+                <a href="/contato" class="contact-card">
+                    <article class="card">
+                            <div class="card-body">
+                                <!-- <h2>Método de Contato para Feedback <span class="check"><i class="fa-solid fa-check"></i></span></h2> -->
+                                <h2>Contato <span class="check"><i class="fa-solid fa-check"></i></span></h2>
+                                <h3>Fale conosco sobre acessibilidade</h3>
+                                <p>Se você encontrar qualquer dificuldade ao utilizar o sistema ou tiver sugestões de melhoria, 
+                                    <span class="contact-acessibility">entre em contato conosco clicando no card</span>.
+                                    <br>
+                                    Seu feedback é muito importante para que possamos melhorar continuamente a acessibilidade da 
+                                    plataforma.</p>
+                            </div>
+                        </article>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
