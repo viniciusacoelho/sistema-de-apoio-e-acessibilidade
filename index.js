@@ -49,6 +49,14 @@ app.get('/sessenta-anos-ou-mais', (req, res) => {
     res.render('sessenta-anos-ou-mais')
 })
 
+app.get('/deficiente-auditivo', (req, res) => {
+    res.render('deficiente-auditivo')
+})
+
+app.get('/deficiente-fisico-ou-motoro', (req, res) => {
+    res.render('deficiente-fisico-ou-motoro')
+})
+
 app.listen(port, () => {
     console.log("Running at http://localhost:" + port);
 });
