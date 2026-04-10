@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="body-index">
+<body id="inicio" class="body-index pagina-sessenta-anos-ou-mais">
 
     <header class="header-index">
         <%- include('partials/navbar') %>
@@ -32,26 +32,22 @@
     <div id="sidebar" class="sidebar">
         <h2>Início</h2>
         <ul>
-            <li><a href="index.html">Resumo</a></li>
-            <li><a href="#">Conteúdo destacado</a></li>
-            <li><a href="#">Tipos de Problemas</a></li>
-            <li><a href="#">Auditivo</a></li>
-            <li><a href="#">fisico-motora</a></li>
-            <li><a href="#">mais-de-60-anos</a></li>
-            <li><a href="#">Portais</a></li>
+            <li><a href="#envelhecer">Envelhecer com Dignidade</a></li>
+            <li><a href="#populacao-que-cresce">Uma População que Cresce — e que a Cidade ainda Ignora</a></li>
+            <li><a href="#barreiras">As Barreiras do Cotidiano</a></li>
+            <li><a href="#avancos-e-lacunas">Em Maceió: Avanços Reais e Lacunas que Permanecem</a></li>
+            <li><a href="#locais-acessiveis">Locais Acessíveis em Maceió que Você Encontra no S.A.A.</a></li>
+            <li><a href="#voce-pode-ajudar">Você Pode Ajudar a Construir uma Maceió Mais Acessível</a></li>
         </ul>
-        <h2>Colaboração</h2>
+        <h2>Links Externos</h2>
         <ul>
-            <li><a href="#">Boas-vindas</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Portal comunitário</a></li>
-            <li><a href="#">Mudanças recentes</a></li>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
         </ul>
     </div>
 
     <main class="layout">
         <section class="main-encontre-suporte">
-            <article>
+            <article id="envelhecer">
                 <div class="artigo-encontre-suporte">
                     <h1 class="titulo-artigo-encontre-suporte">Envelhecer com Dignidade: Acessibilidade para Pessoas com 60 Anos ou Mais</h1>
                     <br>
@@ -59,7 +55,7 @@
                     <hr>
                     <br>
                     <br>
-                    <h2 class="titulo-h2-index">Uma População que Cresce — e que a Cidade ainda Ignora</h2>
+                    <h2 id="populacao-que-cresce" class="titulo-h2-index">Uma População que Cresce — e que a Cidade ainda Ignora</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         O Brasil está envelhecendo rapidamente. O último censo do IBGE 
                         registrou 22,2 milhões de pessoas idosas no país em 2022, representando
@@ -80,7 +76,7 @@
                     </p>
                     <br>
                     <figure class="figure-sessenta-anos-ou-mais">
-                        <img id="img1" class="img-sessenta-anos-ou-mais" src="/images/sessenta-anos-ou-mais/60-anos-ou-mais-graficos-censo-sexo-idade-piramide-etaria-final.png" alt="">
+                        <img id="img1-sessenta-anos-ou-mais" class="img-sessenta-anos-ou-mais" src="/images/s.a.a-deficiencias/sessenta-anos-ou-mais/60-anos-ou-mais-graficos-censo-2022.png" alt="">
                         <figcaption><i>Fonte: <a href="https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/38186-censo-2022-numero-de-pessoas-com-65-anos-ou-mais-de-idade-cresceu-57-4-em-12-anos" target="_blank">Agência de Noticías IBGE</a></i></figcaption>
                     </figure>    
                         <br>
@@ -88,7 +84,7 @@
                         <hr>
                         <br>
                         <br>
-                    <h2 class="titulo-h2-index">As Barreiras do Cotidiano</h2>
+                    <h2 id="barreiras" class="titulo-h2-index">As Barreiras do Cotidiano</h2>
                     <br>
                     <h3>Calçadas e espaços públicos: o obstáculo começa logo na saída de casa</h3>
                     <p class="paragrafo-artigo-encontre-suporte">
@@ -102,7 +98,7 @@
                     </p>
                         <br>
                         <figure class="figure-sessenta-anos-ou-mais">
-                            <img id="img2" class="img-sessenta-anos-ou-mais" src="/images/sessenta-anos-ou-mais/60-anos-ou-mais-Censo-Entorno.jpg" alt="">
+                            <img id="img2-sessenta-anos-ou-mais" class="img-sessenta-anos-ou-mais" src="/images/s.a.a-deficiencias/sessenta-anos-ou-mais/60-anos-ou-mais-Censo-Entorno.jpg" alt="">
                             <figcaption>
                                 De acordo com o Censo 2022, 119,9 milhões de pessoas moravam em vias sem rampa para cadeirante.
                                 <br>
@@ -135,7 +131,7 @@
                         <hr>
                         <br>
                         <br>
-                    <h2 class="titulo-h2-index">Em Maceió: Avanços Reais e Lacunas que Permanecem</h2>
+                    <h2 id="avancos-e-lacunas" class="titulo-h2-index">Em Maceió: Avanços Reais e Lacunas que Permanecem</h2>
                     <p class="paragrafo-artigo-encontre-suporte">   
                         Maceió apresenta iniciativas concretas no cuidado com a população idosa, mas ainda convive com desafios urbanos sérios que afetam o cotidiano de quem tem 60 anos ou mais na cidade.
                         <br>
@@ -146,15 +142,6 @@
                         Na infraestrutura urbana, persistem os desafios já documentados: calçadas irregulares, rampas ausentes ou mal conservadas, e semáforos com tempo insuficiente para a travessia segura de pedestres mais lentos. São barreiras que afetam diretamente a autonomia e a segurança dos idosos maceioenses.
                     </p>
                         <br>
-                        <figure class="figure-sessenta-anos-ou-mais">
-                            <img id="img3" class="img-sessenta-anos-ou-mais" src="/images/sessenta-anos-ou-mais/60-anos-ou-mais-rampa-de-concreto-irregular.webp" alt="">
-                            <figcaption>
-                                Rampa de concreto não deixa o cadeirante perto do mar, diz Rosiana (Foto: Michelle Farias/G1).
-                                <br>
-                                <i>Fonte: <a href="https://g1.globo.com/al/alagoas/arquivo/noticia/2017/03/sem-acessibilidade-cadeirantes-nao-conseguem-aproveitar-orla-de-maceio.html" target="_blank">G1 Alagoas</a></i>
-                            </figcaption>
-                        </figure>
-                        <br>
                     <p class="paragrafo-artigo-encontre-suporte"> 
                         É nesse contexto que o Sistema de Apoio e Acessibilidade (S.A.A.) cumpre um papel essencial: <strong>mapear</strong> o que existe, <strong>denunciar</strong> o que falta e <strong>conectar</strong> os idosos aos recursos e locais acessíveis disponíveis na cidade.
                     </p>                    
@@ -163,7 +150,7 @@
                         <hr>
                         <br>
                         <br>
-                    <h2 class="titulo-h2-index">Locais Acessíveis em Maceió que Você Encontra no S.A.A.</h2>
+                    <h2 id="locais-acessiveis" class="titulo-h2-index">Locais Acessíveis em Maceió que Você Encontra no S.A.A.</h2>
                     <p class="paragrafo-artigo-encontre-suporte">   
                         <strong>Cidade da Pessoa Idosa — Ponta Grossa</strong>
                         <br>
@@ -204,15 +191,21 @@
                         <hr>
                         <br>
                         <br>
-                    <h2 class="titulo-h2-index">Você Pode Ajudar a Construir uma Maceió Mais Acessível</h2>
+                    <h2 id="voce-pode-ajudar" class="titulo-h2-index">Você Pode Ajudar a Construir uma Maceió Mais Acessível</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         Se você tem 60 anos ou mais, é familiar de uma pessoa idosa ou simplesmente observa barreiras de acessibilidade na sua região, o S.A.A. é o seu canal. Pela nossa plataforma, você pode registrar denúncias sobre calçadas perigosas, semáforos sem tempo suficiente, estabelecimentos sem acesso adequado ou qualquer obstáculo que comprometa a segurança e a autonomia dos mais velhos — e também consultar e indicar locais acessíveis, ajudando outros a encontrarem com mais facilidade os serviços e espaços de que precisam.
                         <br>
                         <br>
                         Quem construiu esta cidade tem o direito de continuar fazendo parte dela — com segurança, autonomia e dignidade. O S.A.A. está aqui para garantir que essa voz seja ouvida.
-                    </p>                    
+                    </p> 
+                    <figure class="figure-sessenta-anos-ou-mais">
+                        <img id="img3-sessenta-anos-ou-mais" class="img-sessenta-anos-ou-mais" src="/images/s.a.a-deficiencias/sessenta-anos-ou-mais/60-anos-ou-mais-acolhendo-idoso.webp" alt="">
+                    </figure>                     
                 </div>
             </article>
+            <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
+                Voltar ao topo
+            </a>
         </section>
     </main>
 

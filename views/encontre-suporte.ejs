@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="body-index">
+<body id="inicio" class="body-index pagina-encontre-suporte">
 
     <header class="header-index">
         <%- include('partials/navbar') %>
@@ -35,12 +35,9 @@
             <li><a href="#encontre-suporte-no-saa">Encontre Suporte no S.A.A.</a></li>
             <li><a href="#ler-mais-sobre">Ler mais sobre</a></li>
         </ul>
-        <h2>Colaboração</h2>
+        <h2>Links Externos</h2>
         <ul>
-            <li><a href="#">Boas-vindas</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Portal comunitário</a></li>
-            <li><a href="#">Mudanças recentes</a></li>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
         </ul>
     </div>
 
@@ -71,7 +68,7 @@
 
 
             <section class="secao">
-                <h2 class="secao-titulo">Clique no que você deseja para ler mais sobre</h2>
+                <h2 id="ler-mais-sobre" class="secao-titulo">Clique no que você deseja para ler mais sobre</h2>
                 <div class="cards">
                     <article class="card">
                         <a href="/sessenta-anos-ou-mais" class="a-cards">
@@ -112,8 +109,9 @@
                     
                 </div>
             </section>
-            
-
+            <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
+                Voltar ao topo
+            </a>
         </section>
 
     </main>

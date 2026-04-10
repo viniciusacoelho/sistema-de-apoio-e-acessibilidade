@@ -16,8 +16,28 @@
             <%- include('partials/navbar') %>
         </header>
 
+        <!-- BOTÃO -->
+        <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- SIDEBAR -->
+        <div id="sidebar" class="sidebar">
+            <h2>Início</h2>
+            <ul>
+                <li><a href="#contato">Formulário de Contato</a></li>
+            </ul>
+            <h2>Links Externos</h2>
+            <ul>
+                <li><a href="/acessibilidade">Acessibilidade</a></li>
+            </ul>
+        </div>
+
+
         <main class="container">
-            <section class="container-1">
+            <section id="contato" class="container-1">
                 <form action="/contato" method="post">
                     <div class="item-1">
                         <h2>Contato</h2>
@@ -65,7 +85,9 @@
             </section>
         </main>
 
-       <%- include('partials/footer') %>
+        <script src="js/sidebar.js"></script>
+
+        <%- include('partials/footer') %>
 
     </body>
 </html>

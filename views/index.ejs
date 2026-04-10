@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="body-index">
+<body id="inicio" class="body-index-principal">
 
     <header class="header-index">
         <%- include('partials/navbar') %>
@@ -31,12 +31,9 @@
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
-        <h2>Colaboração</h2>
+        <h2>Links Externos</h2>
         <ul>
-            <li><a href="#">Boas-vindas</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Portal comunitário</a></li>
-            <li><a href="#">Mudanças recentes</a></li>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
         </ul>
     </div>
 
@@ -101,6 +98,14 @@
                 <div class="carrossel">
                     <button class="seta esquerda">&#10094;</button>
                     <div class="circulos">
+                        <a href="/sessenta-anos-ou-mais" class="circulo">
+                            <div class="conteudo">
+                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">
+                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">
+                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">                              
+                            </div>
+                        </a>
+                        
                         <a href="/deficiente-auditivo" class="circulo ativo">
                             <div class="conteudo">
                                 <img src="/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.jpeg" alt="Símbolo de acessibilidade para deficiência auditiva">
@@ -109,13 +114,6 @@
                             </div>
                         </a>
                         
-                        <a href="/sessenta-anos-ou-mais" class="circulo">
-                            <div class="conteudo">
-                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">
-                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">
-                                <img src="/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg" alt="Símbolo de acessibilidade para pessoas com mais de 60 anos">                              
-                            </div>
-                        </a>
 
                         <a href="/deficiente-fisico-ou-motoro" class="circulo">
                             <div class="conteudo">
@@ -223,6 +221,9 @@
                     </div>
                 </article>
             </section>
+            <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
+                Voltar ao topo
+            </a>
         </section>
 
         
