@@ -12,9 +12,29 @@
         <%- include('partials/navbar') %>
     </header>
     
+    <!-- BOTÃO -->
+    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <h2>Início</h2>
+        <ul>
+            <li><a href="#nossos-servicos">Nossos Serviços</a></li>
+            <li><a href="#servicos">Os serviços</a></li>
+        </ul>
+        <h2>Links Externos</h2>
+        <ul>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
+        </ul>
+    </div>
+
     <main>
         <section>
-            <article class="service">
+            <article id="nossos-servicos" class="service">
                 <div class="service-description">
                     <h1 class="title-service">Nossos Serviços</h1>
 
@@ -27,7 +47,7 @@
             </article>
         </section>
 
-        <section class="secao">
+        <section id="servicos" class="secao">
             <div class="cards">
                 <a href="/vvv" class="card">
                     <div class="card-body">
@@ -63,6 +83,8 @@
             </div>
         </section>
     </main>
+
+    <script src="js/sidebar.js"></script>
 
     <%- include('partials/footer') %>
 

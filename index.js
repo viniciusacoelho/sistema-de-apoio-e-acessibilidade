@@ -25,7 +25,7 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-app.get('/', (req, res) => {
+app.get('/cadastre-se', (req, res) => {
     const ok = req.query.ok === '1';
     res.render('cadastre-se', { error: null, ok, values: null });
 })
@@ -88,9 +88,9 @@ app.post('/cadastre-se', async (req, res) => {
     }
 });
 
-// app.get('/', (req, res) => {
-//     res.render('index');
-// });
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 app.get('/sobre', (req, res) => {
     res.render('sobre')
@@ -132,18 +132,22 @@ app.get('/deficiente-fisico-ou-motoro', (req, res) => {
     res.render('deficiente-fisico-ou-motoro')
 })
 
-async function main() {
-    const client = new MongoClient(MONGODB_URI);
-    await client.connect();
-    db = client.db(DB_NAME);
-    await db.collection('users').createIndex({ email: 1 }, { unique: true }); // Não pode existir 2 usuários com mesmo e-mail
+// async function main() {
+//     const client = new MongoClient(MONGODB_URI);
+//     await client.connect();
+//     db = client.db(DB_NAME);
+//     await db.collection('users').createIndex({ email: 1 }, { unique: true }); // Não pode existir 2 usuários com mesmo e-mail
 
-    app.listen(port, () => {
+//     app.listen(port, () => {
+//     console.log("Running at http://localhost:" + port);
+// });
+// }
+
+// main().catch((err) => {
+//     console.error('Falha ao iniciar:', err);
+//     process.exit(1);
+// });
+
+app.listen(port, () => {
     console.log("Running at http://localhost:" + port);
-});
-}
-
-main().catch((err) => {
-    console.error('Falha ao iniciar:', err);
-    process.exit(1);
 });

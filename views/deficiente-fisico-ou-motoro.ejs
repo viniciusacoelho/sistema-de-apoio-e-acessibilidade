@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="body-index">
+<body id="inicio" class="body-index pagina-deficiente-auditivo">
 
     <header class="header-index">
         <%- include('partials/navbar') %>
@@ -32,26 +32,22 @@
     <div id="sidebar" class="sidebar">
         <h2>Início</h2>
         <ul>
-            <li><a href="index.html">Resumo</a></li>
-            <li><a href="#">Conteúdo destacado</a></li>
-            <li><a href="#">Tipos de Problemas</a></li>
-            <li><a href="#">Auditivo</a></li>
-            <li><a href="#">fisico-motora</a></li>
-            <li><a href="#">mais-de-60-anos</a></li>
-            <li><a href="#">Portais</a></li>
+            <li><a href="#direito">O Direito de Ir e Vir: Acessibilidade para Pessoas com Deficiência Física ou Motora</a></li>
+            <li><a href="#cidade">Quando a Cidade não Foi Feita para Todos</a></li>
+            <li><a href="#barreiras">As Barreiras do Dia a Dia</a></li>
+            <li><a href="#avancos-e-lacunas">Em Maceió: Avanços Reais e Lacunas que Persistem</a></li>
+            <li><a href="#locais-acessiveis">Locais Acessíveis em Maceió que Você Encontra no S.A.A.</a></li>
+            <li><a href="#sua-voz">Sua Voz Também Constrói Cidades Mais Acessíveis</a></li>
         </ul>
-        <h2>Colaboração</h2>
+        <h2>Links Externos</h2>
         <ul>
-            <li><a href="#">Boas-vindas</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Portal comunitário</a></li>
-            <li><a href="#">Mudanças recentes</a></li>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
         </ul>
     </div>
 
     <main class="layout">
         <section class="main-encontre-suporte">
-            <article>
+            <article id="direito">
                 <div class="artigo-encontre-suporte">
                     <h1 class="titulo-artigo-encontre-suporte">O Direito de Ir e Vir: Acessibilidade para Pessoas com Deficiência Física ou Motora</h1>
                     <br>
@@ -59,19 +55,29 @@
                     <hr>
                     <br>
                     <br>
-                    <h2 class="titulo-h2-index">Quando a Cidade não Foi Feita para Todos</h2>
+                    <h2 id="cidade" class="titulo-h2-index">Quando a Cidade não Foi Feita para Todos</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         O direito de ir e vir é garantido pela Constituição brasileira e reafirmado pela Lei de Inclusão (Lei nº 13.146/2015). No entanto, para pessoas com deficiência física ou motora, esse direito esbarra diariamente em uma realidade urbana que, na maior parte do Brasil, ainda não foi planejada para recebê-las com dignidade.
                         <br>
                         <br>
-                        O portador de deficiência física motora é um dos indivíduos mais fortemente penalizados pela falta de acessibilidade do espaço urbano e edificado, pois sua mobilidade depende do uso de cadeira de rodas — e o ambiente construído frequentemente não está adaptado para garantir sua livre passagem. Jurídico Certo Essa realidade transforma tarefas simples do cotidiano — ir ao médico, pegar um ônibus, entrar em uma loja — em verdadeiros obstáculos que exigem esforço, dependência de terceiros e, muitas vezes, renúncia.
+                        O portador de deficiência física motora é um dos indivíduos mais fortemente penalizados pela falta de acessibilidade do espaço urbano e edificado, pois sua mobilidade depende do uso de cadeira de rodas — e o ambiente construído frequentemente não está adaptado para garantir sua livre passagem. Essa realidade transforma tarefas simples do cotidiano — ir ao médico, pegar um ônibus, entrar em uma loja — em verdadeiros obstáculos que exigem esforço, dependência de terceiros e, muitas vezes, renúncia.
                     </p>   
                         <br>
+                    <figure class="figure-deficiente-fisico-ou-motoro">
+                        <img id="img1-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m.-falta-de-acessibilidade-em-onibus.jpg" alt="">
+                        <figcaption>
+                            Há alguns anos, o jornal O Tempo entrevistou Laura Martins sobre a falta de 
+                            <br>
+                            acessibilidade dos ônibus que fazem a conexão BH-Aeroporto de Confins. 
+                            <br>
+                            <i>Fonte: <a href="https://cadeiravoadora.com.br/acessibilidade-nos-onibus-rodoviarios/" target="_blank">Cadeira Voadora</a></i>
+                        </figcaption>
+                    </figure>
                         <br>
                         <hr>
                         <br>
                         <br>
-                        <h2>As Barreiras do Dia a Dia</h2>
+                        <h2 id="barreiras">As Barreiras do Dia a Dia</h2>
                         <br>
                         <h3>Calçadas: o primeiro obstáculo começa na porta de casa</h3>
                     <p class="paragrafo-artigo-encontre-suporte">
@@ -82,8 +88,16 @@
                         <br>
                         <br>
                         Ruas esburacadas, rampas destruídas ou inacabadas, calçadas sem espaço para cadeirantes em vias de grande movimento, banheiros sem adaptações, estabelecimentos sem elevadores e pontos de ônibus sem estrutura adequada fazem com que essa parcela da população necessite de ajuda de outras pessoas para realizar atividades comuns — levando um tempo muito maior do que o necessário para tarefas básicas.
-                    </p>                        
-                        <br>
+                    </p>                          
+                    <br>
+                    <figure class="figure-deficiente-fisico-ou-motoro">
+                        <img id="img2-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m-rampa-de-concreto-irregular.webp" alt="">
+                        <figcaption>
+                            Rampa de concreto não deixa o cadeirante perto do mar, diz Rosiana.
+                            <br>
+                            <i>Fonte: <a href="https://g1.globo.com/al/alagoas/arquivo/noticia/2017/03/sem-acessibilidade-cadeirantes-nao-conseguem-aproveitar-orla-de-maceio.html" target="_blank">G1 Alagoas</a></i>
+                        </figcaption>
+                    </figure>
                         <br>
                         <br>
                         <h3>Transporte público: direito garantido em lei, nem sempre na prática</h3>
@@ -91,7 +105,7 @@
                         O transporte público é um dos maiores exemplos da falta de acessibilidade nas cidades brasileiras, com problemas como poucos veículos adaptados, tempo de espera elevado, falta de treinamento de motoristas e cobradores, e passageiros impacientes que apressam o embarque de quem tem mais dificuldade.
                         <br>
                         <br>
-                        Há também a questão do acesso ao ponto: chegar até o ônibus já é um desafio para quem depende de cadeira de rodas em ruas com calçadas irregulares e sem rampas. Agência Brasil E mesmo quando o veículo está adaptado, a qualid
+                        Há também a questão do acesso ao ponto: chegar até o ônibus já é um desafio para quem depende de cadeira de rodas em ruas com calçadas irregulares e sem rampas. E mesmo quando o veículo está adaptado, a qualidade do atendimento humano ainda é um fator decisivo para que a experiência seja digna.
                     </p>
                         <br>
                         <br>
@@ -101,32 +115,50 @@
                         A inserção no mercado de trabalho é outro desafio significativo: grande parte das empresas não tem estrutura adequada para receber colaboradores com deficiência física ou mobilidade reduzida, tornando esse tipo de contratação cada vez mais raro na prática — apesar das obrigações legais. O mesmo vale para ambientes educacionais, onde a ausência de rampas, elevadores e banheiros adaptados ainda exclui silenciosamente quem deveria ter acesso garantido.
                     </p>
                         <br>
+                    <figure class="figure-deficiente-fisico-ou-motoro">
+                        <img id="img2-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m.-dificuldades-no-trabalho.jpg" alt="">
+                        <figcaption>
+                            Mais de 90% dos cadeirantes já passaram por dificuldades no trabalho.
+                            <br>
+                            <i>Fonte: <a href="https://www.deficienteciente.com.br/mais-de-90-dos-cadeirantes-ja-passaram-por-dificuldades-no-trabalho.html" target="_blank">Deficiente Ciente</a></i>
+                        </figcaption>
+                    </figure>
                         <br>
                         <hr>
                         <br>
                         <br>
-                    <h2>Em Maceió: Avanços Reais e Lacunas que Persistem</h2>
+                    <h2 id="avancos-e-lacunas">Em Maceió: Avanços Reais e Lacunas que Persistem</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         Maceió enfrenta problemas graves de mobilidade urbana, que vão de calçadas extremamente inclinadas até trechos onde sequer um pedestre sem limitações físicas consegue passar — tornando o dia a dia de cadeirantes, idosos e pessoas com mobilidade reduzida ainda mais desafiador.
                         <br>
                         <br>
                         Na frente do transporte coletivo, houve avanços concretos: todos os 600 ônibus do Sistema Integrado de Mobilidade Maceió (SIMM) possuem elevador para cadeirante. Mas os próprios gestores do setor reconhecem que não basta ter ônibus com elevadores — é necessário que toda a cidade esteja preparada, desde as vias até o transporte público, pois para o funcionamento ideal dos elevadores as calçadas precisam estar planas.
+                    </p>
                         <br>
-                        <br>
+                    <figure class="figure-deficiente-fisico-ou-motoro">
+                        <img id="img3-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m.-onibus-totalmente-acessiveis.webp" alt="">
+                        <figcaption>
+                            Ônibus totalmente acessíveis. Maceió alcança frota de transporte coletivo 100% acessível.
+                            <br>
+                            <i>Fonte: <a href="https://ricardoshimosakai.com.br/onibus-totalmente-acessiveis/" target="_blank">Ricardo Shimosakai</a></i>
+                        </figcaption>
+                    </figure>
+                    <br>
+                    <p class="paragrafo-artigo-encontre-suporte">
                         Há denúncias frequentes sobre o descumprimento da legislação local. A Lei nº 7.175/2022 determina que motoristas de transporte coletivo em Maceió parem fora do ponto para deficientes físicos e idosos, mas nem todos os motoristas cumprem essa obrigação. Além disso, a falta de manutenção dos elevadores dos ônibus é alvo constante de críticas — com veículos circulando com o equipamento quebrado, o que é expressamente proibido.
                         <br>
                         <br>
                         Na infraestrutura urbana, uma iniciativa de grande escala está em andamento: o pacote de obras de mobilidade urbana prevê a construção de 25,3 quilômetros de calçadas com piso tátil e rampas acessíveis, além de novos semáforos com botoeiras e sinal sonoro instalados nas principais avenidas da cidade. São avanços importantes, mas que ainda coexistem com ruas e bairros onde a acessibilidade é mínima ou inexistente.
                         <br>
                         <br>
-                        É exatamente esse contraste — entre o que existe e o que ainda falta — que o Sistema de Apoio e Acessibilidade (S.A.A.) veio mapear, denunciar e transformar em informação útil para quem precisa.
+                        É exatamente esse contraste — entre o que existe e o que ainda falta — que o Sistema de Apoio e Acessibilidade (S.A.A.) veio <strong>mapear</strong>, <strong>denunciar</strong> e <strong>transformar</strong> em informação útil para quem precisa.
                     </p>                             
                         <br>
                         <br>
                         <hr>
                         <br>
                         <br>
-                    <h2>Locais Acessíveis em Maceió que Você Encontra no S.A.A.</h2>
+                    <h2 id="locais-acessiveis">Locais Acessíveis em Maceió que Você Encontra no S.A.A.</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         <strong>ADEFAL — Associação dos Deficientes Físicos de Alagoas</strong>
                         <br>
@@ -156,14 +188,20 @@
                         <hr>
                         <br>
                         <br>
-                    <h2>Sua Voz Também Constrói Cidades Mais Acessíveis</h2>
+                    <h2 id="sua-voz">Sua Voz Também Constrói Cidades Mais Acessíveis</h2>
                     <p class="paragrafo-artigo-encontre-suporte">
                         Se você tem deficiência física ou motora, é familiar, cuidador ou simplesmente um cidadão que observa barreiras de acessibilidade em Maceió ou na sua região, o S.A.A. é o espaço certo para agir. Pela nossa plataforma, você pode registrar denúncias sobre calçadas irregulares, rampas destruídas, elevadores quebrados, estabelecimentos sem adaptação ou qualquer outra barreira que comprometa o direito de ir e vir — e também cadastrar e consultar locais acessíveis, ajudando outros a encontrar com mais facilidade os recursos de que precisam.                        <br>
                         <br>
                         Acessibilidade não é favor. É direito. E o S.A.A. está aqui para garantir que esse direito seja visto, registrado e cobrado.
                     </p>                
+                    <figure class="figure-deficiente-fisico-ou-motoro">
+                        <img id="img4-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m.-apoio-à-pessoa-com-deficiência.jpg" alt="">
+                    </figure>
                 </div>
-            </article>        
+            </article>      
+            <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
+                Voltar ao topo
+            </a>  
         </section>
     </main>
 
