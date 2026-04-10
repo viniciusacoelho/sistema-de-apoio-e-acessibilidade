@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    padding: 0;
 }
 html{
     scroll-behavior: smooth;
@@ -177,9 +178,10 @@ a:hover {
 
 .nav-index {
     position: fixed;
+    top: 0;
     display: flex;
     background: #171717;
-    width: 100%;
+    width: 100vw;
     height: 80px;
     align-items: center;
     justify-content: center;
@@ -188,10 +190,10 @@ a:hover {
 
 .nav-links-index {
     display: flex;
-    margin: 0 auto;
-    padding-right: 50px;
     gap: 70px;
     list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-links-index li {
@@ -1082,13 +1084,14 @@ a:hover {
 /* ================= ENCONTRE SUPORTE ================= */
 .nav-encontre-suporte {
     position: fixed;
+    top: 80px; /* altura do primeiro navbar */
     display: flex;
     background-color: white;
     width: 100%;
     height: 65px;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Garante que fique acima de outros itens */
+    z-index: 999; /* Garante que fique acima de outros itens */
 }
 
 .nav-links-encontre-suporte {
@@ -1420,4 +1423,37 @@ figcaption{
     cursor: pointer;
     transition: all 0.3s ease; /* Tempo da animação */
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 800px) {
+    .nav-index {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .nav-links-index {
+        flex-direction: column; /* vira vertical */
+        gap: 15px;
+        align-items: center;
+        margin: 0 auto;
+    }
+    .main-index {
+        margin-top: 250px;
+    }
+    .hamburger {
+        margin-top: 273px;
+    }
+    .sidebar {
+        margin-top: 273px;
+        height: 100%;
+    }
+
+    .nav-encontre-suporte {
+        top: 270px; /* 🔥 ajusta conforme nova altura do principal */
+    }
+
+    body {
+        padding-top: 165px;
+    }
 }
