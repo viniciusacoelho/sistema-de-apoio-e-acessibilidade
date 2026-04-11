@@ -14,7 +14,12 @@
                 <h1>Inclusão</h1>
                 <section class="">
                     <div class="card">
-                        <form action="">
+                        <form action="/inclusao" method="post">
+                            <% if (error) { %>
+                                <div class="alert error">
+                                    <p><%= error %></p>
+                                </div>
+                            <% } %> 
                             <div class="card-between">
                                 <div class="card-image">
                                     <label for="image" class="image">Escolher imagem</label>

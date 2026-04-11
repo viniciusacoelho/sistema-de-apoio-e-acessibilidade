@@ -6,8 +6,13 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 const port = 3000;
-const MONGODB_URI = (process.env.MONGODB_URI || '').trim();
+const MONGODB_URI = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017').trim();
 const DB_NAME = (process.env.MONGODB_DB || 'cesmac_blog').trim();
+
+let db;
+
+// O professor pegou do blog
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 
 if (!MONGODB_URI) {
     throw new Error("MONGODB_URI não definida no .env");
@@ -22,7 +27,56 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'assets')));
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    const ok = req.query.ok === '1';
+    res.render('login', { error: null, ok, values: null });
+});
+
+app.post('/login', async (req, res) => {
+    const email = (req.body.email || '').trim().toLowerCase();
+    const senha = req.body.password || '';
+
+    const values = { email, senha };
+
+
+    if (!email || !senha) {
+        return res.render('login', {
+            error: 'Preencha email e senha',
+            ok: false,
+            values,
+        });
+    }
+
+    try {
+        const user = await db.collection('users').findOne({ email });
+
+        if (!user) {
+            return res.render('login', {
+                error: 'Usuário não encontrado',
+                ok: false,
+                values,
+            });
+        }
+
+        const senhaCorreta = await bcrypt.compare(senha, user.passwordHash);
+
+        if (!senhaCorreta) {
+            return res.render('login', {
+                error: 'Senha incorreta',
+                ok: false,
+                values,
+            });
+        }
+
+        return res.redirect('/');
+
+    } catch (err) {
+        console.error(err);
+        return res.render('login', {
+            error: 'Erro ao fazer login',
+            ok: false,
+            values,
+        });
+    }
 });
 
 app.get('/cadastre-se', (req, res) => {
@@ -31,10 +85,10 @@ app.get('/cadastre-se', (req, res) => {
 })
 
 app.post('/cadastre-se', async (req, res) => {
-    const nome = (req.body.nome || '').trim();
+    const nome = (req.body.name || '').trim();
     const email = (req.body.email || '').trim().toLowerCase();
-    const senha = req.body.senha || '';
-    const confirmarSenha = req.body.senha2 || '';
+    const senha = req.body.password || '';
+    const confirmarSenha = req.body['password-confirmation'] || '';
 
     const values = { nome, email };
 
@@ -54,7 +108,8 @@ app.post('/cadastre-se', async (req, res) => {
         });
     }
     
-    if (senha.length < 6) {
+    // if (senha.length < 6) {
+    if (senha.length < 8) {
         return res.status(400).render('cadastre-se', {
             error: 'A senha deve ter pelo menos 6 caracteres.',
             ok: false,
@@ -70,7 +125,7 @@ app.post('/cadastre-se', async (req, res) => {
             passwordHash,
             createdAt: new Date(),
         });
-        return res.redirect('/cadastre-se?ok=1');
+        return res.redirect('/?ok=1');
     } catch (err) {
         if (err.code === 11000) {
             return res.status(400).render('cadastre-se', {
@@ -89,7 +144,8 @@ app.post('/cadastre-se', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index');
+    const ok = req.query.ok === '1';
+    res.render('index', { ok });
 });
 
 app.get('/sobre', (req, res) => {
@@ -105,12 +161,98 @@ app.get('/contato', (req, res) => {
 })
 
 app.get('/inclusao', (req, res) => {
-    res.render('inclusao')
+    const ok = req.query.ok === '1';
+    res.render('inclusao', { error: null, ok, values: null });
 })
 
+app.post('/inclusao', async (req, res) => {
+    const imagem = req.body.image || '';
+    const nome = (req.body.name || '').trim();
+    const data = (req.body.date || '');
+    const mensagem = (req.body.message || '').trim().toLowerCase();
+
+    const values = { nome, imagem };
+
+    if (!nome || !data || !mensagem || !imagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem, nome, data e mensagem.',
+            ok: false,
+            values,
+        });
+    }
+    
+    if (mensagem.length > 1000) {
+        return res.status(400).render('inclusao', {
+            error: 'Tamanho máximo de 1000 caracteres atingido.',
+            ok: false,
+            values,
+        });
+    }
+
+    try {
+        await db.collection('inclusoes').insertOne({
+            imagem,
+            nome,
+            data,
+            mensagem,
+        });
+        return res.redirect('/?ok=1');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).render('inclusao', {
+            error: 'Não foi possível concluir o cadastro da inclusão. Tente novamente.',
+            ok: false,
+            values,
+        });
+    }
+});
+
 app.get('/notificacao', (req, res) => {
-    res.render('notificacao')
+    const ok = req.query.ok === '1';
+    res.render('notificacao', { error: null, ok, values: null });
 })
+
+app.post('/notificacao', async (req, res) => {
+    const imagem = req.body.image || '';
+    const nome = (req.body.name || '').trim();
+    const data = (req.body.date || '');
+    const mensagem = (req.body.message || '').trim().toLowerCase();
+
+    const values = { nome, imagem };
+
+    if (!nome || !data || !mensagem || !imagem) {
+        return res.status(400).render('notificacao', {
+            error: 'Preencha imagem, nome, data e mensagem.',
+            ok: false,
+            values,
+        });
+    }
+    
+    if (mensagem.length > 1000) {
+        return res.status(400).render('notificacao', {
+            error: 'Tamanho máximo de 1000 caracteres atingido.',
+            ok: false,
+            values,
+        });
+    }
+
+    try {
+        await db.collection('notificacoes').insertOne({
+            imagem,
+            nome,
+            data,
+            mensagem,
+        });
+        return res.redirect('/?ok=1');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).render('notificacao', {
+            error: 'Não foi possível concluir o cadastro da inclusão. Tente novamente.',
+            ok: false,
+            values,
+        });
+    }
+});
 
 app.get('/encontre-suporte', (req, res) => {
     res.render('encontre-suporte')
@@ -143,11 +285,31 @@ app.get('/deficiente-fisico-ou-motoro', (req, res) => {
 // });
 // }
 
+
+
+
+async function main() {
+    const client = new MongoClient(MONGODB_URI);
+    await client.connect();
+    db = client.db(DB_NAME);
+    await db.collection('users').createIndex({ email: 1 }, { unique: true }); // Não pode existir 2 usuários com mesmo e-mail
+
+    app.listen(3000, () => {
+        console.log("Running at http://localhost:" + port);
+        // console.log('Example app listening on port 3000!');
+    });
+}
+
+main().catch((err) => {
+    console.error('Falha ao iniciar:', err);
+    process.exit(1);
+});
+
+
+// app.listen(port, () => {
+// console.log("Running at http://localhost:" + port);
+// });
 // main().catch((err) => {
 //     console.error('Falha ao iniciar:', err);
 //     process.exit(1);
 // });
-
-app.listen(port, () => {
-    console.log("Running at http://localhost:" + port);
-});

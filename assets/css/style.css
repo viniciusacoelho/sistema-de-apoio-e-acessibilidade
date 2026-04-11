@@ -1520,3 +1520,22 @@ figcaption{
     transition: all 0.3s ease; /* Tempo da animação */
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
+
+.alert {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.alert.error {
+    background-color: #ffdddd;
+    color: #a10000;
+    border: 1px solid #ff5c5c;
+}
+
+.alert.success {
+    background-color: #ddffdd;
+    color: #0a7a0a;
+    border: 1px solid #4CAF50;
+}

@@ -18,6 +18,16 @@
         <main class="">
             <section class="container-1">
                 <form action="/cadastre-se" method="post">
+                    <% if (error) { %>
+                        <div class="alert error">
+                            <p><%= error %></p>
+                        </div>
+                    <% } %>
+                    <% if (ok) { %>
+                        <div class="alert success">
+                            <p>Cadastro realizado com sucesso!</p>
+                        </div>
+                    <% } %>
                     <div class="item-1">
                         <h2>Cadastre-se</h2>
                         <br>
@@ -28,7 +38,7 @@
                         <label for="name" class="left">Nome completo<span class="right">*</span></label>
                         <div class="input-icon">
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" name="" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required>
+                            <input type="text" name="name" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required>
                         </div>
                         <br>
                         <label for="email" class="left">E-mail<span class="right">*</span></label>
@@ -47,7 +57,7 @@
                         <label for="password-confirmation" class="left">Confirmar senha<span class="right">*</span></label>
                         <div class="input-icon">
                             <i class="fa-solid fa-lock icon-left"></i>
-                            <input type="password-confirmation" name="password-confirmation" id="password-confirmation" class="input-item-2" placeholder="Informe sua senha" minlength="8" maxlength="25" required>
+                            <input type="password" name="password-confirmation" id="password-confirmation" class="input-item-2" placeholder="Informe sua senha" minlength="8" maxlength="25" required>
                             <i class="fa-solid fa-eye icon-right"></i>
                         </div>
                         <small class="right">*campo obrigatório</small>

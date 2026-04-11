@@ -17,7 +17,12 @@
 
         <main class="">
             <section class="container-1">
-                <form action="" method="get">
+                <form action="/login" method="post">
+                    <% if (error) { %>
+                        <div class="alert error">
+                            <p><%= error %></p>
+                        </div>
+                    <% } %>
                     <div class="item-1">
                         <h2>Login</h2>
                         <br>
@@ -48,7 +53,7 @@
                         <button type="submit" class="button-size"><h2>Acessar</h2></button>
                     </div>
                     <div class="center">
-                        <p>Não possue uma conta? <a href="cadastre-se.html">Cadastre-se</a></p>
+                        <p>Não possue uma conta? <a href="/cadastre-se">Cadastre-se</a></p>
                     </div>
                 </form>
             </section>
