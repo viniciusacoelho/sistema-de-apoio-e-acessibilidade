@@ -4,6 +4,20 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
 
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'assets/uploads'); // pasta onde salva
+    },
+    filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+        cb(null, Date.now() + ext);
+    }
+});
+
+const upload = multer({ storage });
+
 const app = express();
 const port = 3000;
 const MONGODB_URI = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017').trim();
@@ -165,13 +179,13 @@ app.get('/inclusao', (req, res) => {
     res.render('inclusao', { error: null, ok, values: null });
 })
 
-app.post('/inclusao', async (req, res) => {
-    const imagem = req.body.image || '';
+app.post('/inclusao', upload.single('image'), async (req, res) => {
+    const imagem = `/uploads/${req.file.filename}`;
     const nome = (req.body.name || '').trim();
     const data = (req.body.date || '');
     const mensagem = (req.body.message || '').trim().toLowerCase();
 
-    const values = { nome, imagem };
+    const values = { nome, mensagem };
 
     if (!nome || !data || !mensagem || !imagem) {
         return res.status(400).render('inclusao', {
@@ -212,8 +226,8 @@ app.get('/notificacao', (req, res) => {
     res.render('notificacao', { error: null, ok, values: null });
 })
 
-app.post('/notificacao', async (req, res) => {
-    const imagem = req.body.image || '';
+app.post('/notificacao', upload.single('image'), async (req, res) => {
+    const imagem = `/uploads/${req.file.filename}`;
     const nome = (req.body.name || '').trim();
     const data = (req.body.date || '');
     const mensagem = (req.body.message || '').trim().toLowerCase();
@@ -272,6 +286,28 @@ app.get('/deficiente-auditivo', (req, res) => {
 
 app.get('/deficiente-fisico-ou-motoro', (req, res) => {
     res.render('deficiente-fisico-ou-motoro')
+})
+
+app.get('/listagem-inclusoes', async (req, res) => {
+    try {
+        const inclusoes = await db.collection('inclusoes').find().toArray();
+
+        res.render('listagem-inclusoes', { inclusoes });
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao carregar inclusões');
+    }
+});
+
+app.get('/listagem-notificacoes', async (req, res) => {
+    try {
+        const notificacoes = await db.collection('notificacoes').find().toArray();
+
+        res.render('listagem-notificacoes', { notificacoes });
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao carregar inclusões');
+    }
 })
 
 // async function main() {

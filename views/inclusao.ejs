@@ -14,7 +14,7 @@
                 <h1>Inclusão</h1>
                 <section class="">
                     <div class="card">
-                        <form action="/inclusao" method="post">
+                        <form action="/inclusao" method="post" enctype="multipart/form-data">
                             <% if (error) { %>
                                 <div class="alert error">
                                     <p><%= error %></p>
@@ -23,7 +23,7 @@
                             <div class="card-between">
                                 <div class="card-image">
                                     <label for="image" class="image">Escolher imagem</label>
-                                    <input type="file" name="image" id="image" hidden>
+                                    <input type="file" name="image" id="image" accept="image/*" hidden required>
                                     <p id="file-name">Nenhum arquivo selecionado</p>
                                     <img id="preview" src="" alt="Preview da imagem">
                                 </div>

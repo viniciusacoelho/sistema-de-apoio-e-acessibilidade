@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem Notificações</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar') %>
+
+        <main>
+            <h1>Notificações</h1>
+            <p>Lista de lugares notificados.</p>
+            <div>
+                <% notificacoes.forEach((notificacao) => { %>
+                    <a href="/listagem-notificacoes/<%= notificacao._id %>">
+                        <div>
+                            <img src="<%= notificacao.imagem %>" alt="Imagem" width="150">
+                            <p><strong><%= notificacao.nome %></strong></p>
+                            <p><%= notificacao.data %></p>
+                            <p><%= notificacao.mensagem %></p>
+                        </div>
+                    </a>
+                <% }) %>
+                </a>
+            </div>
+        </main>
+
+        <%- include('partials/footer') %>
+    </header>
+</body>
+</html>
