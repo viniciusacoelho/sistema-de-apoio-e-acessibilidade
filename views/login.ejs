@@ -18,18 +18,18 @@
         <main class="">
             <section class="container-1">
                 <form action="/login" method="post">
-                    <% if (error) { %>
-                        <div class="alert error">
-                            <p><%= error %></p>
-                        </div>
-                    <% } %>
                     <div class="item-1">
                         <h2>Login</h2>
                         <br>
                         <p>Faça login da sua conta</p>
                     </div>
-
+                    
                     <div class="item-2">
+                        <% if (error) { %>
+                            <div class="alert error">
+                                <p><%= error %></p>
+                            </div>
+                        <% } %>
                         <label for="email" class="left">E-mail<span class="right">*</span></label>
                         <div class="input-icon">
                             <i class="fa-solid fa-envelope"></i>
