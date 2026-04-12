@@ -45,6 +45,14 @@ function voltarPaginaDefFisicoOuMotoro() {
 function voltarPaginaServicos() {
     window.location.href = "/encontre-suporte";
 }
+/*Inclusão*/
+function voltarPaginaInclusao() {
+    window.location.href = "/servicos";
+}
+/*Notificação*/
+function voltarPaginaNotificacao() {
+    window.location.href = "/servicos";
+}
 
 function avancarPaginaServicos() {
     window.location.href = "/contato";
@@ -60,5 +68,9 @@ function voltarPaginaContato() {
 
 /*---ACESSIBILIDADE---*/
 function voltarPaginaAcessibilidade() {
-    window.location.href = "/";
+    if (document.referrer) { 
+        window.history.back(); 
+    } else { 
+        window.location.href = "/"; 
+    } 
 }

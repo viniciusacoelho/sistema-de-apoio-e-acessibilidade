@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="/css/notificacao.css">
+        <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
     </head>
 
     <body>
@@ -42,13 +43,18 @@
                                 <label for="message">Mensagem</label>
                                 <textarea name="message" id="message"></textarea>
                             </div>
-                            <button type="submit">Enviar</button>
+                            <div class="espaco-dos-botoes">
+                                <button class="botao-voltar" onclick="voltarPaginaInclusao()" aria-label="Botão Voltar">⬅ Voltar</button>                          
+                                <button type="submit">Enviar</button>
+                            </div>
                         </form>
                     </div>
                 </section>
             </main>
         </header>
     </body>
+
+    <script src="js/botoes-voltar-e-avancar.js"></script>
 
     <script>
     const input = document.getElementById("image");
