@@ -1,6 +1,5 @@
 * {
     margin: 0;
-    padding: 0;
 }
 html{
     scroll-behavior: smooth;
@@ -12,6 +11,7 @@ body.body-index [id] {
 
 body {
     font-family: "Arial", sans-serif;
+    background-color: #f0f2f5;
 }
 
 .body-login,
@@ -170,7 +170,6 @@ a:hover {
 /* ================= INDEX ================= */
 
 .body-index {
-    background-color: #f0f2f5;
     font-family: "Arial", sans-serif;
 }
 

@@ -5,30 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem Notificações</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/servicos.css">
 </head>
 <body>
-    <header>
+    <header class="header-index">
         <%- include('partials/navbar') %>
+    </header>
+    
+    <!-- BOTÃO -->
+    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <main>
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <h2>Início</h2>
+        <ul>
+            <li><a href="#saa">Sistema de Apoio e Acessibilidade</a></li>
+            <li><a href="#inicio-descricao">Bem-vindo ao S.A.A.</a></li>
+            <li><a href="#suporte">Encontre o suporte que você deseja</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <h2>Links Externos</h2>
+        <ul>
+            <li><a href="/acessibilidade">Acessibilidade</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="titulo-e-texto-notificacoes">
             <h1>Notificações</h1>
-            <p>Lista de lugares notificados.</p>
-            <div>
-                <% notificacoes.forEach((notificacao) => { %>
-                    <a href="/listagem-notificacoes/<%= notificacao._id %>">
-                        <div>
-                            <img src="<%= notificacao.imagem %>" alt="Imagem" width="150">
-                            <p><strong><%= notificacao.nome %></strong></p>
-                            <p><%= notificacao.data %></p>
+            <p class="descricao-notificacoes">Lista de lugares notificados.</p>                
+        </section>
+        
+        <section class="container-textos-e-botoes">
+            
+            <div class="search-box">
+                <button class="btn-voltar" onclick="voltarPagina()">← Voltar</button>
+                <input type="text" placeholder="Buscar notificações..." class="search" id="searchInput" title="Clique na tecla / para pesquisar">
+                <button onclick="buscar()" class="btn-buscar">Buscar</button>
+            </div>
+
+            <p class="contador">
+                <strong>Total</strong>: 
+                <span class="span-contador-notificacoes">
+                    <%= notificacoes.length %>
+                </span> notificações registradas
+            </p>
+        </section>
+
+        <!-- 👇 AGORA FICA ABAIXO CORRETAMENTE -->
+        <div class="container-notificacoes">
+            <% notificacoes.forEach((notificacao) => { %>
+                <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
+                    <div class="card-notificacao">
+                        <img src="<%= notificacao.imagem %>" alt="Imagem do local">
+
+                        <div class="card-conteudo">
+                            <h3><%= notificacao.nome %></h3>
+                            <span class="data"><%= notificacao.data %></span>
                             <p><%= notificacao.mensagem %></p>
                         </div>
-                    </a>
-                <% }) %>
+                    </div>
                 </a>
-            </div>
-        </main>
+            <% }) %>
+        </div>
+    </main>
 
-        <%- include('partials/footer') %>
-    </header>
+    <!-- ATICAR CAMPO DE TEXTO COM A tecla / (slash) -->
+    <script>
+        document.addEventListener('keydown', function(event) {
+            const searchInput = document.getElementById('searchInput');
+
+            if (event.key === '/' || event.code === 'Slash') {
+                event.preventDefault(); 
+                searchInput.focus();
+            }
+        });
+    </script>
+
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+
+    <script>
+        const search = document.querySelector('.search');
+        const cards = document.querySelectorAll('.card-notificacao');
+
+        search.addEventListener('input', () => {
+            const value = search.value.toLowerCase();
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(value) ? 'block' : 'none';
+            });
+        });
+    </script>
+
+    <script>
+        function buscar() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card-notificacao');
+
+            cards.forEach(card => {
+                const texto = card.innerText.toLowerCase();
+
+                if (texto.includes(input)) {
+                    card.parentElement.style.display = "block";
+                } else {
+                    card.parentElement.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+    <script src="/js/sidebar.js"></script>
+
+    <%- include('partials/footer') %>
 </body>
 </html>

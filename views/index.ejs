@@ -6,6 +6,7 @@
     <title>Sistema de Apoio e Acessibilidade</title>
     <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
 </head>
 
 <body id="inicio" class="body-index-principal">
@@ -221,11 +222,14 @@
                     </div>
                 </article>
             </section>
+            <div class="nav-botoes">
+                <button class="botao-avancar" onclick="avancarPaginaIndex()" aria-label="Botão Avançar">Avançar ➡</button>
+            </div>
             <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
                 Voltar ao topo
             </a>
         </section>
-
+        
         
         <!--
         <section class="section-noticias">
@@ -263,7 +267,7 @@
         
     </main>
 
-    
+    <script src="js/botoes-voltar-e-avancar.js"></script>
 
 
         <%- include('partials/footer') %>
