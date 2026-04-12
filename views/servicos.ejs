@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça os serviços do Sistema de Apoio e Acessibilidade (S.A.A.), incluindo busca de locais acessíveis, cadastro e registro de denúncias.">
     <title>Serviços</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/servicos.css">
@@ -15,7 +16,7 @@
     </header>
     
     <!-- BOTÃO -->
-    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer">
+    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer" aria-label="Abrir menu">
         <span></span>
         <span></span>
         <span></span>
@@ -55,23 +56,15 @@
                     <div class="card-body">
                         <h2>📝 Cadastrar inclusão</h2>
                         <p>Adicione informações sobre locais acessíveis, contribuindo com a comunidade.</p>
-                        <span class="meta">Clique aqui para cadastrar</span>
+                        <p>Clique aqui para cadastrar</p>
                     </div>
                 </a>
-                
-                <!-- <a href="/vvv" class="card">
-                    <div class="card-body">
-                        <h2>🔎 Busca de locais acessíveis</h2>
-                        <p>Encontre estabelecimentos com recursos de acessibilidade próximos a você.</p>
-                        <span class="meta">Clique aqui para buscar</span>
-                    </div>
-                </a> -->
 
                 <a href="/listagem-inclusoes" class="card">
                     <div class="card-body">
                         <h2>Listar lugares inclusivos</h2>
                         <p>Encontre estabelecimentos com recursos de acessibilidade próximos a você.</p>
-                        <span class="meta">Clique aqui para listar</span>
+                        <p>Clique aqui para listar</p>
                     </div>
                 </a>
                 
@@ -79,7 +72,7 @@
                     <div class="card-body">
                         <h2>⚠️ Cadastrar notificação</h2>
                         <p>Reporte problemas relacionados à acessibilidade urbana de forma simples e rápida.</p>
-                        <span class="meta">Clique aqui para notificar</span>
+                        <p>Clique aqui para notificar</p>
                     </div>
                 </a>
                 
@@ -95,7 +88,7 @@
                     <div class="card-body">
                         <h2>Listar lugares notificados</h2>
                         <p>Acompanhe informações e estatísticas sobre acessibilidade, auxiliando na tomada de decisões.</p>
-                        <span class="meta">Clique aqui para acompanhar</span>
+                        <p>Clique aqui para acompanhar</p>
                     </div>
                 </a>
             </div>
@@ -108,11 +101,9 @@
         <button class="botao-avancar" onclick="avancarPaginaServicos()" aria-label="Botão Avançar">Avançar ➡</button>
     </div>
     
-    <script src="js/botoes-voltar-e-avancar.js"></script>
-
-    <script src="js/sidebar.js"></script>
-
     <%- include('partials/footer') %>
-
+    
+    <script src="js/botoes-voltar-e-avancar.js"></script>
+    <script src="js/sidebar.js"></script>
 </body>
 </html>

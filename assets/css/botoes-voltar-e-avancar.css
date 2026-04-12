@@ -13,7 +13,7 @@
 
 /* Botão voltar */
 .botao-voltar {
-    background: #6c63ff;
+    background-color: #574fd6;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -29,13 +29,13 @@
     transform: translateY(-2px);
 }
 .botao-voltar:focus {
-    background-color: #7c75d9;
+    background-color: #574fd6;
     outline: 3px solid blue;
 }
 
 /* Botão avançar */
 .botao-avancar {
-    background: #00b894;
+    background-color: #016b52;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -51,6 +51,6 @@
     transform: translateY(-2px);
 }
 .botao-avancar:focus {
-    background-color: #00dba8;
+    background-color: #019875;
     outline: 3px solid green;
 }
