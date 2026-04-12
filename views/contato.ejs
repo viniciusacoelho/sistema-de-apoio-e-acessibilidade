@@ -8,11 +8,12 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
         <link rel="stylesheet" href="/css/contato.css">
+        <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
 
     <body>
-        <header>
+        <header class="header-index">
             <%- include('partials/navbar') %>
         </header>
 
@@ -84,6 +85,11 @@
                 </form>
             </section>
         </main>
+        <div class="nav-botoes">
+            <button class="botao-voltar" onclick="voltarPaginaContato()" aria-label="Botão Voltar">⬅ Voltar</button>
+        </div>
+
+        <script src="js/botoes-voltar-e-avancar.js"></script>
 
         <script src="js/sidebar.js"></script>
 

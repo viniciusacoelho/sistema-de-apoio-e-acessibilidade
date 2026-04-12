@@ -1,0 +1,56 @@
+
+/* Botão voltar e avançar lado a lado */
+.nav-botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+/* Botão voltar */
+.botao-voltar {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-voltar:hover {
+    background: #574fd6;
+    transform: translateY(-2px);
+}
+.botao-voltar:focus {
+    background-color: #7c75d9;
+    outline: 3px solid blue;
+}
+
+/* Botão avançar */
+.botao-avancar {
+    background: #00b894;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-avancar:hover {
+    background: #019875;
+    transform: translateY(-2px);
+}
+.botao-avancar:focus {
+    background-color: #00dba8;
+    outline: 3px solid green;
+}

@@ -6,6 +6,7 @@
     <title>Sistema de Apoio e Acessibilidade</title>
     <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
 </head>
 
 <body id="inicio" class="body-index pagina-deficiente-auditivo">
@@ -198,12 +199,17 @@
                         <img id="img4-deficiente-fisico-ou-motoro" class="img-deficiente-fisico-ou-motoro" src="/images/s.a.a-deficiencias/deficiente físico ou motoro/d.f.m.-apoio-à-pessoa-com-deficiência.jpg" alt="">
                     </figure>
                 </div>
-            </article>      
+            </article>   
+            <div class="nav-botoes">
+                <button class="botao-voltar" onclick="voltarPaginaDefFisicoOuMotoro()" aria-label="Botão Voltar">⬅ Voltar</button>
+            </div>   
             <a id="botao-voltar-para-o-inicio" href="#inicio" class="button-voltar-para-o-inicio" >                    
                 Voltar ao topo
             </a>  
         </section>
     </main>
+
+    <script src="js/botoes-voltar-e-avancar.js"></script>
 
     <%- include('partials/footer') %>
 
