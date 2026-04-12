@@ -25,22 +25,22 @@
                                     <label for="image" class="image">Escolher imagem</label>
                                     <input type="file" name="image" id="image" accept="image/*" hidden required>
                                     <p id="file-name">Nenhum arquivo selecionado</p>
-                                    <img id="preview" src="" alt="Preview da imagem">
+                                    <img id="preview" src="<%= values.imagem %>" alt="Preview da imagem">
                                 </div>
                                 <div class="card-right">
                                     <div class="card-name">
-                                        <label for="name">Nome</label>
-                                        <input type="text" name="name" id="name" placeholder="Digite o nome do local">
+                                        <label for="name">Nome do Local</label>
+                                        <input type="text" name="name" id="name" placeholder="Digite o nome do local" value="<%= values.nome %>">
                                     </div>
                                     <div class="card-date">
-                                        <label for="date">Data</label>
-                                        <input type="date" name ="date" id="date">
+                                        <label for="date">Data de Registro</label>
+                                        <input type="date" name ="date" id="date" value="<%= values.data %>">
                                     </div>
                                 </div>
                             </div>
                             <div class="card-message">
                                 <label for="message">Mensagem</label>
-                                <textarea name="message" id="message"></textarea>
+                                <textarea name="message" id="message"><%= values.mensagem %></textarea>
                             </div>
                             <button type="submit">Enviar</button>
                         </form>

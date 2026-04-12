@@ -51,12 +51,11 @@ app.post('/login', async (req, res) => {
 
     const values = { email, senha };
 
-
     if (!email || !senha) {
         return res.render('login', {
             error: 'Preencha email e senha',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -67,7 +66,7 @@ app.post('/login', async (req, res) => {
             return res.render('login', {
                 error: 'Usuário não encontrado',
                 ok: false,
-                values,
+                values
             });
         }
 
@@ -77,7 +76,7 @@ app.post('/login', async (req, res) => {
             return res.render('login', {
                 error: 'Senha incorreta',
                 ok: false,
-                values,
+                values
             });
         }
 
@@ -88,7 +87,7 @@ app.post('/login', async (req, res) => {
         return res.render('login', {
             error: 'Erro ao fazer login',
             ok: false,
-            values,
+            values
         });
     }
 });
@@ -110,7 +109,7 @@ app.post('/cadastre-se', async (req, res) => {
         return res.status(400).render('cadastre-se', {
             error: 'Preencha nome, e-mail e senha.',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -118,7 +117,7 @@ app.post('/cadastre-se', async (req, res) => {
         return res.status(400).render('cadastre-se', {
             error: 'As senhas não coincidem.',
             ok: false,
-            values,
+            values
         });
     }
     
@@ -127,7 +126,7 @@ app.post('/cadastre-se', async (req, res) => {
         return res.status(400).render('cadastre-se', {
             error: 'A senha deve ter pelo menos 6 caracteres.',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -145,14 +144,14 @@ app.post('/cadastre-se', async (req, res) => {
             return res.status(400).render('cadastre-se', {
                 error: 'Este e-mail já está cadastrado.',
                 ok: false,
-                values,
+                values
             });
         }
         console.error(err);
         return res.status(500).render('cadastre-se', {
             error: 'Não foi possível concluir o cadastro. Tente novamente.',
             ok: false,
-            values,
+            values
         });
     }
 });
@@ -176,7 +175,7 @@ app.get('/contato', (req, res) => {
 
 app.get('/inclusao', (req, res) => {
     const ok = req.query.ok === '1';
-    res.render('inclusao', { error: null, ok, values: null });
+    res.render('inclusao', { error: null, ok, values: {} });
 })
 
 app.post('/inclusao', upload.single('image'), async (req, res) => {
@@ -185,17 +184,17 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
     const data = (req.body.date || '');
     const mensagem = (req.body.message || '').trim().toLowerCase();
 
-    const values = { nome, mensagem };
+    const values = { imagem, nome, data, mensagem };
 
     if (!nome || !data || !mensagem || !imagem) {
         return res.status(400).render('inclusao', {
             error: 'Preencha imagem, nome, data e mensagem.',
             ok: false,
-            values,
+            values: req.body,
         });
     }
     
-    if (mensagem.length > 1000) {
+    if (mensagem.length > 1) {
         return res.status(400).render('inclusao', {
             error: 'Tamanho máximo de 1000 caracteres atingido.',
             ok: false,
@@ -210,7 +209,7 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
             data,
             mensagem,
         });
-        return res.redirect('/?ok=1');
+        return res.redirect('/servicos?ok=1');
     } catch (err) {
         console.error(err);
         return res.status(500).render('inclusao', {
@@ -223,7 +222,7 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
 
 app.get('/notificacao', (req, res) => {
     const ok = req.query.ok === '1';
-    res.render('notificacao', { error: null, ok, values: null });
+    res.render('notificacao', { error: null, ok, values: null, dados: {} });
 })
 
 app.post('/notificacao', upload.single('image'), async (req, res) => {
@@ -257,7 +256,7 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
             data,
             mensagem,
         });
-        return res.redirect('/?ok=1');
+        return res.redirect('/servicos?ok=1');
     } catch (err) {
         console.error(err);
         return res.status(500).render('notificacao', {
