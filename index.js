@@ -194,7 +194,7 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
         });
     }
     
-    if (mensagem.length > 1) {
+    if (mensagem.length > 1000) {
         return res.status(400).render('inclusao', {
             error: 'Tamanho máximo de 1000 caracteres atingido.',
             ok: false,
