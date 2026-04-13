@@ -4,16 +4,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <meta name="description" content="Cadastre novos locais acessíveis no Sistema de Apoio e Acessibilidade (S.A.A.) e ajude a melhorar a inclusão urbana.">
+        <title>Inclusão</title>
         <link rel="stylesheet" href="/css/notificacao.css">
         <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
     </head>
-
+    
     <body>
         <header>
-            <main>
+
+        </header>
+
+        <main>
+            <div class="container">
                 <h1>Inclusão</h1>
-                <section class="">
+                <section>
                     <div class="card">
                         <form action="/inclusao" method="post" enctype="multipart/form-data">
                             <% if (error) { %>
@@ -50,8 +55,12 @@
                         </form>
                     </div>
                 </section>
-            </main>
-        </header>
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
     </body>
 
     <script src="js/botoes-voltar-e-avancar.js"></script>

@@ -218,8 +218,6 @@ a:hover {
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 
-
-/* BOTÃO HAMBÚRGUER (estilo Wikipédia) */
 .hamburger {
     width: 40px;
     height: 40px;
@@ -276,7 +274,6 @@ a:hover {
     z-index: 1000;
 }
 
-/* Quando ativa */
 .sidebar.active {
     left: 0;
 }
@@ -360,7 +357,7 @@ a:hover {
     border-radius: 8px;
     color: white;
 }
-.button-paragrafo-artigo-index:hover{
+.button-paragrafo-artigo-index:hover, .button-paragrafo-artigo-index:focus {
     background-color: #464646;
     cursor: pointer;
     color: white;
@@ -371,7 +368,6 @@ a:hover {
     text-decoration: none;
 }
 
-/* DESCRIÇÃO INDEX */
 .inicio-descricao{
     display: flex;
     max-width: 1000px;
@@ -433,7 +429,7 @@ a:hover {
     transition: all 0.5s ease; /* Tempo da animação */
     transition-delay: 0.1s; /* Atraso de 200ms antes de começar */
 }
-/* CONTAINER: CARROSSEL */
+
 .section-carrossel{
     display: flex;
     max-width: 1000px;
@@ -612,8 +608,8 @@ a:hover {
 .texto-div-services{
     display: inline-block;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif; /* Fonte naturalmente grossa */
-    font-weight: 750; /* Aumenta a espessura da fonte selecionada */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 750;
     font-size: calc(0.500rem + 1.0vw);
     padding: 0px 0px 30px 0px;
     flex-direction: column; 
@@ -1018,24 +1014,7 @@ a:hover {
     color: transparent;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ================= SOBRE ================= */
-
-
-
-
-
 
 /* ================= ENCONTRE SUPORTE ================= */
 .nav-encontre-suporte {
@@ -1058,7 +1037,7 @@ a:hover {
     list-style: none;
 }
 
-.nav-links-encontre-suporte li {
+.nav-links-encontre-suporte a {
     padding: 8px;
     border-radius: 8px;
     background-color: white;
@@ -1136,7 +1115,7 @@ a:hover {
     font-size: 1.1rem;
     line-height: 1.7;
     color: #555;
-    text-align: justify;
+    text-align: left;
     margin-top: 20px;   
 }
 
@@ -1310,7 +1289,7 @@ figcaption{
     font-size: 1.1rem;
     line-height: 1.7;
     color: #555;
-    text-align: justify;
+    text-align: left;
 }
 
 .cards {
@@ -1453,6 +1432,10 @@ figcaption{
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 
+.nome-inclusao {
+    font-size: 20px;
+}
+
 .alert {
     padding: 12px;
     margin-bottom: 15px;
@@ -1471,7 +1454,6 @@ figcaption{
     color: #0a7a0a;
     border: 1px solid #4CAF50;
 }
-
 
 /* ================= RESPONSIVIDADE ================= */
 
