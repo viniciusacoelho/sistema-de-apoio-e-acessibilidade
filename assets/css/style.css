@@ -184,7 +184,7 @@ a:hover {
     position: fixed;
     display: flex;
     background: #171717;
-    width: 100vw;
+    width: 100%;
     height: 80px;
     align-items: center;
     justify-content: center;
@@ -218,8 +218,6 @@ a:hover {
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 
-
-/* BOTÃO HAMBÚRGUER (estilo Wikipédia) */
 .hamburger {
     width: 40px;
     height: 40px;
@@ -276,7 +274,6 @@ a:hover {
     z-index: 1000;
 }
 
-/* Quando ativa */
 .sidebar.active {
     left: 0;
 }
@@ -319,7 +316,8 @@ a:hover {
     flex-direction: column;
     border-radius: 30px;
     margin: 0 auto;
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     height: auto;
 }
 
@@ -359,7 +357,7 @@ a:hover {
     border-radius: 8px;
     color: white;
 }
-.button-paragrafo-artigo-index:hover{
+.button-paragrafo-artigo-index:hover, .button-paragrafo-artigo-index:focus {
     background-color: #464646;
     cursor: pointer;
     color: white;
@@ -370,10 +368,10 @@ a:hover {
     text-decoration: none;
 }
 
-/* DESCRIÇÃO INDEX */
 .inicio-descricao{
     display: flex;
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     height: auto;
     flex-direction: column;
     justify-content: center;
@@ -431,10 +429,11 @@ a:hover {
     transition: all 0.5s ease; /* Tempo da animação */
     transition-delay: 0.1s; /* Atraso de 200ms antes de começar */
 }
-/* CONTAINER: CARROSSEL */
+
 .section-carrossel{
     display: flex;
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     height: auto;
     flex-direction: column;
     justify-content: center;
@@ -495,11 +494,6 @@ a:hover {
 
 /* SETAS */
 .seta {
-    /*
-    background-color: rgb(11, 11, 101);
-    font-size: 28px;
-    */
-
     background-color: transparent;
     color: white;
     border: none;
@@ -579,13 +573,10 @@ a:hover {
 .section-services-fundo{
     margin: 0px 0px 0px -261px;
     padding: 0px 261px 50px 260px;
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     height: auto;
     background-image: linear-gradient(#9cb6e3, rgb(47, 65, 141));
-    /*
-    background: url(https://fps.cdnpk.net/common/error-bg.png?w=2000) 80% center / cover no-repeat rgb(34, 36, 78);
-    background-position: 80% center;
-    */
 }
 .services-index {
     display: flex;
@@ -617,8 +608,8 @@ a:hover {
 .texto-div-services{
     display: inline-block;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif; /* Fonte naturalmente grossa */
-    font-weight: 750; /* Aumenta a espessura da fonte selecionada */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 750;
     font-size: calc(0.500rem + 1.0vw);
     padding: 0px 0px 30px 0px;
     flex-direction: column; 
@@ -730,7 +721,8 @@ a:hover {
     display: flex;
     flex-direction: column;
    
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     height: auto;
 }
 .div-h2-contato{
@@ -862,70 +854,6 @@ a:hover {
 #botao-voltar-para-o-inicio{
     margin: 50px 0px 0px 0px;
 }
-/* NOTÍCIAS
-.section-noticias {
-    margin: 0px 0px 0px -261px;
-    padding: 0px 261px 50px 260px;
-    background-image: linear-gradient( rgb(179, 238, 230),  rgb(21, 114, 108));
-    display: flex;
-    flex-direction: column;
-   
-    width: 1000px;
-    height: auto;
-}
-.noticias {
-    display: flex;
-    background-color: #dfdfdf;
-    padding: 7px;
-    gap: 250px;
-    margin: 40px 0;
-    border-radius: 8px;
-}
-
-.noticia {
-    width: 80px;
-    height: 80px;
-    background-color: rgb(50, 50, 50);
-    border-radius: 8px;
-}
-
-.noticia-titulo-posicionamento{
-    display: flex;
-    justify-content: center;
-    gap: 250px;
-    margin: 0px 0px 0px 198px;
-}
-.noticia-titulos {
-    font-size: 18px;
-    color: white;
-    text-align: center;
-    padding: 19px 80px;
-    background-color: rgb(201, 201, 201);
-    border: 1px solid white;
-    border-radius: 8px;
-}
-.noticias-a{
-    color: rgb(232, 232, 232);
-    text-decoration: none;
-}
-.noticias-a:hover{
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    transition-delay: 0.03s; 
-}
-
- LINHAS 
-.linhas {
-    height: 20px;
-    background-color: #dfdfdf;
-    margin: 10px 0;
-    border-radius: 5px;
-    padding: 15px;
-}
-
-*/
 
 /* FOOTER */
 .footer-index {
@@ -1086,24 +1014,7 @@ a:hover {
     color: transparent;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ================= SOBRE ================= */
-
-
-
-
-
 
 /* ================= ENCONTRE SUPORTE ================= */
 .nav-encontre-suporte {
@@ -1126,7 +1037,7 @@ a:hover {
     list-style: none;
 }
 
-.nav-links-encontre-suporte li {
+.nav-links-encontre-suporte a {
     padding: 8px;
     border-radius: 8px;
     background-color: white;
@@ -1203,7 +1114,7 @@ a:hover {
     font-size: 1.1rem;
     line-height: 1.7;
     color: #555;
-    text-align: justify;
+    text-align: left;
     margin-top: 20px;   
 }
 
@@ -1377,7 +1288,7 @@ figcaption{
     font-size: 1.1rem;
     line-height: 1.7;
     color: #555;
-    text-align: justify;
+    text-align: left;
 }
 
 .cards {
@@ -1520,6 +1431,10 @@ figcaption{
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 
+.nome-inclusao {
+    font-size: 20px;
+}
+
 .alert {
     padding: 12px;
     margin-bottom: 15px;
@@ -1539,46 +1454,194 @@ figcaption{
     border: 1px solid #4CAF50;
 }
 
-@media (max-width: 800px) {
+/* ================= RESPONSIVIDADE ================= */
 
-    .nav-index {
-        height: auto;
-        padding: 10px 0;
+/* TABLETS (até 1024px) */
+@media (max-width: 1024px) {
+    
+    .main-index,
+    .inicio-descricao,
+    .section-carrossel,
+    .section-services-fundo,
+    .section-contato {
+        width: 90%;
+        margin: 0 auto;
+        padding: 40px 20px;
     }
 
-    .nav-links-index {
-        flex-direction: column;
-        gap: 5px;
-        width: 100%;
-        align-items: center;
+    .inicio-descricao,
+    .section-carrossel,
+    .section-services-fundo,
+    .section-contato {
+        margin-left: 0; /* remove aquele -261px */
     }
 
-    .nav-links-index li {
+    #logotipo-saa-inicio-descricao {
         width: 100%;
+    }
+
+    .carrossel {
+        gap: 30px;
+    }
+
+    .circulos {
+        gap: 60px;
+    }
+
+    .circulo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .circulo.ativo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .titulo-artigo-contato-index {
+        padding: 0;
         text-align: center;
     }
 
-    .nav-links-index a {
-        display: block;
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .nav-spacer {
-        height: 280px;
+    .contato-button-posicionamento {
+        padding: 0;
+        justify-content: center;
     }
 }
+
+
+/* CELULARES (até 768px) */
+@media (max-width: 768px) {
+    
+    .nav-links-index {
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .main-index {
+        width: 95%;
+    }
+
+    .artigo-index {
+        padding: 20px;
+    }
+
+    .paragrafo-artigo-index {
+        font-size: 1rem;
+    }
+
+    .inicio-descricao-containers {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .carrossel {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .circulos {
+        gap: 20px;
+    }
+
+    .seta {
+        font-size: 40px;
+    }
+
+    .cards-services-index {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-services-index {
+        width: 90%;
+    }
+
+    .contato-container-posicionamento {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .img-duvidas-contato img {
+        width: 150px;
+    }
+
+    .paragrafo-artigo-contato-index {
+        padding: 20px;
+    }
+
+    .footer-index {
+        padding: 20px;
+    }
+
+    .bloco {
+        flex: 1 1 100%;
+        padding: 20px 0;
+    }
+}
+
+
+/* CELULARES PEQUENOS (até 480px) */
+@media (max-width: 480px) {
+
+    .hamburger {
+        width: 35px;
+        height: 35px;
+    }
+
+    .nav-index {
+        height: 70px;
+    }
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .titulo-div-h2-carrossel,
+    .titulo-div-h2-services,
+    .titulo-div-h2-contato {
+        font-size: 1.2rem;
+    }
+
+    .texto-div-carrossel,
+    .texto-div-services,
+    .texto-div-contato {
+        font-size: 14px;
+    }
+
+    .circulo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .circulo.ativo {
+        width: 110px;
+        height: 110px;
+    }
+
+    .button-paragrafo-inicio-descricao,
+    .button-paragrafo-services {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+
 
 @media (max-width: 768px) {
 
     .footer-index {
-        padding: 20px;
+        padding: 30px 20px;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .container {
         flex-direction: column;
-        gap: 25px;
+        gap: 30px;
+        width: 100%;
     }
 
     .bloco {
@@ -1586,18 +1649,19 @@ figcaption{
         padding: 10px 0;
     }
 
+    /* CONTATO */
     .div-image-position {
         width: 100%;
         height: auto;
         border: none;
         align-items: center;
+        justify-content: center;
     }
 
     .circulos-footer {
         justify-content: center;
         flex-wrap: wrap;
-        text-align: center;
-        gap: 8px;
+        gap: 10px;
     }
 
     .numero-de-contato,
@@ -1614,30 +1678,32 @@ figcaption{
     }
 
     /* NOTÍCIAS */
+    .noticias-footer {
+        width: 100%;
+    }
+
     .noticias-posicionamento-footer {
         flex-direction: column;
-        gap: 12px;
+        gap: 15px;
     }
 
     .noticia-titulos-footer {
         padding: 20px;
         margin: 0;
         font-size: 15px;
+        width: 100%;
     }
 
     /* DIREITOS RESERVADOS */
     .div-direitos-reservados {
-        padding: 15px 0;
+        padding: 20px 0 0 0;
         font-size: 13px;
+        width: 100%;
     }
 
-    .bloco {
-        flex-basis: 100%;
-    }
-
+    /* ÍCONES */
     .div-image-position #contain {
-        align-items: flex-start;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
     }
 }

@@ -15,13 +15,14 @@
     <main>
         <section class="titulo-e-texto-notificacoes">
             <h1>Notificações</h1>
-            <p class="descricao-notificacoes">Lista de lugares notificados.</p>                
+            <label for="searchInput">
+                <h2 class="descricao-notificacoes">Lista de lugares notificados</h2>
+            </label>
         </section>
         
         <section class="container-textos-e-botoes">
-            
             <div class="search-box">
-                <button class="btn-voltar" onclick="voltarPagina()">← Voltar</button>
+                <button class="btn-voltar" aria-label="Voltar para página anterior" onclick="voltarPagina()">← Voltar</button>
                 <input type="text" placeholder="Buscar notificações..." class="search" id="searchInput" title="Clique na tecla / para pesquisar">
                 <button onclick="buscar()" class="btn-buscar">Buscar</button>
             </div>
@@ -34,25 +35,27 @@
             </p>
         </section>
 
-        <!-- 👇 AGORA FICA ABAIXO CORRETAMENTE -->
-        <div class="container-notificacoes">
-            <% notificacoes.forEach((notificacao) => { %>
-                <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
-                    <div class="card-notificacao">
-                        <img src="<%= notificacao.imagem %>" alt="Imagem do local">
-
-                        <div class="card-conteudo">
-                            <h3><%= notificacao.nome %></h3>
-                            <span class="data"><%= notificacao.data %></span>
-                            <p><%= notificacao.mensagem %></p>
+        <section>
+            <div class="container-notificacoes">
+                <% notificacoes.forEach((notificacao) => { %>
+                    <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
+                        <div class="card-notificacao">
+                            <img src="<%= notificacao.imagem %>" alt="Imagem do local">
+    
+                            <div class="card-conteudo">
+                                <h3><%= notificacao.nome %></h3>
+                                <span class="data"><%= notificacao.data %></span>
+                                <p><%= notificacao.mensagem %></p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            <% }) %>
-        </div>
+                    </a>
+                <% }) %>
+            </div>
+        </section>
     </main>
 
-    <!-- ATICAR CAMPO DE TEXTO COM A tecla / (slash) -->
+    <%- include('partials/footer') %>
+    
     <script>
         document.addEventListener('keydown', function(event) {
             const searchInput = document.getElementById('searchInput');
@@ -100,7 +103,5 @@
             });
         }
     </script>
-
-    <%- include('partials/footer') %>
 </body>
 </html>
