@@ -1,4 +1,4 @@
-const menuBtn = document.getElementById("menuBtn");
+const menuBtn = document.getElementById("menuButton");
 const sidebar = document.getElementById("sidebar");
 
 /* TOGGLE (abre e fecha no mesmo botão) */

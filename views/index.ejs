@@ -17,11 +17,7 @@
     </header>
     
     <!-- BOTÃO -->
-    <button id="menuBtn" class="hamburger" onclick="sidebarHamburguer()" aria-label="Botão menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <%- include('partials/botao-hamburguer') %>
 
     <!-- SIDEBAR -->
     <div id="sidebar" class="sidebar">
@@ -158,30 +154,18 @@
     
                 <section class="secao-services-index">
                     <div class="cards-services-index">
-                        <a href="/vvv" class="card-services-index">
-                            <div class="card-services-body-index">
-                                <h4>🔎 Busca de locais acessíveis</h4>
-                                <p>Encontre estabelecimentos com recursos de 
-                                    acessibilidade próximos a você.</p>
-                                <p>Clique aqui para visitar serviços</p>
-                            </div>
-                        </a>
-                        <br>
                         <a href="/inclusao" class="card-services-index">
                             <div class="card-services-body-index">
-                                <h4>📝 Cadastro de estabelecimentos</h4>
-                                <p>Adicione informações sobre locais acessíveis, 
-                                    contribuindo com a comunidade.</p>
-                                <p>Clique aqui para visitar serviços</p>
+                                <h2>Listar Lugares Inclusivos</h2>
+                                    <p>Encontre estabelecimentos com recursos de acessibilidade próximos a você.</p>
+                                    <p>Clique aqui para listar</p>
                             </div>
                         </a>
-                        <br>
                         <a href="/notificacao" class="card-services-index">
                             <div class="card-services-body-index">
-                                <h4>⚠️ Registro de denúncias</h4>
-                                <p>Reporte problemas relacionados à acessibilidade 
-                                    urbana de forma simples e rápida.</p>
-                                <p>Clique aqui para visitar serviços</p>
+                                <h2>Listar Lugares Notificados</h2>
+                                    <p>Veja a lista de locais que foram reportados com informações sobre acessibilidade</p>
+                                    <p>Clique aqui para listar</p>
                             </div>
                         </a>
                     </div>

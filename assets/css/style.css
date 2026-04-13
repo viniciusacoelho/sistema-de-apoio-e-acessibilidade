@@ -218,10 +218,6 @@ a:hover {
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 
-.nav-spacer {
-    height: 80px;
-}
-
 
 /* BOTÃO HAMBÚRGUER (estilo Wikipédia) */
 .hamburger {
@@ -935,7 +931,8 @@ a:hover {
 .footer-index {
     display: flex;
     margin: 70px 0px 0px 0px;
-    background-color: rgb(0, 0, 109);
+    background-color: #05045c;
+    color: #ffffff;
     padding: 15px 100px 20px;
 }
 
@@ -1002,6 +999,8 @@ a:hover {
     margin: 0px 0px 0px 15px;
     padding-top: 2px;
     white-space: nowrap; /*Faz o texto não quebrar em várias linhas */
+    color: #fff;
+    font-size: 16px;
 }
 
 #image{
@@ -1411,7 +1410,7 @@ figcaption{
   height: 180px;
 }
 #imagem-1{
-    background-image: linear-gradient(rgba(187, 253, 192, 0.2), rgba(187, 253, 192, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.jpeg);    
+    background-image: linear-gradient(rgba(187, 253, 192, 0.2), rgba(187, 253, 192, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-pessoa-com-60-anos-ou-mais.webp);    
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
@@ -1419,7 +1418,7 @@ figcaption{
     border-radius: 16px 16px 0px 0px;
 }
 #imagem-2{
-    background-image: linear-gradient(rgba(65, 201, 255, 0.2), rgba(65, 201, 255, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.jpeg);    
+    background-image: linear-gradient(rgba(65, 201, 255, 0.2), rgba(65, 201, 255, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-deficiente-auditivo.webp);    
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
@@ -1427,7 +1426,7 @@ figcaption{
     border-radius: 16px 16px 0px 0px;
 }
 #imagem-3{
-    background-image: linear-gradient(rgba(253, 122, 122, 0.2), rgba(253, 122, 122, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-deficiente-fisico-ou-motoro.jpeg);    
+    background-image: linear-gradient(rgba(253, 122, 122, 0.2), rgba(253, 122, 122, 0.2)), url(/images/s.a.a-deficiencias/s.a.a-deficiente-fisico-ou-motoro.webp);    
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
@@ -1549,7 +1548,7 @@ figcaption{
 
     .nav-links-index {
         flex-direction: column;
-        gap: 15px;
+        gap: 5px;
         width: 100%;
         align-items: center;
     }
@@ -1566,7 +1565,79 @@ figcaption{
     }
 
     .nav-spacer {
-        height: 220px; /* ajusta conforme o tamanho do menu */
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .footer-index {
+        padding: 20px;
+        flex-direction: column;
     }
 
+    .container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .bloco {
+        flex: 1 1 100%;
+        padding: 10px 0;
+    }
+
+    .div-image-position {
+        width: 100%;
+        height: auto;
+        border: none;
+        align-items: center;
+    }
+
+    .circulos-footer {
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .numero-de-contato,
+    .email {
+        margin: 5px 0;
+        white-space: normal;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    /* REDES SOCIAIS */
+    #circulo-footer-redes-sociais {
+        margin: 5px;
+    }
+
+    /* NOTÍCIAS */
+    .noticias-posicionamento-footer {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .noticia-titulos-footer {
+        padding: 20px;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    /* DIREITOS RESERVADOS */
+    .div-direitos-reservados {
+        padding: 15px 0;
+        font-size: 13px;
+    }
+
+    .bloco {
+        flex-basis: 100%;
+    }
+
+    .div-image-position #contain {
+        align-items: flex-start;
+        width: 40px;
+        height: 40px;
+    }
 }
