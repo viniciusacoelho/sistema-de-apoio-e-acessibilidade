@@ -12,7 +12,7 @@ O projeto utiliza Node.js com Express no backend, páginas dinâmicas com EJS no
 * Servidor HTTP com Express (`index.js`)
 * Sistema de rotas para navegação entre páginas
 * Views dinâmicas com EJS (`views/`)
-* Interface responsiva com HTML e CSS (`public/`)
+* Interface responsiva com HTML e CSS (`assets/`)
 * Funcionalidades de:
 
   * Cadastro e login de usuários
@@ -66,9 +66,9 @@ http://localhost:3000
 | ----------------------------- | ---------------------------------- |
 | `/`                           | Página inicial                     |
 | `/login`                      | Tela de login                      |
-| `/register`                   | Cadastro de usuário                |
-| `/profile`                    | Perfil do usuário                  |
-| `/suporte`                    | Página de apoio ao usuário         |
+| `/cadastre-se`                   | Cadastro de usuário                |
+| `/servicos`                    | Serviços disponíveis para o usuário                  |
+| `/encontre-suporte`                    | Página de apoio ao usuário         |
 | `/deficiente-auditivo`        | Conteúdo para deficiência auditiva |
 | `/deficiente-fisico-ou-motor` | Conteúdo para deficiência física   |
 | `/sessenta-anos-ou-mais`      | Conteúdo para idosos               |
@@ -79,11 +79,13 @@ http://localhost:3000
 ## 📁 Estrutura de pastas (resumo)
 
 ```
-sistema-acessibilidade/
+sistema-de-apoio-eacessibilidade/
+├── assets/           # Arquivos estáticos (CSS, images, JS)
+└── views/            # Templates EJS (Partials)
 ├── index.js          # Configuração do servidor e rotas
+├── package-lock.json
 ├── package.json
-├── public/           # Arquivos estáticos (CSS, imagens, JS)
-└── views/            # Templates EJS
+└── README.md
 ```
 
 ---
@@ -103,13 +105,7 @@ Este projeto foi desenvolvido com foco em:
 
 ## 🗄️ Banco de Dados (MongoDB)
 
-Se estiver utilizando Docker:
-
-```bash
-docker compose exec mongo mongosh sistema_acessibilidade
-```
-
-Ou utilize o MongoDB Atlas para ambiente em nuvem.
+Utilize o MongoDB Atlas para ambiente em nuvem.
 
 ---
 
@@ -127,3 +123,15 @@ O sistema foi pensado para promover:
 ## 📚 Projeto acadêmico
 
 Projeto desenvolvido para fins educacionais no curso de Sistemas de Informação — CESMAC.
+
+## 👨‍💻 Integrantes
+
+João Victor Araújo Coêlho
+
+José Ray Barros Nunes
+
+Rangel Farias Marques
+
+Rogério Carvalho
+
+Vinícius Araújo Coêlho
