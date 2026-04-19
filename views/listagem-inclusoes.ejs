@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lista de locais acessíveis cadastrados no Sistema S.A.A. Veja informações e contribua com a inclusão urbana.">
-    <title>Listagem Inclusões</title>
+    <title>Listagem Notificações</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/servicos.css">
 </head>
@@ -17,14 +16,14 @@
         <section class="titulo-e-texto-inclusoes">
             <h1>Inclusões</h1>
             <label for="searchInput">
-                <h2>Lista de lugares acessíveis.</h2>
+                <h2 class="descricao-inclusoes">Lista de lugares inclusivos</h2>
             </label>
         </section>
-
+        
         <section class="container-textos-e-botoes">
             <div class="search-box">
                 <button class="btn-voltar" aria-label="Voltar para página anterior" onclick="voltarPagina()">← Voltar</button>
-                <input type="text" placeholder="Buscar locais..." class="search" id="searchInput" title="Clique na tecla / para pesquisar">
+                <input type="text" placeholder="Buscar inclusões..." class="search" id="searchInput" title="Clique na tecla / para pesquisar">
                 <button onclick="buscar()" class="btn-buscar">Buscar</button>
             </div>
 
@@ -37,16 +36,16 @@
         </section>
 
         <section>
-            <div class="container-inclusoes">
-                <% inclusoes.forEach((inclusao) => { %>
-                    <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
+            <div class="container-notificacoes">
+                <% inclusoes.forEach((inclusão) => { %>
+                    <a href="/listagem-inclusoes/<%= inclusão._id %>" class="card-link">
                         <div class="card-inclusao">
-                            <img src="<%= inclusao.imagem %>" alt="Imagem do local">
-                            
+                            <img src="<%= inclusão.imagem %>" alt="Imagem do local">
+    
                             <div class="card-conteudo">
-                                <h2 class="nome-inclusao"><%= inclusao.nome %></h2>
-                                <p class="data"><%= inclusao.data %></p>
-                                <p><%= inclusao.mensagem %></p>
+                                <h3><%= inclusão.nome %></h3>
+                                <span class="data"><%= inclusão.data %></span>
+                                <p><%= inclusão.mensagem %></p>
                             </div>
                         </div>
                     </a>
@@ -54,13 +53,13 @@
             </div>
         </section>
     </main>
-        
-    <%- include('partials/footer') %>
 
+    <%- include('partials/footer') %>
+    
     <script>
         document.addEventListener('keydown', function(event) {
             const searchInput = document.getElementById('searchInput');
-            
+
             if (event.key === '/' || event.code === 'Slash') {
                 event.preventDefault(); 
                 searchInput.focus();
@@ -75,7 +74,7 @@
     </script>
 
     <script>
-        const search = document.getElementById('searchInput');
+        const search = document.querySelector('.search');
         const cards = document.querySelectorAll('.card-inclusao');
 
         search.addEventListener('input', () => {
@@ -83,7 +82,7 @@
 
             cards.forEach(card => {
                 const text = card.innerText.toLowerCase();
-                card.parentElement.style.display = text.includes(value) ? 'block' : 'none';
+                card.style.display = text.includes(value) ? 'block' : 'none';
             });
         });
     </script>
@@ -91,7 +90,7 @@
     <script>
         function buscar() {
             const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card-inclusao');
+            const cards = document.querySelectorAll('.card-notificacao');
 
             cards.forEach(card => {
                 const texto = card.innerText.toLowerCase();
@@ -104,6 +103,5 @@
             });
         }
     </script>
-
 </body>
 </html>

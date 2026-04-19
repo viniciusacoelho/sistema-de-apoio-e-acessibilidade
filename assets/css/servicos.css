@@ -161,11 +161,14 @@ body {
 }
 
 .container-inclusoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-top: 80px;
-    padding: 0 250px;
+    padding: 0px 250px 0px 250px;
 }
 .container-inclusoes:hover {
     display: grid;
