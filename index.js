@@ -40,7 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
     const ok = req.query.ok === '1';
     res.render('login', { error: null, ok, values: null });
 });
@@ -80,7 +80,7 @@ app.post('/login', async (req, res) => {
             });
         }
 
-        return res.redirect('/');
+        return res.redirect('/index');
 
     } catch (err) {
         console.error(err);
@@ -138,7 +138,7 @@ app.post('/cadastre-se', async (req, res) => {
             passwordHash,
             createdAt: new Date(),
         });
-        return res.redirect('/?ok=1');
+        return res.redirect('/index?ok=1');
     } catch (err) {
         if (err.code === 11000) {
             return res.status(400).render('cadastre-se', {
@@ -156,7 +156,7 @@ app.post('/cadastre-se', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
+app.get('/index', (req, res) => {
     const ok = req.query.ok === '1';
     res.render('index', { ok });
 });
