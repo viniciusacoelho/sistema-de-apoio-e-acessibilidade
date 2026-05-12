@@ -84,9 +84,6 @@ Este projeto foi desenvolvido com foco em **acessibilidade digital**, seguindo a
 **Atributos utilizados:**
 
 * `aria-label`
-<!-- * `aria-labelledby` -->
-<!-- * `role` em navegação -->
-<!-- * `aria-hidden` para ícones decorativos -->
 
 ---
 
@@ -180,7 +177,6 @@ Este projeto foi desenvolvido com foco em **acessibilidade digital**, seguindo a
   * Tablet
   * Desktop
 * Grid responsivo para cards de inclusões
-<!-- * Sem quebra de layout em zoom 200% -->
 
 ---
 

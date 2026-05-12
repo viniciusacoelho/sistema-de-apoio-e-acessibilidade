@@ -5,7 +5,7 @@ function avancarPaginaIndex() {
 
 /*---SOBRE---*/
 function voltarPaginaSobre() {
-    window.location.href = "/";
+    window.location.href = "/index";
 }
 
 function avancarPaginaSobre() {
@@ -71,6 +71,10 @@ function voltarPaginaAcessibilidade() {
     if (document.referrer) { 
         window.history.back(); 
     } else { 
-        window.location.href = "/"; 
+        window.location.href = "/index"; 
     } 
+}
+
+function voltarPaginaListagem() {
+    window.history.back();
 }
