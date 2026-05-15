@@ -18,40 +18,10 @@
         <main>
             <div class="container">
                 <h1>Notificação</h1>
-                <section class="">
+                <section>
                     <div class="card">
                         <form action="/notificacao" method="post" enctype="multipart/form-data">
-                            <% if (error) { %>
-                                <div class="alert error">
-                                    <p><%= error %></p>
-                                </div>
-                            <% } %>
-                            <div class="card-between">
-                                <div class="card-image">
-                                    <label for="image" class="image">Escolher imagem</label>
-                                    <input type="file" name="image" id="image" accept="image/*" hidden required>
-                                    <p id="file-name">Nenhum arquivo selecionado</p>
-                                    <img id="preview" src="" alt="Preview da imagem">
-                                </div>
-                                <div class="card-right">
-                                    <div class="card-name">
-                                        <label for="name">Nome</label>
-                                        <input type="text" name="name" id="name" placeholder="Digite o nome do local">
-                                    </div>
-                                    <div class="card-date">
-                                        <label for="date">Data</label>
-                                        <input type="date" name ="date" id="date">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-message">
-                                <label for="message">Mensagem</label>
-                                <textarea name="message" id="message"></textarea>
-                            </div>
-                            <div class="espaco-dos-botoes">
-                                <button class="botao-voltar" onclick="voltarPaginaNotificacao()" aria-label="Botão Voltar">⬅ Voltar</button>                          
-                                <button type="submit">Enviar</button>
-                            </div>
+                            <%- include('partials/cadastrar-local') %>
                         </form>
                     </div>
                 </section>
@@ -64,6 +34,7 @@
 
         <script src="js/botoes-voltar-e-avancar.js"></script>
         <script src="js/cadastrar-imagem.js"></script>
+        <script src="js/estrela.js"></script>
 
     </body>
 

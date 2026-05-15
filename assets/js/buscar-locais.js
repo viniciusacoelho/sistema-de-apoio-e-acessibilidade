@@ -8,8 +8,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 const search = document.querySelector('.search');
-const cards = document.querySelectorAll('.card-inclusao');
-const cards = document.querySelectorAll('.card-notificacao');
+const cards = document.querySelectorAll('.card-inclusao, .card-notificacao');
 
 search.addEventListener('input', () => {
     const value = search.value.toLowerCase();
@@ -22,8 +21,7 @@ search.addEventListener('input', () => {
 
 function buscar() {
     const input = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card-inclusao');
-    const cards = document.querySelectorAll('.card-notificacao');
+    const cards = document.querySelectorAll('.card-inclusao, .card-notificacao');
 
     cards.forEach(card => {
         const texto = card.innerText.toLowerCase();

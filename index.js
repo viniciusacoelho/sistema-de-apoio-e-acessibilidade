@@ -156,10 +156,30 @@ app.post('/cadastre-se', async (req, res) => {
     }
 });
 
-app.get('/index', (req, res) => {
-    const ok = req.query.ok === '1';
-    res.render('index', { ok });
+app.get('/index', async (req, res) => {
+    try {
+        const ok = req.query.ok === '1';
+        const inclusoes = await db.collection('inclusoes').find().toArray();
+        
+        res.render('index', { ok, inclusoes });
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao carregar inclusões');
+    }
+    // const ok = req.query.ok === '1';
+    // res.render('index', { ok });
 });
+
+// app.get('/index', async (req, res) => {
+//     try {
+//         const inclusoes = await db.collection('inclusoes').find().toArray();
+
+//         res.render('index', { inclusoes });
+//     } catch (err) {
+//         console.error(err);
+//         res.send('Erro ao carregar inclusões');
+//     }
+// });
 
 app.get('/sobre', (req, res) => {
     res.render('sobre')
@@ -181,14 +201,16 @@ app.get('/inclusao', (req, res) => {
 app.post('/inclusao', upload.single('image'), async (req, res) => {
     const imagem = `/uploads/${req.file.filename}`;
     const nome = (req.body.name || '').trim();
+    const bairro = (req.body.neighborhood || '');
     const data = (req.body.date || '');
-    const mensagem = (req.body.message || '').trim().toLowerCase();
+    const avaliacao = (req.body.rating || '');
+    const mensagem = (req.body.message || '').trim();
 
     const values = { imagem, nome, data, mensagem };
 
-    if (!nome || !data || !mensagem || !imagem) {
+    if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
         return res.status(400).render('inclusao', {
-            error: 'Preencha imagem, nome, data e mensagem.',
+            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
             ok: false,
             values: req.body,
         });
@@ -206,7 +228,9 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
         await db.collection('inclusoes').insertOne({
             imagem,
             nome,
+            bairro,
             data,
+            avaliacao,
             mensagem,
         });
         return res.redirect('/servicos?ok=1');
@@ -222,20 +246,22 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
 
 app.get('/notificacao', (req, res) => {
     const ok = req.query.ok === '1';
-    res.render('notificacao', { error: null, ok, values: null, dados: {} });
+    res.render('notificacao', { error: null, ok, values: null, values: {} });
 })
 
 app.post('/notificacao', upload.single('image'), async (req, res) => {
     const imagem = `/uploads/${req.file.filename}`;
     const nome = (req.body.name || '').trim();
+    const bairro = (req.body.neighborhood || '');
     const data = (req.body.date || '');
+    const avaliacao = (req.body.rating || '');
     const mensagem = (req.body.message || '').trim().toLowerCase();
 
     const values = { nome, imagem };
 
-    if (!nome || !data || !mensagem || !imagem) {
+    if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
         return res.status(400).render('notificacao', {
-            error: 'Preencha imagem, nome, data e mensagem.',
+            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
             ok: false,
             values,
         });
@@ -253,7 +279,9 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
         await db.collection('notificacoes').insertOne({
             imagem,
             nome,
+            bairro,
             data,
+            avaliacao,
             mensagem,
         });
         return res.redirect('/servicos?ok=1');

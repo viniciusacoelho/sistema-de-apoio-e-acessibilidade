@@ -62,17 +62,18 @@ http://localhost:3000
 
 ## 🌐 Rotas principais
 
-| Caminho                       | Descrição                          |
-| ----------------------------- | ---------------------------------- |
-| `/`                           | Página inicial                     |
-| `/login`                      | Tela de login                      |
-| `/cadastre-se`                   | Cadastro de usuário                |
-| `/servicos`                    | Serviços disponíveis para o usuário                  |
-| `/encontre-suporte`                    | Página de apoio ao usuário         |
-| `/deficiente-auditivo`        | Conteúdo para deficiência auditiva |
-| `/deficiente-fisico-ou-motor` | Conteúdo para deficiência física   |
-| `/sessenta-anos-ou-mais`      | Conteúdo para idosos               |
-| `/contato`                    | Página de contato                  |
+| Caminho                       | Descrição                           |
+| ----------------------------- | ----------------------------------- |
+| `/`                           | Página inicial                      |
+| `/login`                      | Tela de login                       |
+| `/cadastre-se`                | Cadastro de usuário                 |
+| `/sobre`                      | Sobre o site                        |
+| `/encontre-suporte`           | Página de apoio ao usuário          |
+| `/servicos`                   | Serviços disponíveis para o usuário |
+<!-- | `/deficiente-auditivo`        | Conteúdo para deficiência auditiva  |
+| `/deficiente-fisico-ou-motor` | Conteúdo para deficiência física    |
+| `/sessenta-anos-ou-mais`      | Conteúdo para idosos                | -->
+| `/contato`                    | Página de contato                   |
 
 ---
 
@@ -80,9 +81,14 @@ http://localhost:3000
 
 ```
 sistema-de-apoio-eacessibilidade/
-├── assets/           # Arquivos estáticos (CSS, images, JS)
-└── views/            # Templates EJS (Partials)
-├── index.js          # Configuração do servidor e rotas
+├── .agents/           # 
+├── assets/            # Arquivos estáticos (CSS, images, JS)
+├── docs/              # 
+└── views/             # Templates EJS (Partials)
+├── .gitignore
+├── AGENTS.md
+├── GEMINI.md
+├── index.js           # Configuração do servidor e rotas
 ├── package-lock.json
 ├── package.json
 └── README.md

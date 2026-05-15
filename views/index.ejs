@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="/images/SAA_logo_editada.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
+    <link rel="stylesheet" href="/css/servicos.css">
 </head>
 
 <body id="inicio" class="body-index-principal">
@@ -15,7 +16,7 @@
     <header class="header-index">
         <%- include('partials/navbar') %>
     </header>
-    
+
     <!-- BOTÃO -->
     <%- include('partials/botao-hamburguer') %>
 
@@ -55,7 +56,6 @@
                 </div>
             </article>
 
-
             <section id="inicio-descricao" class="inicio-descricao">
                 <div class="inicio-descricao-containers">                   
                     <div class="container-img-inicio-descricao">
@@ -83,7 +83,6 @@
                     Saiba mais sobre a plataforma
                 </a>
             </section>
-
 
             <section id="suporte" class="section-carrossel">
                 <div class="div-h2-carrossel">
@@ -146,12 +145,12 @@
                                 -->    
                             </h2>
                         </div>
-                        <div class="texto-div-services">
+                        <!-- <div class="texto-div-services">
                             <h3 class="h3-div-services">Confira abaixo alguns dos serviços disponíveis:</h3>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
-    
+<!--     
                 <section class="secao-services-index">
                     <div class="cards-services-index">
                         <a href="/inclusao" class="card-services-index">
@@ -172,10 +171,35 @@
                     <a id="botao-services" href="/servicos" class="button-paragrafo-services" >                    
                         Veja todos os serviços disponíveis
                     </a>
+                </section> -->
+                
+                <!-- TODO: Fazer com bootstrap
+                https://getbootstrap.com/docs/5.3/components/card/ -->
+                <section>
+                    <div class="container-notificacoes">
+                        <% inclusoes.forEach((inclusao) => { %>
+                            <% if (inclusao.avaliacao == 5) { %>
+                                <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
+                                    <div class="card-inclusao">
+                                        <img src="<%= inclusao.imagem %>" alt="Imagem do local">
+                                        <div class="card-conteudo">
+                                            <h3><%= inclusao.nome %></h3>
+                                            <h3><%= inclusao.bairro %></h3>
+                                            <span class="data"><%= inclusao.data %></span>
+                                            <div class="star-view">
+                                                <% for(let i = 1; i <= 5; i++) { %>
+                                                    <span class="<%= i <= inclusao.avaliacao ? 'filled' : '' %>">★</span>
+                                                <% } %>
+                                            </div>
+                                            <p><%= inclusao.mensagem %></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            <% } %>
+                        <% }) %>
+                    </div>
                 </section>
-                
-                
-                
+
             </section>
             <section id="contato" class="section-contato">
                 <div class="div-h2-contato">
@@ -217,7 +241,6 @@
             </a>
         </section>
         
-        
         <!--
         <section class="section-noticias">
             
@@ -251,7 +274,6 @@
         </section>
         -->
 
-        
     </main>
     
     <%- include('partials/footer') %>

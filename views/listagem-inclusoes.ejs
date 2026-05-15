@@ -22,7 +22,7 @@
         
         <section class="container-textos-e-botoes">
             <div class="search-box">
-                <button class="btn-voltar" aria-label="Voltar para página anterior" onclick="voltarPagina()">← Voltar</button>
+                <button class="btn-voltar" aria-label="Voltar para página anterior" onclick="voltarPaginaListagem()">← Voltar</button>
                 <input type="text" placeholder="Buscar inclusões..." class="search" id="searchInput" title="Clique na tecla / para pesquisar">
                 <button onclick="buscar()" class="btn-buscar">Buscar</button>
             </div>
@@ -44,7 +44,13 @@
     
                             <div class="card-conteudo">
                                 <h3><%= inclusão.nome %></h3>
+                                <h3><%= inclusão.bairro %></h3>
                                 <span class="data"><%= inclusão.data %></span>
+                                <div class="star-view">
+                                    <% for(let i = 1; i <= 5; i++) { %>
+                                        <span class="<%= i <= inclusão.avaliacao ? 'filled' : '' %>">★</span>
+                                    <% } %>
+                                </div>
                                 <p><%= inclusão.mensagem %></p>
                             </div>
                         </div>

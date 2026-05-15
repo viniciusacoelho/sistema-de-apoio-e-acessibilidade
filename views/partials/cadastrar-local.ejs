@@ -1,0 +1,48 @@
+<% if (error) { %>
+    <div class="alert error">
+        <p><%= error %></p>
+    </div>
+<% } %> 
+<div class="card-between">
+    <div class="card-image">
+        <label for="image" class="image">Escolher imagem</label>
+        <input type="file" name="image" id="image" accept="image/*" hidden required>
+        <p id="file-name">Nenhum arquivo selecionado</p>
+        <img id="preview" src="<%= values.imagem %>" alt="Preview da imagem">
+    </div>
+    <div class="card-right">
+        <div class="card-name">
+            <label for="name">Nome do Local</label>
+            <input type="text" name="name" id="name" placeholder="Digite o nome do local" value="<%= values.nome %>">
+        </div>
+
+        <select name="neighborhood" id="neighborhood">
+            <option value="selecionar-bairro" disabled selected>Selecione um bairro</option>
+            <option value="Serraria">Serraria</option>
+            <option value="Barro Duro">Barro Duro</option>
+            <option value="Gruta">Gruta</option>
+            <option value="Farol">Farol</option>
+        </select>
+
+        <div class="card-date">
+            <label for="date">Data de Registro</label>
+            <input type="date" name ="date" id="date" value="<%= values.data %>">
+        </div>
+    </div>
+</div>
+<label for="avaliacao">Avaliação</label>
+<div class="star-rating">
+    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+</div>
+<div class="card-message">
+    <!-- <label for="message">Mensagem</label> -->
+    <textarea name="message" id="message" placeholder="Deixe uma mensagem"><%= values.mensagem %></textarea>
+</div>
+<div class="espaco-dos-botoes">
+    <button class="botao-voltar" onclick="voltarPaginaCadastrarLocal()" aria-label="Botão Voltar">⬅ Voltar</button>                          
+    <button type="submit">Enviar</button>
+</div>

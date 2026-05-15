@@ -45,12 +45,8 @@ function voltarPaginaDefFisicoOuMotoro() {
 function voltarPaginaServicos() {
     window.location.href = "/encontre-suporte";
 }
-/*Inclusão*/
-function voltarPaginaInclusao() {
-    window.location.href = "/servicos";
-}
-/*Notificação*/
-function voltarPaginaNotificacao() {
+/*Inclusão e Notificação*/
+function voltarPaginaCadastrarLocal() {
     window.location.href = "/servicos";
 }
 
@@ -62,9 +58,6 @@ function avancarPaginaServicos() {
 function voltarPaginaContato() {
     window.location.href = "/servicos";
 }
-
-
-
 
 /*---ACESSIBILIDADE---*/
 function voltarPaginaAcessibilidade() {
