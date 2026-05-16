@@ -40,7 +40,12 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
-app.get('/', (req, res) => {
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
+
+app.get('/login', (req, res) => {
     const ok = req.query.ok === '1';
     res.render('login', { error: null, ok, values: null });
 });
@@ -60,9 +65,9 @@ app.post('/login', async (req, res) => {
     }
 
     try {
-        const user = await db.collection('users').findOne({ email });
+        const usuarioEncontrado  = await db.collection('users').findOne({ email });
 
-        if (!user) {
+        if (!usuarioEncontrado ) {
             return res.render('login', {
                 error: 'Usuário não encontrado',
                 ok: false,
@@ -80,7 +85,8 @@ app.post('/login', async (req, res) => {
             });
         }
 
-        return res.redirect('/index');
+        req.session.user = usuarioEncontrado;
+        return res.redirect('/');
 
     } catch (err) {
         console.error(err);
@@ -156,7 +162,7 @@ app.post('/cadastre-se', async (req, res) => {
     }
 });
 
-app.get('/index', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         const ok = req.query.ok === '1';
         const inclusoes = await db.collection('inclusoes').find().toArray();
