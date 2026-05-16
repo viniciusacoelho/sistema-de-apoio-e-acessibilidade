@@ -1,8 +1,9 @@
 require('dotenv').config();
 
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 const multer = require('multer');
 
@@ -21,7 +22,7 @@ const upload = multer({ storage });
 const app = express();
 const port = 3000;
 const MONGODB_URI = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017').trim();
-const DB_NAME = (process.env.MONGODB_DB || 'cesmac_blog').trim();
+const DB_NAME = (process.env.MONGODB_DB || 'sistema-de-apoio-e-acessibilidade   ').trim();
 
 let db;
 
@@ -40,10 +41,23 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
+app.use(session({
+    secret: 'segredo',
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use((req, res, next) => {
-    res.locals.user = req.user || null;
+    res.locals.user = req.session.user || null;
     next();
 });
+
+function requireAuth(req, res, next) {
+    if (req.session && req.session.user) {
+        return next();
+    }
+    res.redirect('/login');
+}
 
 app.get('/login', (req, res) => {
     const ok = req.query.ok === '1';
@@ -65,9 +79,9 @@ app.post('/login', async (req, res) => {
     }
 
     try {
-        const usuarioEncontrado  = await db.collection('users').findOne({ email });
+        const user  = await db.collection('users').findOne({ email });
 
-        if (!usuarioEncontrado ) {
+        if (!user) {
             return res.render('login', {
                 error: 'Usuário não encontrado',
                 ok: false,
@@ -85,7 +99,7 @@ app.post('/login', async (req, res) => {
             });
         }
 
-        req.session.user = usuarioEncontrado;
+        req.session.user = user;
         return res.redirect('/');
 
     } catch (err) {
@@ -342,6 +356,12 @@ app.get('/listagem-notificacoes', async (req, res) => {
         res.send('Erro ao carregar inclusões');
     }
 })
+
+app.get('/sair', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/');
+    });
+});
 
 // async function main() {
 //     const client = new MongoClient(MONGODB_URI);
