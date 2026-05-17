@@ -244,6 +244,7 @@ a:hover {
 /*Sair*/
 .nav-item1-sair{
     border: 2px solid red;
+    margin-right: 172px;
 }
 .nav-item1-sair a{
     color: red;
@@ -256,7 +257,7 @@ a:hover {
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
 #entrar-li-sair:hover{
-    color: #000038;
+    color: white;
 }
 .nav-item2{
     background-color: rgb(126, 0, 160);
