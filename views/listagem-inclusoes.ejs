@@ -37,21 +37,21 @@
 
         <section>
             <div class="container-notificacoes">
-                <% inclusoes.forEach((inclusão) => { %>
-                    <a href="/listagem-inclusoes/<%= inclusão._id %>" class="card-link">
+                <% inclusoes.forEach((inclusao) => { %>
+                    <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
                         <div class="card-inclusao">
-                            <img src="<%= inclusão.imagem %>" alt="Imagem do local">
-    
+                            <img src="<%= inclusao.imagem %>" alt="Imagem do local">
+                            
                             <div class="card-conteudo">
-                                <h3><%= inclusão.nome %></h3>
-                                <h3><%= inclusão.bairro %></h3>
-                                <span class="data"><%= inclusão.data %></span>
+                                <h3><%= inclusao.nome %></h3>
+                                <h3><%= inclusao.bairro %></h3>
+                                <span class="data"><%= inclusao.data %></span>
                                 <div class="star-view">
                                     <% for(let i = 1; i <= 5; i++) { %>
-                                        <span class="<%= i <= inclusão.avaliacao ? 'filled' : '' %>">★</span>
+                                        <span class="<%= i <= inclusao.avaliacao ? 'filled' : '' %>">★</span>
                                     <% } %>
                                 </div>
-                                <p><%= inclusão.mensagem %></p>
+                                <p><%= inclusao.mensagem %></p>
                             </div>
                         </div>
                     </a>

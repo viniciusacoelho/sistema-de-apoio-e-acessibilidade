@@ -264,6 +264,18 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
     }
 });
 
+app.get('/listagem-inclusoes/:id', async (req, res) => {
+    try {
+        const inclusao = await db.collection('inclusoes').findOne({ _id: new ObjectId(req.params.id) });
+        if (!inclusao) {
+            return res.status(404).send('Inclusão não encontrada.');
+        }
+        res.render('inclusao-detalhe', { inclusao, id: req.params.id });
+    } catch {
+        res.status(404).send('Inclusão não encontrada.');
+    }
+});
+
 app.get('/notificacao', (req, res) => {
     const ok = req.query.ok === '1';
     res.render('notificacao', { error: null, ok, values: null, values: {} });
@@ -356,6 +368,18 @@ app.get('/listagem-notificacoes', async (req, res) => {
         res.send('Erro ao carregar inclusões');
     }
 })
+
+app.get('/listagem-notificacoes/:id', async (req, res) => {
+    try {
+        const notificacao = await db.collection('notificacoes').findOne({ _id: new ObjectId(req.params.id) });
+        if (!notificacao) {
+            return res.status(404).send('Notificação não encontrada.');
+        }
+        res.render('notificacao-detalhe', { notificacao, id: req.params.id });
+    } catch {
+        res.status(404).send('Notificação não encontrada.');
+    }
+});
 
 app.get('/sair', (req, res) => {
     req.session.destroy(() => {
