@@ -6,6 +6,7 @@
     <title><%= inclusao.nome %></title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/servicos.css">
+    <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
 </head>
 <body>
     <header class="header-index">
@@ -19,23 +20,36 @@
                 <h2 class="descricao-inclusoes">Lista de lugares inclusivos</h2>
             </label>
         </section> -->
+        <div class="leia-mais-sobre-inclusao">
+            <section>
+                <div class="visualizar-local">
+                    <div class="visualizar-local-img">
 
-        <section>
-            <div class="visualizar-local">
-                <img src="<%= inclusao.imagem %>" alt="Imagem do local">
-                <div class="card-conteudo">
-                    <h3><%= inclusao.nome %></h3>
-                    <h3><%= inclusao.bairro %></h3>
-                    <span class="data"><%= inclusao.data %></span>
-                    <div class="star-view">
-                        <% for(let i = 1; i <= 5; i++) { %>
-                            <span class="<%= i <= inclusao.avaliacao ? 'filled' : '' %>">★</span>
-                        <% } %>
+                        <img src="<%= inclusao.imagem %>" alt="Imagem do local">
                     </div>
-                    <p><%= inclusao.mensagem %></p>
+                    <div class="visualizar-local-card-conteudo">
+                        <h3><%= inclusao.nome %></h3>
+                        <h3><%= inclusao.bairro %></h3>
+                        <span class="data"><%= inclusao.data %></span>
+                        <div class="star-view">
+                            <% for(let i = 1; i <= 5; i++) { %>
+                                <span class="<%= i <= inclusao.avaliacao ? 'filled' : '' %>">★</span>
+                            <% } %>
+                        </div>
+                        <p><%= inclusao.mensagem %></p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>    
+        
+        <div id="nav-botoes-inclusao-detalhe" class="nav-botoes">
+            <button id="botao-excluir-inclusao-detalhe" class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">Excluir</button>
+            <button id="botao-editar-inclusao-detalhe" class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">Editar</button>
+        </div> 
+       
+        <div class="nav-botoes">
+            <button class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">⬅ Voltar</button>
+        </div>
     </main>
 
     <%- include('partials/footer') %>

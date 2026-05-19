@@ -107,6 +107,15 @@ body {
     color: #fff;
 }
 
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .meta {
   font-size: 0.82rem;
   color: #888;
@@ -176,11 +185,6 @@ body {
     gap: 25px;
     padding: 20px;
     margin-top: 50px;
-}
-
-.card-link {
-    text-decoration: none;
-    color: inherit;
 }
 
 .card-inclusao {
@@ -292,11 +296,6 @@ body {
     gap: 25px;
     margin-top: 80px;
     padding: 0px 250px 0px 250px;
-}
-
-.card-link {
-    text-decoration: none;
-    color: inherit;
 }
 
 .card-notificacao {
