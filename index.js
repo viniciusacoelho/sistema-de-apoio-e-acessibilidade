@@ -26,6 +26,7 @@ const DB_NAME = (process.env.MONGODB_DB || 'sistema-de-apoio-e-acessibilidade   
 
 let db;
 
+
 // O professor pegou do blog
 require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -58,6 +59,9 @@ function requireAuth(req, res, next) {
     }
     res.redirect('/login');
 }
+
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
 
 app.get('/login', (req, res) => {
     const ok = req.query.ok === '1';
@@ -99,7 +103,12 @@ app.post('/login', async (req, res) => {
             });
         }
 
-        req.session.user = user;
+        req.session.user = {
+            id: user._id,
+            nome: user.nome,
+            email: user.email
+        };
+
         return res.redirect('/');
 
     } catch (err) {
@@ -179,8 +188,12 @@ app.post('/cadastre-se', async (req, res) => {
 app.get('/', async (req, res) => {
     try {
         const ok = req.query.ok === '1';
-        const inclusoes = await db.collection('inclusoes').find().toArray();
-        
+        const inclusoes = await db
+            .collection('inclusoes')
+            .find()
+            .sort({ avaliacao: -1 })
+            .limit(6)
+            .toArray();
         res.render('index', { ok, inclusoes });
     } catch (err) {
         console.error(err);
@@ -219,14 +232,22 @@ app.get('/inclusao', (req, res) => {
 })
 
 app.post('/inclusao', upload.single('image'), async (req, res) => {
-    const imagem = `/uploads/${req.file.filename}`;
+    const imagem = req.file ? `/uploads/${req.file.filename}` : ''; 
     const nome = (req.body.name || '').trim();
     const bairro = (req.body.neighborhood || '');
     const data = (req.body.date || '');
     const avaliacao = (req.body.rating || '');
     const mensagem = (req.body.message || '').trim();
-
-    const values = { imagem, nome, data, mensagem };
+    
+    const values = { imagem, nome, bairro, data, avaliacao, mensagem };
+    
+    if (!req.session.user) {
+        return res.status(401).render('inclusao', {
+            error: 'Você precisa estar logado para cadastrar um local.',
+            ok: false,
+            values: req.body
+        });
+    }
 
     if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
         return res.status(400).render('inclusao', {
@@ -250,8 +271,11 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
             nome,
             bairro,
             data,
+            // data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }),
             avaliacao,
             mensagem,
+            idUsuario: new ObjectId(req.session.user.id),
+
         });
         return res.redirect('/servicos?ok=1');
     } catch (err) {
@@ -282,7 +306,7 @@ app.get('/notificacao', (req, res) => {
 })
 
 app.post('/notificacao', upload.single('image'), async (req, res) => {
-    const imagem = `/uploads/${req.file.filename}`;
+    const imagem = req.file ? `/uploads/${req.file.filename}` : '';
     const nome = (req.body.name || '').trim();
     const bairro = (req.body.neighborhood || '');
     const data = (req.body.date || '');
@@ -290,6 +314,14 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
     const mensagem = (req.body.message || '').trim().toLowerCase();
 
     const values = { nome, imagem };
+
+    if (!req.session.user) {
+        return res.status(401).render('notificacao', {
+            error: 'Você precisa estar logado para cadastrar um local.',
+            ok: false,
+            values: req.body
+        });
+    }
 
     if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
         return res.status(400).render('notificacao', {
@@ -315,6 +347,7 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
             data,
             avaliacao,
             mensagem,
+            idUsuario: new ObjectId(req.session.user.id)
         });
         return res.redirect('/servicos?ok=1');
     } catch (err) {
@@ -365,7 +398,7 @@ app.get('/listagem-notificacoes', async (req, res) => {
         res.render('listagem-notificacoes', { notificacoes });
     } catch (err) {
         console.error(err);
-        res.send('Erro ao carregar inclusões');
+        res.send('Erro ao carregar inclusões.');
     }
 })
 
@@ -381,10 +414,75 @@ app.get('/listagem-notificacoes/:id', async (req, res) => {
     }
 });
 
+app.get('/perfil', async (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    const inclusoes = await db.collection('inclusoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
+    const notificacoes = await db.collection('notificacoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
+    res.render('perfil',  { inclusoes, notificacoes })
+})
+
 app.get('/sair', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/');
     });
+});
+
+app.get('/inclusao/editar/:id', requireAuth, async (req, res) => {
+    try {
+        const inclusao = await db.collection('inclusoes').findOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        if (!inclusao) {
+            return res.status(403).send('Sem permissão.');
+        }
+        res.render('inclusao', {
+            values: inclusao,
+            error: null 
+        });
+    } catch {
+        res.status(404).send('Inclusão não encontrada.');
+    }
+});
+
+app.post('/inclusao/editar/:id', requireAuth, upload.single('image'), async (req, res) => {
+    const nome = (req.body.name || '').trim();
+    const bairro = (req.body.neighborhood || '');
+    const data = (req.body.date || '');
+    const avaliacao = (req.body.rating || '');
+    const mensagem = (req.body.message || '').trim();
+
+    if (!nome || !bairro || !data || !avaliacao || !mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
+            ok: false,
+            values: req.body,
+        });
+    }
+
+    const atualizarDados = {
+        nome,
+        bairro,
+        data,
+        avaliacao,
+        mensagem,
+        updatedAt: new Date()
+    };
+
+    if (req.file) {
+        atualizarDados.imagem = `/uploads/${req.file.filename}`;
+    }
+
+    try {
+        await db.collection('inclusoes').updateOne(
+            { _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) },
+            { $set: atualizarDados }
+        );
+        // res.redirect(`/inclusao/${req.params.id}`);
+        res.redirect(`/listagem-inclusoes/${req.params.id}`);
+    } catch {
+        res.status(500).send('Erro ao editar inclusão.');
+    }
 });
 
 // async function main() {
@@ -397,9 +495,6 @@ app.get('/sair', (req, res) => {
 //     console.log("Running at http://localhost:" + port);
 // });
 // }
-
-
-
 
 async function main() {
     const client = new MongoClient(MONGODB_URI);
@@ -417,7 +512,6 @@ main().catch((err) => {
     console.error('Falha ao iniciar:', err);
     process.exit(1);
 });
-
 
 // app.listen(port, () => {
 // console.log("Running at http://localhost:" + port);
