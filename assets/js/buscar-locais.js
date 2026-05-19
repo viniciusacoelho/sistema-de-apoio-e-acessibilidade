@@ -1,35 +1,64 @@
-document.addEventListener('keydown', function(event) {
-    const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInput');
 
-    if (event.key === '/' || event.code === 'Slash') {
-        event.preventDefault(); 
-        searchInput.focus();
+const container = document.querySelector('.container-notificacoes');
+
+// salva ordem original
+const originalItems = Array.from(
+    document.querySelectorAll('.card-link')
+);
+
+searchInput.addEventListener('input', () => {
+
+    const value = searchInput.value.toLowerCase().trim();
+
+    // SE O INPUT ESTIVER VAZIO
+    if (value === '') {
+
+        // mostra todos
+        originalItems.forEach(item => {
+
+            item.style.display = 'block';
+
+            // volta para ordem original
+            container.appendChild(item);
+
+        });
+
+        return;
     }
-});
 
-const search = document.querySelector('.search');
-const cards = document.querySelectorAll('.card-inclusao, .card-notificacao');
-
-search.addEventListener('input', () => {
-    const value = search.value.toLowerCase();
-
-    cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(value) ? 'block' : 'none';
+    // filtra
+    const filtered = originalItems.filter(item => {
+        return item.innerText.toLowerCase().includes(value);
     });
-});
 
-function buscar() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card-inclusao, .card-notificacao');
+    // ordena alfabeticamente
+    filtered.sort((a, b) => {
 
-    cards.forEach(card => {
-        const texto = card.innerText.toLowerCase();
+        const nomeA = a.querySelector('h3').innerText.toLowerCase();
 
-        if (texto.includes(input)) {
-            card.parentElement.style.display = "block";
-        } else {
-            card.parentElement.style.display = "none";
-        }
+        const nomeB = b.querySelector('h3').innerText.toLowerCase();
+
+        return nomeA.localeCompare(
+            nomeB,
+            'pt-BR',
+            { sensitivity: 'base' }
+        );
+
     });
-}
+
+    // esconde todos
+    originalItems.forEach(item => {
+        item.style.display = 'none';
+    });
+
+    // mostra os filtrados
+    filtered.forEach(item => {
+
+        item.style.display = 'block';
+
+        container.appendChild(item);
+
+    });
+
+});
