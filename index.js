@@ -485,6 +485,79 @@ app.post('/inclusao/editar/:id', requireAuth, upload.single('image'), async (req
     }
 });
 
+app.post('/inclusao/deletar/:id', requireAuth, async (req, res) => {
+    try {
+        await db.collection('notificacoes').deleteOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        res.redirect('/perfil');
+    } catch {
+        res.status(500).send('Erro ao deletar inclusão.');
+    }
+});
+
+app.get('/notificacao/editar/:id', requireAuth, async (req, res) => {
+    try {
+        const notificacao = await db.collection('notificacoes').findOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        if (!notificacao) {
+            return res.status(403).send('Sem permissão.');
+        }
+        res.render('notificacao', {
+            values: notificacao,
+            error: null 
+        });
+    } catch {
+        res.status(404).send('Notificação não encontrada.');
+    }
+});
+
+app.post('/notificacao/editar/:id', requireAuth, upload.single('image'), async (req, res) => {
+    const nome = (req.body.name || '').trim();
+    const bairro = (req.body.neighborhood || '');
+    const data = (req.body.date || '');
+    const avaliacao = (req.body.rating || '');
+    const mensagem = (req.body.message || '').trim();
+
+    if (!nome || !bairro || !data || !avaliacao || !mensagem) {
+        return res.status(400).render('notificacao', {
+            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
+            ok: false,
+            values: req.body,
+        });
+    }
+
+    const atualizarDados = {
+        nome,
+        bairro,
+        data,
+        avaliacao,
+        mensagem,
+        updatedAt: new Date()
+    };
+
+    if (req.file) {
+        atualizarDados.imagem = `/uploads/${req.file.filename}`;
+    }
+
+    try {
+        await db.collection('notificacoes').updateOne(
+            { _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) },
+            { $set: atualizarDados }
+        );
+        // res.redirect(`/notificacao/${req.params.id}`);
+        res.redirect(`/listagem-notificacoes/${req.params.id}`);
+    } catch {
+        res.status(500).send('Erro ao editar notificação.');
+    }
+});
+
+app.post('/notificacao/deletar/:id', requireAuth, async (req, res) => {
+    try {
+        await db.collection('notificacoes').deleteOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        res.redirect('/perfil');
+    } catch {
+        res.status(500).send('Erro ao deletar notificação.');
+    }
+});
+
 // async function main() {
 //     const client = new MongoClient(MONGODB_URI);
 //     await client.connect();
