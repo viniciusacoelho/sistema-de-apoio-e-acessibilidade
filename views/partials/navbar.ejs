@@ -1,24 +1,38 @@
-    <nav id="navbar-example2" class="navbar px-3 mb-3 nav-index">
-        <div class="nav-image">
-            <a  href="/" aria-label="Link para acessar o início do site">
-                <img id="img-navbar-logo" src="/images/saa-fundo-transparente.png" alt="Logo do site" class="logo" aria-label="Logo do site Saúde para Todos">
-            </a>
-        </div>
-        <ul class="nav nav-pills nav-links-index">
-            <li><a class="nav-link" href="/" aria-label="Botão para acessar o início do site">Início</a></li>
-            <li><a class="nav-link" href="/sobre" aria-label="Botão para acessar o sobre do site">Sobre</a></li>
-            <li><a class="nav-link" href="/encontre-suporte"  aria-label="Botão para acessar o encontre suporte do site">Encontre Suporte</a></li>
-            <li><a class="nav-link" href="/servicos" aria-label="Botão para acessar os serviços do site">Serviços</a></li>
-            <li><a class="nav-link" href="/contato" aria-label="Botão para acessar o contato do site">Contato</a></li>
-            <% if (!user) { %>
-                <li class="nav-item1"><a id="entrar-li" class="nav-link" href="/login"><strong>Entrar</strong></a></li>
-                <li class="nav-item2"><a id="cadastrar-li" class="nav-link" href="/cadastre-se"><strong>Cadastrar</strong></a></li>
-                <% } else { %>
-                <li class="nav-item1-sair"><a id="entrar-li-sair" class="nav-link" href="/perfil"><strong>Perfil</strong></a></li>
-                <!-- <li class="nav-item1-sair"><a id="entrar-li-sair" class="nav-link" href="/sair"><strong>Sair</strong></a></li> -->
-            <%} %>
-        </ul>
-    </nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<nav id="navbar-example2" class="navbar px-3 mb-3 nav-index">
+    <div class="nav-image">
+        <a  href="/" aria-label="Link para acessar o início do site">
+            <img id="img-navbar-logo" src="/images/saa-fundo-transparente.png" alt="Logo do site" class="logo" aria-label="Logo do site Saúde para Todos">
+        </a>
+    </div>
+    <ul class="nav nav-pills nav-links-index">
+        <li><a class="nav-link" href="/" aria-label="Botão para acessar o início do site">Início</a></li>
+        <li><a class="nav-link" href="/sobre" aria-label="Botão para acessar o sobre do site">Sobre</a></li>
+        <li><a class="nav-link" href="/encontre-suporte"  aria-label="Botão para acessar o encontre suporte do site">Encontre Suporte</a></li>
+        <li><a class="nav-link" href="/servicos" aria-label="Botão para acessar os serviços do site">Serviços</a></li>
+        <li><a class="nav-link" href="/contato" aria-label="Botão para acessar o contato do site">Contato</a></li>
+        <% if (!user) { %>
+            <li class="nav-item1"><a id="entrar-li" class="nav-link" href="/login"><strong>Entrar</strong></a></li>
+            <li class="nav-item2"><a id="cadastrar-li" class="nav-link" href="/cadastre-se"><strong>Cadastrar</strong></a></li>
+            <% } else { %>
+                <li class="nav-item2-perfil">
+                    <a id="perfil-li" class="nav-link" href="/perfil">
+                        <i id="icone-perfil" class="fa-solid fa-user"></i>
+                        <strong>Perfil</strong>
+                    </a>
+                </li>
+                <li class="nav-item1-sair">
+                    <a id="sair-li" class="nav-link" href="/sair">
+                        <i id="icone-perfil" class="fa-solid fa-right-from-bracket"></i>
+                        <strong>Sair</strong>
+                    </a>
+                </li>
+            <!-- <li class="nav-item1-sair"><a id="entrar-li-sair" class="nav-link" href="/perfil"><strong>Perfil</strong></a></li> -->
+            <!-- <li class="nav-item1-sair"><a id="entrar-li-sair" class="nav-link" href="/sair"><strong>Sair</strong></a></li> -->
+        <%} %>
+    </ul>
+</nav>
 
 
-    <div class="nav-spacer"></div>
+<div class="nav-spacer"></div>
