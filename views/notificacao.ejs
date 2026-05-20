@@ -20,7 +20,7 @@
                 <h1>Notificação</h1>
                 <section>
                     <div class="card">
-                        <form action="<%= values && values._id ? '/notificacao/editar/' + notificacao._id : '/notificacao' %>" method="post" enctype="multipart/form-data">
+                        <form action="<%= values && values._id ? '/notificacao/editar/' + values._id : '/notificacao' %>" method="post" enctype="multipart/form-data">
                             <%- include('partials/cadastrar-local') %>
                         </form>
                     </div>

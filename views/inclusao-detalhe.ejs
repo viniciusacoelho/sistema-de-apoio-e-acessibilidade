@@ -14,12 +14,6 @@
     </header>
 
     <main>
-        <!-- <section class="titulo-e-texto-inclusoes">
-            <h1>Inclusões</h1>
-            <label for="searchInput">
-                <h2 class="descricao-inclusoes">Lista de lugares inclusivos</h2>
-            </label>
-        </section> -->
         <div class="leia-mais-sobre-inclusao">
             <section>
                 <div class="visualizar-local">
@@ -40,12 +34,28 @@
                     </div>
                 </div>
             </section>
-        </div>    
-        
-        <div id="nav-botoes-inclusao-detalhe" class="nav-botoes">
-            <button id="botao-excluir-inclusao-detalhe" class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">Excluir</button>
-            <button id="botao-editar-inclusao-detalhe" class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">Editar</button>
-        </div> 
+        </div>
+
+        <% if (user && inclusao.idUsuario && inclusao.idUsuario.toString() === user.id.toString()) { %>
+            <div id="nav-botoes-inclusao-detalhe" class="nav-botoes">
+                <a href="/inclusao/editar/<%= inclusao._id %>">
+                    <button id="botao-editar-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">Editar</button>
+                </a>
+                <form action="/inclusao/deletar/<%= inclusao._id %>" method="post">
+                    <button type="button" id="botao-excluir-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">Excluir</button>
+                    <div id="modalExcluir" class="modal-excluir">
+                        <div class="modal-conteudo">
+                            <h2>Excluir inclusão</h2>
+                            <p>Tem certeza que deseja excluir esta inclusão?</p>
+                            <div class="modal-botoes">
+                                <button type="button" id="cancelarExcluir">Cancelar</button>
+                                <button type="submit" id="confirmarExcluir">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> 
+        <% } %>
        
         <div class="nav-botoes">
             <button class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">⬅ Voltar</button>
@@ -56,6 +66,7 @@
 
     <script src="/js/buscar-locais.js"></script>
     <script src="/js/botoes-voltar-e-avancar.js"></script>
+    <script src="/js/modal-excluir.js"></script>
 
 </body>
 </html>
