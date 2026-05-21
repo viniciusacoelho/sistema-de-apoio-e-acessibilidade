@@ -210,7 +210,7 @@ a:hover {
 
 .nav-links-index li {
     padding: 10px 20px 10px 20px;
-    border-radius: 15px;
+    border-radius: 30px;
 }
 
 .nav-links-index a {
@@ -244,7 +244,6 @@ a:hover {
 /*Sair*/
 .nav-item1-sair{
     border: 2px solid red;
-    margin-right: 172px;
 }
 .nav-item1-sair a{
     color: red;
@@ -256,7 +255,10 @@ a:hover {
     transition: all 0.3s ease; /* Tempo da animação */
     transition-delay: 0.03s; /* Atraso de 200ms antes de começar */
 }
-#entrar-li-sair:hover{
+#sair-li:hover{
+    color: white;
+}
+#perfil-li:hover{
     color: white;
 }
 .nav-item2{
@@ -268,7 +270,17 @@ a:hover {
 #cadastrar-li{
     color: white;
 }
-
+/*Perfil*/
+#icone-perfil{
+    margin-right: 5px;
+}
+.nav-item2-perfil{
+    background-color: rgb(0, 9, 180);
+}
+.nav-item2-perfil:hover{
+    background-color: rgb(0, 10, 209);
+    color: white;
+}
 
 .hamburger {
     width: 40px;
@@ -1908,4 +1920,51 @@ figcaption{
 #confirmarExcluir {
     background-color: #ff4d4d;
     color: #fff;
+}
+
+
+
+.dados-cadastrais-perfil{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    margin-top: 120px;
+    margin-left: 250px;
+    width: 900px;
+    padding: 50px;
+    height: auto;
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.300);
+}
+.hr-dados-cadastrais-perfil{
+    width: 270px;
+}
+.minhas-inclusoes-perfil{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    margin-top: 100px;
+    margin-left: 250px;
+    margin-bottom: 50px;
+    width: 1000px;
+    height: auto;
+}
+.minhas-notificacoes-perfil{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    margin-top: 100px;
+    margin-left: 250px;
+    margin-bottom: 50px;
+    width: 1000px;
+    height: auto;
 }
