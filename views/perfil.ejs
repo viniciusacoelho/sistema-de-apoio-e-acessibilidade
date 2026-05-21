@@ -6,6 +6,7 @@
     <title>Perfil</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/servicos.css">
+    <link rel="stylesheet" href="/css/botoes-voltar-e-avancar.css">
 </head>
 <body>
     <header class="header-index">
@@ -20,15 +21,28 @@
             </label>
         </section> -->
         
-        <section>
+        <section class="dados-cadastrais-perfil">
+            <h1>Dados Cadastrais</h1>
+            <hr class="hr-dados-cadastrais-perfil">
+            <br>
+            <h4>Nome:</h4>
             <%- user.nome %>
+            <hr>
             <br>
+            <h4>Email:</h4>
             <%- user.email %>
+            <hr>
             <br>
+            <h4>Data de Criação:</h4>
             <%- user.createdAt %>
+            <hr>
         </section>
 
         <section>
+            <div class="minhas-inclusoes-perfil">
+                <h1>Minhas Inclusões</h1>
+                <hr>
+            </div>
             <div class="container-notificacoes">
                 <% inclusoes.forEach((inclusao) => { %>
                     <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
@@ -53,6 +67,10 @@
         </section>
 
         <section>
+            <div class="minhas-notificacoes-perfil">
+                <h1>Minhas Notificações</h1>
+                <hr>
+            </div>
             <div class="container-notificacoes">
                 <% notificacoes.forEach((notificacao) => { %>
                     <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
@@ -76,9 +94,13 @@
             </div>
         </section>
     </main>
+    <div class="nav-botoes">
+        <button class="botao-voltar" onclick="voltarPaginaListagem()" aria-label="Botão Voltar">⬅ Voltar</button>
+    </div>
 
     <%- include('partials/footer') %>
 
+    <script src="js/botoes-voltar-e-avancar.js"></script>
     <script src="/js/buscar-locais.js"></script>
     <script src="/js/botoes-voltar-e-avancar.js"></script>
 
