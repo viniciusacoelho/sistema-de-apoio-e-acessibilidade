@@ -80,6 +80,7 @@ h1 {
 }
 
 .card-name,
+.card-neighborhood,
 .card-date,
 .card-message {
     display: flex;
@@ -173,4 +174,10 @@ button:hover {
 .star-rating label:hover,
 .star-rating label:hover ~ label {
     color: #fdd835;
+}
+
+.right {
+    color: rgb(216, 0, 0);
+    align-self: flex-end;
+    padding: 0px 2px 0px;
 }

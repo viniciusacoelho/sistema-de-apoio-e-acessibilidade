@@ -25,17 +25,17 @@
             <h1>Dados Cadastrais</h1>
             <hr class="hr-dados-cadastrais-perfil">
             <br>
-            <h4>Nome:</h4>
+            <h2>Nome:</h4>
             <%- user.nome %>
             <hr>
             <br>
-            <h4>Email:</h4>
+            <h2>E-mail:</h4>
             <%- user.email %>
-            <hr>
+            <!-- <hr>
             <br>
-            <h4>Data de Criação:</h4>
+            <h2>Data de Criação:</h4>
             <%- user.createdAt %>
-            <hr>
+            <hr> -->
         </section>
 
         <section>
@@ -44,13 +44,19 @@
                 <hr>
             </div>
             <div class="container-notificacoes">
+                <% if (inclusoes.length === 0) { %>
+                    <div class="alert not-found">
+                        <p>Nenhuma inclusão cadastrada.</p>
+                    </div>
+                <% } %>
+                
                 <% inclusoes.forEach((inclusao) => { %>
                     <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
                         <div class="card-inclusao">
                             <img src="<%= inclusao.imagem %>" alt="Imagem do inclusao">
                             
                             <div class="card-conteudo">
-                                <h3><%= inclusao.nome %></h3>
+                                <h2><%= inclusao.nome %></h3>
                                 <h3><%= inclusao.bairro %></h3>
                                 <span class="data"><%= inclusao.data %></span>
                                 <div class="star-view">
@@ -71,14 +77,22 @@
                 <h1>Minhas Notificações</h1>
                 <hr>
             </div>
+
+            
             <div class="container-notificacoes">
+                <% if (notificacoes.length === 0) { %>
+                    <div class="alert not-found">
+                        <p>Nenhuma notificação cadastrada.</p>
+                    </div>
+                <% } %>
+
                 <% notificacoes.forEach((notificacao) => { %>
                     <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
                         <div class="card-notificacao">
                             <img src="<%= notificacao.imagem %>" alt="Imagem do local">
     
                             <div class="card-conteudo">
-                                <h3><%= notificacao.nome %></h3>
+                                <h2><%= notificacao.nome %></h3>
                                 <h3><%= notificacao.data %></h3>
                                 <span class="data"><%= notificacao.data %></span>
                                 <div class="star-view">
@@ -100,8 +114,6 @@
 
     <%- include('partials/footer') %>
 
-    <script src="js/botoes-voltar-e-avancar.js"></script>
-    <script src="/js/buscar-locais.js"></script>
     <script src="/js/botoes-voltar-e-avancar.js"></script>
 
 </body>

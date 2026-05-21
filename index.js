@@ -154,8 +154,7 @@ app.post('/cadastre-se', async (req, res) => {
             values
         });
     }
-    
-    // if (senha.length < 6) {
+
     if (senha.length < 8) {
         return res.status(400).render('cadastre-se', {
             error: 'A senha deve ter pelo menos 6 caracteres.',
@@ -170,9 +169,9 @@ app.post('/cadastre-se', async (req, res) => {
             nome,
             email,
             passwordHash,
-            createdAt: new Date(),
+            createdAt: new Date()
         });
-        return res.redirect('/index?ok=1');
+        return res.redirect('/?ok=1');
     } catch (err) {
         if (err.code === 11000) {
             return res.status(400).render('cadastre-se', {
@@ -181,6 +180,7 @@ app.post('/cadastre-se', async (req, res) => {
                 values
             });
         }
+
         console.error(err);
         return res.status(500).render('cadastre-se', {
             error: 'Não foi possível concluir o cadastro. Tente novamente.',
@@ -193,12 +193,7 @@ app.post('/cadastre-se', async (req, res) => {
 app.get('/', async (req, res) => {
     try {
         const ok = req.query.ok === '1';
-        const inclusoes = await db
-            .collection('inclusoes')
-            .find()
-            .sort({ avaliacao: -1 })
-            .limit(6)
-            .toArray();
+        const inclusoes = await db.collection('inclusoes').find().sort({ avaliacao: -1 }).limit(6).toArray();
         res.render('index', { ok, inclusoes });
     } catch (err) {
         console.error(err);
@@ -527,8 +522,51 @@ app.get('/listagem-notificacoes/:id', async (req, res) => {
 });
 
 app.get('/contato', (req, res) => {
-    res.render('contato')
+    const ok = req.query.ok === '1';
+    res.render('contato', { error: null, ok, values: null, values: {} });
 })
+
+app.post('/contato', upload.single('image'), async (req, res) => {
+    const nomeCompleto = (req.body.name || '').trim();
+    const email = (req.body.email || '').trim().toLowerCase();
+    const telefone = (req.body.phone || '').trim();
+    const mensagem = (req.body.message || '').trim().toLowerCase();
+
+    const values = { nomeCompleto, email, telefone, mensagem };
+
+    if (!nomeCompleto || !mensagem || !telefone || !mensagem) {
+        return res.status(400).render('notificacao', {
+            error: 'Preencha nome, email, telefone e mensagem.',
+            ok: false,
+            values,
+        });
+    }
+
+    if (mensagem.length > 1000) {
+        return res.status(400).render('notificacao', {
+            error: 'Tamanho máximo de 1000 caracteres atingido.',
+            ok: false,
+            values,
+        });
+    }
+
+    try {
+        await db.collection('contatos').insertOne({
+            nomeCompleto,
+            email,
+            telefone,
+            mensagem
+        });
+        return res.redirect('/contato?ok=1');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).render('contato', {
+            error: 'Não foi possível fazer contato. Tente novamente.',
+            ok: false,
+            values,
+        });
+    }
+});
 
 app.get('/acessibilidade', (req, res) => {
     res.render('acessibilidade')
@@ -541,7 +579,9 @@ app.get('/perfil', async (req, res) => {
 
     const inclusoes = await db.collection('inclusoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
     const notificacoes = await db.collection('notificacoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
-    res.render('perfil',  { inclusoes, notificacoes })
+
+
+    res.render('perfil', { erro: null, inclusoes, notificacoes })
 })
 
 app.get('/perfil/editar/:id', requireAuth, async (req, res) => {

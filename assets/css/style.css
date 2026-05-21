@@ -1519,6 +1519,14 @@ figcaption{
     border: 1px solid #4CAF50;
 }
 
+.alert.not-found {
+    background-color: #dde3ff;
+    color: #0606cd;
+    border: 1px solid #0d6efd;
+}
+
+
+
 /* ================= RESPONSIVIDADE ================= */
 
 /* TABLETS (até 1024px) */
@@ -1967,4 +1975,8 @@ figcaption{
     margin-bottom: 50px;
     width: 1000px;
     height: auto;
+}
+
+.dados-cadastrais-perfil h2 {
+    font-size: 18px;
 }

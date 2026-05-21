@@ -36,6 +36,11 @@
         <main class="container">
             <section id="contato" class="container-1">
                 <form action="/contato" method="post">
+                    <% if (ok) { %>
+                        <div class="alert success">
+                            <p>Contato realizado com sucesso!</p>
+                        </div>
+                    <% } %>
                     <div class="item-1">
                         <h1>Contato</h1>
                         <br>

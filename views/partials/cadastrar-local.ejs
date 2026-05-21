@@ -15,14 +15,17 @@
             <label for="name">Nome do Local</label>
             <input type="text" name="name" id="name" placeholder="Digite o nome do local" value="<%=  values ? values.nome : '' %>">
         </div>
-
-        <select name="neighborhood" id="neighborhood">
-            <option value="" disabled <%= !values?.bairro ? 'selected' : '' %>>Selecione um bairro</option>
-            <option value="Serraria" <%= values?.bairro === 'Serraria' ? 'selected' : '' %>>Serraria</option>
-            <option value="Barro Duro" <%= values?.bairro === 'Barro Duro' ? 'selected' : '' %>>Barro Duro</option>
-            <option value="Gruta" <%= values?.bairro === 'Gruta' ? 'selected' : '' %>>Gruta</option>
-            <option value="Farol" <%= values?.bairro === 'Farol' ? 'selected' : '' %>>Farol</option>
-        </select>
+        
+        <div class="card-neighborhood">
+            <label for="neighborhood">Bairro</label>
+            <select name="neighborhood" id="neighborhood">
+                <option value="" disabled <%= !values?.bairro ? 'selected' : '' %>>Selecione um bairro</option>
+                <option value="Serraria" <%= values?.bairro === 'Serraria' ? 'selected' : '' %>>Serraria</option>
+                <option value="Barro Duro" <%= values?.bairro === 'Barro Duro' ? 'selected' : '' %>>Barro Duro</option>
+                <option value="Gruta" <%= values?.bairro === 'Gruta' ? 'selected' : '' %>>Gruta</option>
+                <option value="Farol" <%= values?.bairro === 'Farol' ? 'selected' : '' %>>Farol</option>
+            </select>
+        </div>
 
         <div class="card-date">
             <label for="date">Data de Registro</label>
@@ -43,6 +46,6 @@
     <textarea name="message" id="message" placeholder="Deixe uma mensagem"><%= values.mensagem %></textarea>
 </div>
 <div class="espaco-dos-botoes">
-    <button class="botao-voltar" onclick="voltarPaginaCadastrarLocal()" aria-label="Botão Voltar">⬅ Voltar</button>                          
+    <button type="button" class="botao-voltar" onclick="voltarPaginaCadastrarLocal()" aria-label="Botão Voltar">⬅ Voltar</button>                          
     <button type="submit">Enviar</button>
 </div>
