@@ -1,16 +1,34 @@
 require('dotenv').config();
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 
 const express = require('express');
-const { MongoClient, ObjectId } = require('mongodb');
-const bcrypt = require('bcrypt');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const path = require('path');
+
+const { MongoClient, ObjectId } = require('mongodb');
+const connectMongo = require('connect-mongo');
+const MongoStore = connectMongo.MongoStore || connectMongo.default;
 
 const multer = require('multer');
 
+const app = express();
+const port = 3000;
+
+const MONGODB_URI = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017').trim();
+const DB_NAME = (process.env.MONGODB_DB || 'sistema-de-apoio-e-acessibilidade   ').trim();
+
+if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI não definida no .env");
+}
+
+let db;
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'assets/uploads'); // pasta onde salva
+        cb(null, 'assets/uploads');
     },
+
     filename: (req, file, cb) => {
         const ext = path.extname(file.originalname);
         cb(null, Date.now() + ext);
@@ -19,33 +37,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const app = express();
-const port = 3000;
-const MONGODB_URI = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017').trim();
-const DB_NAME = (process.env.MONGODB_DB || 'sistema-de-apoio-e-acessibilidade   ').trim();
-
-let db;
-
-
-// O professor pegou do blog
-require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
-
-if (!MONGODB_URI) {
-    throw new Error("MONGODB_URI não definida no .env");
-}
-
 app.use(express.urlencoded({ extended: true }));
-const path = require('path');
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'assets')));
-
 app.use(session({
-    secret: 'segredo',
+    secret: process.env.SESSION_SECRET || 'saa_secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: MONGODB_URI,
+        dbName: DB_NAME
+    }),
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 app.use((req, res, next) => {
@@ -57,11 +64,9 @@ function requireAuth(req, res, next) {
     if (req.session && req.session.user) {
         return next();
     }
+
     res.redirect('/login');
 }
-
-app.use(express.static(path.join(__dirname, 'assets')));
-app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
 
 app.get('/login', (req, res) => {
     const ok = req.query.ok === '1';
@@ -199,32 +204,31 @@ app.get('/', async (req, res) => {
         console.error(err);
         res.send('Erro ao carregar inclusões');
     }
-    // const ok = req.query.ok === '1';
-    // res.render('index', { ok });
 });
-
-// app.get('/index', async (req, res) => {
-//     try {
-//         const inclusoes = await db.collection('inclusoes').find().toArray();
-
-//         res.render('index', { inclusoes });
-//     } catch (err) {
-//         console.error(err);
-//         res.send('Erro ao carregar inclusões');
-//     }
-// });
 
 app.get('/sobre', (req, res) => {
     res.render('sobre')
 })
 
+app.get('/encontre-suporte', (req, res) => {
+    res.render('encontre-suporte')
+})
+
+app.get('/sessenta-anos-ou-mais', (req, res) => {
+    res.render('sessenta-anos-ou-mais')
+})
+
+app.get('/deficiente-auditivo', (req, res) => {
+    res.render('deficiente-auditivo')
+})
+
+app.get('/deficiente-fisico-ou-motoro', (req, res) => {
+    res.render('deficiente-fisico-ou-motoro')
+})
+
 app.get('/servicos', (req, res) => {
     res.render('servicos');
 });
-
-app.get('/contato', (req, res) => {
-    res.render('contato')
-})
 
 app.get('/inclusao', (req, res) => {
     const ok = req.query.ok === '1';
@@ -285,6 +289,81 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
             ok: false,
             values,
         });
+    }
+});
+
+app.get('/inclusao/editar/:id', requireAuth, async (req, res) => {
+    try {
+        const inclusao = await db.collection('inclusoes').findOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        if (!inclusao) {
+            return res.status(403).send('Sem permissão.');
+        }
+        res.render('inclusao', {
+            values: inclusao,
+            error: null 
+        });
+    } catch {
+        res.status(404).send('Inclusão não encontrada.');
+    }
+});
+
+app.post('/inclusao/editar/:id', requireAuth, upload.single('image'), async (req, res) => {
+    const nome = (req.body.name || '').trim();
+    const bairro = (req.body.neighborhood || '');
+    const data = (req.body.date || '');
+    const avaliacao = (req.body.rating || '');
+    const mensagem = (req.body.message || '').trim();
+
+    if (!nome || !bairro || !data || !avaliacao || !mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
+            ok: false,
+            values: req.body,
+        });
+    }
+
+    const atualizarDados = {
+        nome,
+        bairro,
+        data,
+        avaliacao,
+        mensagem,
+        updatedAt: new Date()
+    };
+
+    if (req.file) {
+        atualizarDados.imagem = `/uploads/${req.file.filename}`;
+    }
+
+    try {
+        await db.collection('inclusoes').updateOne(
+            { _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) },
+            { $set: atualizarDados }
+        );
+        // res.redirect(`/inclusao/${req.params.id}`);
+        res.redirect(`/listagem-inclusoes/${req.params.id}`);
+    } catch {
+        res.status(500).send('Erro ao editar inclusão.');
+    }
+});
+
+app.post('/inclusao/deletar/:id', requireAuth, async (req, res) => {
+    try {
+        await db.collection('notificacoes').deleteOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
+        res.redirect('/perfil');
+    } catch {
+        res.status(500).send('Erro ao deletar inclusão.');
+    }
+});
+
+app.get('/listagem-inclusoes', async (req, res) => {
+    try {
+        const inclusoes = await db.collection('inclusoes').find().toArray();
+
+        res.render('listagem-inclusoes', { inclusoes });
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao carregar inclusões');
     }
 });
 
@@ -360,140 +439,6 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
     }
 });
 
-app.get('/encontre-suporte', (req, res) => {
-    res.render('encontre-suporte')
-})
-
-app.get('/sessenta-anos-ou-mais', (req, res) => {
-    res.render('sessenta-anos-ou-mais')
-})
-
-app.get('/acessibilidade', (req, res) => {
-    res.render('acessibilidade')
-})
-
-app.get('/deficiente-auditivo', (req, res) => {
-    res.render('deficiente-auditivo')
-})
-
-app.get('/deficiente-fisico-ou-motoro', (req, res) => {
-    res.render('deficiente-fisico-ou-motoro')
-})
-
-app.get('/listagem-inclusoes', async (req, res) => {
-    try {
-        const inclusoes = await db.collection('inclusoes').find().toArray();
-
-        res.render('listagem-inclusoes', { inclusoes });
-    } catch (err) {
-        console.error(err);
-        res.send('Erro ao carregar inclusões');
-    }
-});
-
-app.get('/listagem-notificacoes', async (req, res) => {
-    try {
-        const notificacoes = await db.collection('notificacoes').find().toArray();
-
-        res.render('listagem-notificacoes', { notificacoes });
-    } catch (err) {
-        console.error(err);
-        res.send('Erro ao carregar inclusões.');
-    }
-})
-
-app.get('/listagem-notificacoes/:id', async (req, res) => {
-    try {
-        const notificacao = await db.collection('notificacoes').findOne({ _id: new ObjectId(req.params.id) });
-        if (!notificacao) {
-            return res.status(404).send('Notificação não encontrada.');
-        }
-        res.render('notificacao-detalhe', { notificacao, id: req.params.id });
-    } catch {
-        res.status(404).send('Notificação não encontrada.');
-    }
-});
-
-app.get('/perfil', async (req, res) => {
-    if (!req.session.user) {
-        return res.redirect('/login');
-    }
-
-    const inclusoes = await db.collection('inclusoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
-    const notificacoes = await db.collection('notificacoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
-    res.render('perfil',  { inclusoes, notificacoes })
-})
-
-app.get('/sair', (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/');
-    });
-});
-
-app.get('/inclusao/editar/:id', requireAuth, async (req, res) => {
-    try {
-        const inclusao = await db.collection('inclusoes').findOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
-        if (!inclusao) {
-            return res.status(403).send('Sem permissão.');
-        }
-        res.render('inclusao', {
-            values: inclusao,
-            error: null 
-        });
-    } catch {
-        res.status(404).send('Inclusão não encontrada.');
-    }
-});
-
-app.post('/inclusao/editar/:id', requireAuth, upload.single('image'), async (req, res) => {
-    const nome = (req.body.name || '').trim();
-    const bairro = (req.body.neighborhood || '');
-    const data = (req.body.date || '');
-    const avaliacao = (req.body.rating || '');
-    const mensagem = (req.body.message || '').trim();
-
-    if (!nome || !bairro || !data || !avaliacao || !mensagem) {
-        return res.status(400).render('inclusao', {
-            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
-            ok: false,
-            values: req.body,
-        });
-    }
-
-    const atualizarDados = {
-        nome,
-        bairro,
-        data,
-        avaliacao,
-        mensagem,
-        updatedAt: new Date()
-    };
-
-    if (req.file) {
-        atualizarDados.imagem = `/uploads/${req.file.filename}`;
-    }
-
-    try {
-        await db.collection('inclusoes').updateOne(
-            { _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) },
-            { $set: atualizarDados }
-        );
-        // res.redirect(`/inclusao/${req.params.id}`);
-        res.redirect(`/listagem-inclusoes/${req.params.id}`);
-    } catch {
-        res.status(500).send('Erro ao editar inclusão.');
-    }
-});
-
-app.post('/inclusao/deletar/:id', requireAuth, async (req, res) => {
-    try {
-        await db.collection('notificacoes').deleteOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
-        res.redirect('/perfil');
-    } catch {
-        res.status(500).send('Erro ao deletar inclusão.');
-    }
-});
-
 app.get('/notificacao/editar/:id', requireAuth, async (req, res) => {
     try {
         const notificacao = await db.collection('notificacoes').findOne({ _id: new ObjectId(req.params.id), idUsuario: new ObjectId(req.session.user.id) });
@@ -558,26 +503,115 @@ app.post('/notificacao/deletar/:id', requireAuth, async (req, res) => {
     }
 });
 
-// async function main() {
-//     const client = new MongoClient(MONGODB_URI);
-//     await client.connect();
-//     db = client.db(DB_NAME);
-//     await db.collection('users').createIndex({ email: 1 }, { unique: true }); // Não pode existir 2 usuários com mesmo e-mail
+app.get('/listagem-notificacoes', async (req, res) => {
+    try {
+        const notificacoes = await db.collection('notificacoes').find().toArray();
 
-//     app.listen(port, () => {
-//     console.log("Running at http://localhost:" + port);
-// });
-// }
+        res.render('listagem-notificacoes', { notificacoes });
+    } catch (err) {
+        console.error(err);
+        res.send('Erro ao carregar inclusões.');
+    }
+})
+
+app.get('/listagem-notificacoes/:id', async (req, res) => {
+    try {
+        const notificacao = await db.collection('notificacoes').findOne({ _id: new ObjectId(req.params.id) });
+        if (!notificacao) {
+            return res.status(404).send('Notificação não encontrada.');
+        }
+        res.render('notificacao-detalhe', { notificacao, id: req.params.id });
+    } catch {
+        res.status(404).send('Notificação não encontrada.');
+    }
+});
+
+app.get('/contato', (req, res) => {
+    res.render('contato')
+})
+
+app.get('/acessibilidade', (req, res) => {
+    res.render('acessibilidade')
+})
+
+app.get('/perfil', async (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    const inclusoes = await db.collection('inclusoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
+    const notificacoes = await db.collection('notificacoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
+    res.render('perfil',  { inclusoes, notificacoes })
+})
+
+app.get('/perfil/editar/:id', requireAuth, async (req, res) => {
+    try {
+        const usuario = await db.collection('users').findOne({ _id: new ObjectId(req.params.id), _id: new ObjectId(req.session.user.id) });
+        if (!usuario) {
+            return res.status(403).send('Sem permissão.');
+        }
+        res.render('usuario', {
+            values: usuario,
+            error: null 
+        });
+    } catch {
+        res.status(404).send('Usuário não encontrado.');
+    }
+});
+
+app.post('/perfil/editar/:id', requireAuth, upload.single('image'), async (req, res) => {
+    const nome = (req.body.name || '').trim();
+    const email = (req.body.email || '');
+
+    if (!nome || !email) {
+        return res.status(400).render('user', {
+            error: 'Nome e e-mail não cadastrados.',
+            ok: false,
+            values: req.body,
+        });
+    }
+
+    try {
+        await db.collection('users').updateOne({
+            _id: new ObjectId(req.params.id),
+            idUsuario: new ObjectId(req.session.user.id) }, {
+                $set: { nome, email }
+            }
+        );
+
+        res.redirect(`/perfil/${req.params.id}`);
+    } catch {
+        res.status(500).send('Erro ao editar perfil.');
+    }
+});
+
+app.post('/perfil/deletar/:id', requireAuth, async (req, res) => {
+    try {
+        await db.collection('users').deleteOne({
+            _id: new ObjectId(req.params.id),
+            // idUsuario: new ObjectId(req.session.user.id)
+        });
+
+        res.redirect('/perfil');
+    } catch {
+        res.status(500).send('Erro ao excluir conta.');
+    }
+});
+
+app.get('/sair', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/');
+    });
+});
 
 async function main() {
     const client = new MongoClient(MONGODB_URI);
     await client.connect();
     db = client.db(DB_NAME);
-    await db.collection('users').createIndex({ email: 1 }, { unique: true }); // Não pode existir 2 usuários com mesmo e-mail
+    await db.collection('users').createIndex({ email: 1 }, { unique: true });
 
     app.listen(3000, () => {
         console.log("Running at http://localhost:" + port);
-        // console.log('Example app listening on port 3000!');
     });
 }
 
@@ -585,11 +619,3 @@ main().catch((err) => {
     console.error('Falha ao iniciar:', err);
     process.exit(1);
 });
-
-// app.listen(port, () => {
-// console.log("Running at http://localhost:" + port);
-// });
-// main().catch((err) => {
-//     console.error('Falha ao iniciar:', err);
-//     process.exit(1);
-// });

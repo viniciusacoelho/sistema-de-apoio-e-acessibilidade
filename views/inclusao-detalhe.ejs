@@ -39,10 +39,20 @@
         <% if (user && inclusao.idUsuario && inclusao.idUsuario.toString() === user.id.toString()) { %>
             <div id="nav-botoes-inclusao-detalhe" class="nav-botoes">
                 <a href="/inclusao/editar/<%= inclusao._id %>">
-                    <button id="botao-editar-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">Editar</button>
+
+                    <button id="botao-editar-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">
+                        <i id="icone-perfil" class="fa-solid fa-pen-to-square" aria-label="Editar informações"></i>                    
+                        Editar
+                    </button>
+
                 </a>
                 <form action="/inclusao/deletar/<%= inclusao._id %>" method="post">
-                    <button type="button" id="botao-excluir-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">Excluir</button>
+
+                    <button type="button" id="botao-excluir-inclusao-detalhe" class="botao-voltar" aria-label="Botão Voltar">
+                        <i id="icone-perfil" class="fa-solid fa-trash-can" aria-label="Excluir item"></i>
+                        Excluir
+                    </button>
+
                     <div id="modalExcluir" class="modal-excluir">
                         <div class="modal-conteudo">
                             <h2>Excluir inclusão</h2>

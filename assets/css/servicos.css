@@ -54,18 +54,20 @@ body {
     gap: 50px;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 40px;
 }
-    
+
 .card {
     width: 250px;
-    height: auto;
+    height: 200px;
     background: #fff;
     border-radius: 16px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card:hover {
@@ -74,43 +76,45 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
 }
 
-.card-img {
-    height: 180px;
+.card-icon {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d6efd;
+    color: #fff;
+}
+
+.card-icon i {
+    font-size: 70px;
 }
 
 .card-body {
-    padding: 15px;
+    width: 60%;
+    padding: 18px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
-    flex: 1;
 }
 
-.card-body h3 {
-    font-size: 16px;
+.card-body h2 {
+    font-size: 20px;
     line-height: 1.4;
+    margin: 0;
 }
 
 .card-body p {
     color: #555;
-    font-size: 14px;
-    flex: 1;
-}
-
-.card-tag {
-    align-self: flex-start;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #fff;
+    font-size: 16px;
+    margin: 0;
 }
 
 .card-link {
     text-decoration: none;
     color: inherit;
 }
+
 .card-link:hover {
     text-decoration: none;
     color: inherit;
