@@ -1940,12 +1940,12 @@ figcaption{
     display: flex;
     flex-direction: column;
     border-radius: 30px;
-    margin-top: 120px;
+    margin-top: 150px;
     margin-left: 250px;
     width: 900px;
     padding: 50px;
     height: auto;
-    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.300);
+    box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.08);
 }
 .hr-dados-cadastrais-perfil{
     width: 270px;
