@@ -27,6 +27,8 @@
                 <button onclick="buscar()" class="btn-buscar">Buscar</button>
             </div>
 
+            <%- include('partials/filtro') %>
+
             <p class="contador">
                 <strong>Total</strong>: 
                 <span class="span-contador-notificacoes">
@@ -39,9 +41,8 @@
             <div class="container-notificacoes" title="Clique para ver mais sobre o local">
                 <% notificacoes.forEach((notificacao) => { %>
                     <a href="/listagem-notificacoes/<%= notificacao._id %>" class="card-link">
-                        <div class="card-notificacao">
+                        <div class="card-notificacao" data-bairro="<%= notificacao.bairro %>" data-data="<%= notificacao.data %>" data-avaliacao="<%= notificacao.avaliacao %>">
                             <img src="<%= notificacao.imagem %>" alt="Imagem do local">
-    
                             <div class="card-conteudo">
                                 <h3><%= notificacao.nome %></h3>
                                 <h3><%= notificacao.data %></h3>
@@ -51,7 +52,7 @@
                                         <span class="<%= i <= notificacao.avaliacao ? 'filled' : '' %>">★</span>
                                     <% } %>
                                 </div>
-                                <p><%= notificacao.mensagem %></p>
+                                <p>Clique para ler mais</p>
                             </div>
                         </div>
                     </a>
@@ -62,8 +63,8 @@
 
     <%- include('partials/footer') %>
     
-    <script src="js/buscar-locais.js"></script>
-    <script src="js/botoes-voltar-e-avancar.js"></script>
+    <script src="/js/buscar-locais.js"></script>
+    <script src="/js/botoes-voltar-e-avancar.js"></script>
 
 </body>
 </html>

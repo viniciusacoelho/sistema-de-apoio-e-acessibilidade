@@ -27,11 +27,10 @@
                 <button onclick="buscar()" class="btn-buscar">Buscar</button>
             </div>
 
+            <%- include('partials/filtro') %>
+
             <p class="contador">
-                <strong>Total</strong>: 
-                <span class="span-contador-inclusoes">
-                    <%= inclusoes.length %>
-                </span> inclusões registradas
+                <strong>Total</strong>: <span class="span-contador-inclusoes"><%= inclusoes.length %></span> inclusões registradas
             </p>
         </section>
 
@@ -39,9 +38,8 @@
             <div class="container-notificacoes" title="Clique para ver mais sobre o local">
                 <% inclusoes.forEach((inclusao) => { %>
                     <a href="/listagem-inclusoes/<%= inclusao._id %>" class="card-link">
-                        <div class="card-inclusao">
+                        <div class="card-inclusao" data-bairro="<%= inclusao.bairro %>" data-data="<%= inclusao.data %>" data-avaliacao="<%= inclusao.avaliacao %>">
                             <img src="<%= inclusao.imagem %>" alt="Imagem do local">
-                            
                             <div class="card-conteudo">
                                 <h3><%= inclusao.nome %></h3>
                                 <h3><%= inclusao.bairro %></h3>
@@ -51,7 +49,7 @@
                                         <span class="<%= i <= inclusao.avaliacao ? 'filled' : '' %>">★</span>
                                     <% } %>
                                 </div>
-                                <p><%= inclusao.mensagem %></p>
+                                <p>Clique para ler mais</p>
                             </div>
                         </div>
                     </a>
