@@ -131,64 +131,89 @@ app.get('/cadastre-se', (req, res) => {
     res.render('cadastre-se', { error: null, ok, values: null });
 })
 
-app.post('/cadastre-se', async (req, res) => {
-    const nome = (req.body.name || '').trim();
-    const email = (req.body.email || '').trim().toLowerCase();
-    const senha = req.body.password || '';
-    const confirmarSenha = req.body['password-confirmation'] || '';
+    app.post('/cadastre-se', async (req, res) => {
+        const nome = (req.body.name || '').trim();
+        const email = (req.body.email || '').trim().toLowerCase();
+        const senha = req.body.password || '';
+        const confirmarSenha = req.body['password-confirmation'] || '';
 
-    const values = { nome, email };
+        const values = { nome, email, senha, confirmarSenha };
 
-    if (!nome || !email || !senha) {
-        return res.status(400).render('cadastre-se', {
-            error: 'Preencha nome, e-mail e senha.',
-            ok: false,
-            values
-        });
-    }
-
-    if (senha !== confirmarSenha) {
-        return res.status(400).render('cadastre-se', {
-            error: 'As senhas não coincidem.',
-            ok: false,
-            values
-        });
-    }
-
-    if (senha.length < 8) {
-        return res.status(400).render('cadastre-se', {
-            error: 'A senha deve ter pelo menos 6 caracteres.',
-            ok: false,
-            values
-        });
-    }
-
-    try {
-        const passwordHash = await bcrypt.hash(senha, 10);
-        await db.collection('users').insertOne({
-            nome,
-            email,
-            passwordHash,
-            createdAt: new Date()
-        });
-        return res.redirect('/?ok=1');
-    } catch (err) {
-        if (err.code === 11000) {
+        if (!nome) {
             return res.status(400).render('cadastre-se', {
-                error: 'Este e-mail já está cadastrado.',
+                error: 'Nome é obrigatório.',
                 ok: false,
                 values
             });
         }
 
-        console.error(err);
-        return res.status(500).render('cadastre-se', {
-            error: 'Não foi possível concluir o cadastro. Tente novamente.',
-            ok: false,
-            values
-        });
-    }
-});
+        
+        if (!email) {
+            return res.status(400).render('cadastre-se', {
+                error: 'E-mail é obrigatório.',
+                ok: false,
+                values
+            });
+        }
+
+        if (!senha) {
+            return res.status(400).render('cadastre-se', {
+                error: 'Senha é obrigatória.',
+                ok: false,
+                values
+            });
+        }
+
+        if (!nome || !email || !senha) {
+            return res.status(400).render('cadastre-se', {
+                error: 'Preencha nome, e-mail e senha.',
+                ok: false,
+                values
+            });
+        }
+
+        if (senha !== confirmarSenha) {
+            return res.status(400).render('cadastre-se', {
+                error: 'As senhas não coincidem.',
+                ok: false,
+                values
+            });
+        }
+
+        if (senha.length < 8) {
+            return res.status(400).render('cadastre-se', {
+                error: 'A senha deve ter pelo menos 8 caracteres.',
+                ok: false,
+                values
+            });
+        }
+
+        try {
+            const passwordHash = await bcrypt.hash(senha, 10);
+            await db.collection('users').insertOne({
+                nome,
+                email,
+                passwordHash,
+                createdAt: new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
+            });
+            return res.redirect('/?ok=1');
+        } catch (err) {
+            if (err.code === 11000) {
+                return res.status(400).render('cadastre-se', {
+                    error: 'Este e-mail já está cadastrado.',
+                    ok: false,
+                    values
+                });
+            }
+
+            console.error(err);
+            return res.status(500).render('cadastre-se', {
+                error: 'Não foi possível concluir o cadastro. Tente novamente.',
+                ok: false,
+                values
+            });
+        }
+    });
 
 app.get('/', async (req, res) => {
     try {
@@ -269,7 +294,7 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
             imagem,
             nome,
             bairro,
-            data,
+            data: toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }),
             // data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }),
             avaliacao,
             mensagem,
@@ -323,7 +348,7 @@ app.post('/inclusao/editar/:id', requireAuth, upload.single('image'), async (req
         data,
         avaliacao,
         mensagem,
-        updatedAt: new Date()
+        updatedAt: new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
     };
 
     if (req.file) {
@@ -470,7 +495,7 @@ app.post('/notificacao/editar/:id', requireAuth, upload.single('image'), async (
         data,
         avaliacao,
         mensagem,
-        updatedAt: new Date()
+        updatedAt: new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
     };
 
     if (req.file) {
@@ -555,7 +580,8 @@ app.post('/contato', upload.single('image'), async (req, res) => {
             nomeCompleto,
             email,
             telefone,
-            mensagem
+            mensagem,
+            enviadoEm: new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
         });
         return res.redirect('/contato?ok=1');
     } catch (err) {

@@ -405,3 +405,16 @@ body {
 .star-view .filled {
     color: #fdd835;
 }
+
+.card-neighborhood {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.2s;
+}
