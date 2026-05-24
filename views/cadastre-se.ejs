@@ -39,13 +39,13 @@
                         <label for="name" class="left">Nome completo<span class="right">*</span></label>
                         <div class="input-icon">
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" name="name" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required>
+                            <input type="text" name="name" id="name" class="input-item-2" placeholder="Informe seu nome completo" minlength="5" maxlength="60" required value="<%= values ? values.nome : '' %>">
                         </div>
                         <br>
                         <label for="email" class="left">E-mail<span class="right">*</span></label>
                         <div class="input-icon">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" name="email" id="email" class="input-item-2" placeholder="Ex: @gmail, @outlook, @yahoo, etc." minlength="5" maxlength="74" required>
+                            <input type="email" name="email" id="email" class="input-item-2" placeholder="Ex: @gmail, @outlook, @yahoo, etc." minlength="5" maxlength="74" required value="<%= values ? values.email : '' %>">
                         </div>
                         <br>
                         <label for="password" class="left">Senha<span class="right">*</span></label>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="item-3">
-                        <input type="checkbox" name="checkbox" id="checkbox" required>
+                        <input type="checkbox" name="checkbox" id="checkbox" required <%= values?.checkbox ? 'checked' : '' %>
                         <label for="checkbox" ><small>Li e concordo com os <a href="">Termos de Uso</a><br> e a <a href="">Política de Privacidade</a>.</small></label>
                         <br>
                     </div>

@@ -269,15 +269,63 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
         return res.status(401).render('inclusao', {
             error: 'Você precisa estar logado para cadastrar um local.',
             ok: false,
-            values: req.body
+            values
         });
     }
 
-    if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
+    if (!imagem) {
         return res.status(400).render('inclusao', {
-            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
+            error: 'Preencha imagem.',
             ok: false,
-            values: req.body,
+            values
+        });
+    }
+
+    if (!nome) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha nome.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!bairro) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha bairro.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!data) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha data.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!avaliacao) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha avaliação.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha mensagem.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!imagem || !nome || !bairro || !data || !avaliacao || !mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem, bairro, nome, data, avaliação e mensagem.',
+            ok: false,
+            values
         });
     }
     
@@ -285,7 +333,7 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
         return res.status(400).render('inclusao', {
             error: 'Tamanho máximo de 1000 caracteres atingido.',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -294,20 +342,24 @@ app.post('/inclusao', upload.single('image'), async (req, res) => {
             imagem,
             nome,
             bairro,
-            data: toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }),
-            // data.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }),
+            data: new Date(data).toLocaleDateString('pt-BR', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            }),
             avaliacao,
             mensagem,
             idUsuario: new ObjectId(req.session.user.id),
 
         });
-        return res.redirect('/servicos?ok=1');
+        // return res.redirect('/servicos?ok=1');
+        return res.redirect('/inclusao?ok=1');
     } catch (err) {
         console.error(err);
         return res.status(500).render('inclusao', {
             error: 'Não foi possível concluir o cadastro da inclusão. Tente novamente.',
             ok: false,
-            values,
+            values
         });
     }
 });
@@ -412,29 +464,77 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
     const avaliacao = (req.body.rating || '');
     const mensagem = (req.body.message || '').trim().toLowerCase();
 
-    const values = { nome, imagem };
+    const values = { imagem, nome, bairro, data, avaliacao, mensagem };
 
     if (!req.session.user) {
-        return res.status(401).render('notificacao', {
+        return res.status(401).render('inclusao', {
             error: 'Você precisa estar logado para cadastrar um local.',
             ok: false,
-            values: req.body
+            values
         });
     }
 
-    if (!nome || !bairro || !data || !avaliacao || !mensagem || !imagem) {
-        return res.status(400).render('notificacao', {
-            error: 'Preencha imagem, nome, data, avaliação e mensagem.',
+    if (!imagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem.',
             ok: false,
-            values,
+            values
+        });
+    }
+
+    if (!nome) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha nome.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!bairro) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha bairro.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!data) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha data.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!avaliacao) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha avaliação.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha mensagem.',
+            ok: false,
+            values
+        });
+    }
+
+    if (!imagem || !nome || !bairro || !data || !avaliacao || !mensagem) {
+        return res.status(400).render('inclusao', {
+            error: 'Preencha imagem, bairro, nome, data, avaliação e mensagem.',
+            ok: false,
+            values
         });
     }
     
     if (mensagem.length > 1000) {
-        return res.status(400).render('notificacao', {
+        return res.status(400).render('inclusao', {
             error: 'Tamanho máximo de 1000 caracteres atingido.',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -454,7 +554,7 @@ app.post('/notificacao', upload.single('image'), async (req, res) => {
         return res.status(500).render('notificacao', {
             error: 'Não foi possível concluir o cadastro da inclusão. Tente novamente.',
             ok: false,
-            values,
+            values
         });
     }
 });
@@ -485,7 +585,7 @@ app.post('/notificacao/editar/:id', requireAuth, upload.single('image'), async (
         return res.status(400).render('notificacao', {
             error: 'Preencha imagem, nome, data, avaliação e mensagem.',
             ok: false,
-            values: req.body,
+            values: req.body
         });
     }
 
@@ -571,7 +671,7 @@ app.post('/contato', upload.single('image'), async (req, res) => {
         return res.status(400).render('notificacao', {
             error: 'Tamanho máximo de 1000 caracteres atingido.',
             ok: false,
-            values,
+            values
         });
     }
 
@@ -589,7 +689,7 @@ app.post('/contato', upload.single('image'), async (req, res) => {
         return res.status(500).render('contato', {
             error: 'Não foi possível fazer contato. Tente novamente.',
             ok: false,
-            values,
+            values
         });
     }
 });
@@ -607,7 +707,7 @@ app.get('/perfil', async (req, res) => {
     const notificacoes = await db.collection('notificacoes').find({ idUsuario: new ObjectId(req.session.user.id) }).toArray();
 
 
-    res.render('perfil', { erro: null, inclusoes, notificacoes })
+    res.render('perfil', { erro: null, inclusoes, notificacoes });
 })
 
 app.get('/perfil/editar/:id', requireAuth, async (req, res) => {
@@ -633,7 +733,7 @@ app.post('/perfil/editar/:id', requireAuth, upload.single('image'), async (req, 
         return res.status(400).render('user', {
             error: 'Nome e e-mail não cadastrados.',
             ok: false,
-            values: req.body,
+            values: req.body
         });
     }
 

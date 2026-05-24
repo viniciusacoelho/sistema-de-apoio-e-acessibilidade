@@ -32,7 +32,7 @@ function filtrarListagem() {
         const buscaValida = text.includes(searchValue);
         const bairroValido = selectedNeighborhood === '' || bairro === selectedNeighborhood;
         const dataValida = selectedDate === '' || data === selectedDate;
-        const avaliacaoValida = selectedRating === '' || avaliacao >= Number(selectedRating);
+        const avaliacaoValida = selectedRating === '' || avaliacao === Number(selectedRating);
 
         return buscaValida && bairroValido && dataValida && avaliacaoValida;
 

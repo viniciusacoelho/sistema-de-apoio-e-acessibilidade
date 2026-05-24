@@ -1,8 +1,18 @@
 const menuBtn = document.getElementById("menuButton");
 const sidebar = document.getElementById("sidebar");
 
-/* TOGGLE (abre e fecha no mesmo botão) */
-menuBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("active");
+// abrir/fechar sidebar
+menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // impede fechar imediatamente
+    sidebar.classList.toggle("active");
 });
 
+// impedir que clique dentro da sidebar feche ela
+sidebar.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+// fechar ao clicar fora
+document.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+});

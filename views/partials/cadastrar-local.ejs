@@ -3,6 +3,11 @@
         <p><%= error %></p>
     </div>
 <% } %> 
+<% if (ok) { %>
+    <div class="alert success">
+        <p>Local cadastrado com sucesso!</p>
+    </div>
+<% } %> 
 <div class="card-between">
     <div class="card-image">
         <label for="image" class="image">Escolher imagem</label>
@@ -43,7 +48,7 @@
 </div>
 <div class="card-message">
     <!-- <label for="message">Mensagem</label> -->
-    <textarea name="message" id="message" placeholder="Deixe uma mensagem"><%= values.mensagem %></textarea>
+    <textarea name="message" id="message" placeholder="Deixe uma mensagem"><%= values?.mensagem || '' %></textarea>
 </div>
 <div class="espaco-dos-botoes">
     <button type="button" class="botao-voltar" onclick="voltarPaginaCadastrarLocal()" aria-label="Botão Voltar">⬅ Voltar</button>                          
