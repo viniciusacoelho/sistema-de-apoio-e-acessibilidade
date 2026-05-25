@@ -10,19 +10,19 @@
 <% } %> 
 <div class="card-between">
     <div class="card-image">
-        <label for="image" class="image">Escolher imagem</label>
-        <input type="file" name="image" id="image" accept="image/*" hidden /*required*/>
+        <input type="file" name="image" id="image" accept="image/*">
+        <label for="image" class="image" tabindex="0">Escolher imagem<span class="right">*</span></label>
         <p id="file-name">Nenhum arquivo selecionado</p>
-        <img id="preview" src="<%= values ?  values.imagem : '' %>" alt="Preview da imagem">
+        <img id="preview" src="<%= values ? values.imagem : '' %>" alt="Preview">
     </div>
     <div class="card-right">
         <div class="card-name">
-            <label for="name">Nome do Local</label>
+            <label for="name">Nome do Local<span class="right">*</span></label>
             <input type="text" name="name" id="name" placeholder="Digite o nome do local" value="<%=  values ? values.nome : '' %>">
         </div>
         
         <div class="card-neighborhood">
-            <label for="neighborhood">Bairro</label>
+            <label for="neighborhood">Bairro<span class="right">*</span></label>
             <select name="neighborhood" id="neighborhood">
                 <option value="" disabled <%= !values?.bairro ? 'selected' : '' %>>Selecione um bairro</option>
                 <option value="Serraria" <%= values?.bairro === 'Serraria' ? 'selected' : '' %>>Serraria</option>
@@ -33,12 +33,13 @@
         </div>
 
         <div class="card-date">
-            <label for="date">Data de Registro</label>
+            <label for="date">Data de Registro<span class="right">*</span></label>
             <input type="date" name ="date" id="date" value="<%= values ? values.data : '' %>">
         </div>
     </div>
 </div>
-<label for="avaliacao">Avaliação</label>
+<label for="avaliacao">Avaliação<span class="right">*</span></label>
+<small class="right">*campo obrigatório</small>
 <div class="star-rating">
     <input type="radio" id="star5" name="rating" value="5" <%= values && values.avaliacao == 5 ? 'checked' : '' %>><label for="star5">★</label>
     <input type="radio" id="star4" name="rating" value="4" <%= values && values.avaliacao == 4 ? 'checked' : '' %>><label for="star4">★</label>

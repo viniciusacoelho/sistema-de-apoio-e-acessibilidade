@@ -42,6 +42,13 @@ h1 {
     gap: 20px;
 }
 
+#image {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
 .image {
     display: inline-block;
     padding: 12px 20px;
@@ -52,8 +59,13 @@ h1 {
     transition: 0.3s;
 }
 
-.image:hover {
+.image:hover, .image:focus {
     background: #4338ca;
+}
+
+.image:focus {
+    outline: 3px solid #000;
+    outline-offset: 3px;
 }
 
 #file-name {
@@ -104,6 +116,7 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
     border-color: #4f46e5;
 }
@@ -161,8 +174,15 @@ button:hover {
 }
 
 .star-rating input {
-    display: none;
+    position: absolute;
+    opacity: 0;
 }
+
+.star-rating input:focus + label {
+    outline: 2px solid #000;
+    outline-offset: 4px;
+    border-radius: 4px;
+}   
 
 .star-rating label {
     font-size: 2em;
